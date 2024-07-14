@@ -19,6 +19,6 @@ body {
   height: 100%;
   background: url('assets/background.webp') no-repeat center center fixed;
   background-size: cover;
-  opacity: 0.5; /* Ajusta la opacidad para la transparencia */
+  opacity: 0.5; /* Ajusta la transparencia del fondo */
   z-index: -1; /* Asegura que el overlay esté detrás del contenido */
 }
