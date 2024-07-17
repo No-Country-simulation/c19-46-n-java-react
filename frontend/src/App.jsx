@@ -9,6 +9,9 @@ function App() {
       <Button variant="contained" href="/main-menu">
         Ingresar sin iniciar sesion
       </Button>
+      <Button variant="contained" href="/pruebas">
+        Componente para testing
+      </Button>
     </body>
   );
 }
