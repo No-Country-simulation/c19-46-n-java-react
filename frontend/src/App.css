@@ -1,0 +1,12 @@
+body {
+    background: url('./components/images/backgorund.png') no-repeat center center fixed;
+    background-size: cover;
+    display: flex;
+  }
+  
+  .container {   
+    align-items: center; /* Centra verticalmente los elementos */
+  }
+  
+
+  
