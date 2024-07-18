@@ -10,9 +10,12 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-import agregarMascota from "../../assets/agregarMascota.webp";
+import agregarMascota from "../../shared/assets/agregarMascota.webp";
+import CargarFotosMascota from "./cargar-fotos/CargarFotosMascota";
 
 const FormularioMascotaIndex = () => {
+  const handleSubmit = () => {};
+
   return (
     <>
       <div
@@ -25,13 +28,14 @@ const FormularioMascotaIndex = () => {
       >
         <Card
           style={{
-            backgroundColor: "#e3e3e3", // Gris más oscuro
-            width: "90vw", // Ancho más grande
+            backgroundColor: "#e3e3e3", // Gris
+            width: "90vw", // Ancho
             maxWidth: "1000px", // Ancho máximo fijo
-            height: "70vh", // Altura más grande
+            height: "100vh", // Altura
+            overflowY: "auto", // Agregar scrollbar horizontal
             maxHeight: "600px", // Altura máxima fija
-            backgroundImage: `url(${agregarMascota})`,
-            backgroundPosition: "left bottom",
+            backgroundImage: `url(${agregarMascota})`, // Imagen de fondo
+            backgroundPosition: "left bottom", // Posición de la imagen de fondo
             backgroundRepeat: "no-repeat",
           }}
         >
@@ -48,7 +52,7 @@ const FormularioMascotaIndex = () => {
                 </Typography>
               </Grid>
               <Grid item xs={12}>
-                <form onSubmit={() => {}}>
+                <form onSubmit={handleSubmit}>
                   <Grid container spacing={2}>
                     <Grid item xs={12} md={4}>
                       <TextField
@@ -56,21 +60,21 @@ const FormularioMascotaIndex = () => {
                         label="Nombre"
                         variant="outlined"
                         margin="normal"
-                        name="nombre"
+                        id="formulario-mascota-nombre"
                       />
                       <TextField
                         fullWidth
                         label="Edad"
                         variant="outlined"
                         margin="normal"
-                        name="edad"
+                        id="formulario-mascota-edad"
                       />
                       <FormControl fullWidth margin="normal">
                         <InputLabel>Sexo</InputLabel>
                         <Select
                           variant="outlined"
                           label="Sexo"
-                          name="sexo"
+                          id="formulario-mascota-sexo"
                           defaultValue="Macho"
                         >
                           <MenuItem value="Macho">Macho</MenuItem>
@@ -82,7 +86,7 @@ const FormularioMascotaIndex = () => {
                         <Select
                           variant="outlined"
                           label="Raza"
-                          name="raza"
+                          id="formulario-mascota-raza"
                           defaultValue="Caniche"
                         >
                           <MenuItem value="Caniche">Caniche</MenuItem>
@@ -96,8 +100,8 @@ const FormularioMascotaIndex = () => {
                         <InputLabel>Tamaño</InputLabel>
                         <Select
                           variant="outlined"
-                          label="Tamanio"
-                          name="tamanio"
+                          label="Tamaño"
+                          id="formulario-mascota-tamaño"
                           defaultValue="Pequeño"
                         >
                           <MenuItem value="Pequeño">Pequeño</MenuItem>
@@ -110,39 +114,42 @@ const FormularioMascotaIndex = () => {
                         label="Cuenta lo que quieras de él/ella"
                         variant="outlined"
                         margin="normal"
-                        name="descripcion"
+                        id="formulario-mascota-descripcion"
                         multiline
                         rows={4}
                       />
                     </Grid>
+
+                    {/* Fotos de muestra e input para las fotos */}
                     <Grid item xs={12} md={4}>
-                      <TextField
-                        fullWidth
-                        type="file"
-                        inputProps={{ accept: "image/*" }}
-                        onChange={() => {}}
-                        margin="normal"
-                        variant="outlined"
-                        label="Subir imagen"
-                        name="imagen"
-                      />
+                      <CargarFotosMascota />
                     </Grid>
+
+                    {/* Botones volver y finalizar */}
                     <Grid
                       container
-                      justifyContent="right"
+                      justifyContent="flex-end"
                       marginTop="16px"
                       spacing={2}
                     >
-                      <Button
-                        variant="contained"
-                        color="secondary"
-                        type="submit"
-                      >
-                        Volver
-                      </Button>
-                      <Button variant="contained" color="primary" type="submit">
-                        Finalizar
-                      </Button>
+                      <Grid item>
+                        <Button
+                          variant="contained"
+                          color="secondary"
+                          type="button"
+                        >
+                          Volver
+                        </Button>
+                      </Grid>
+                      <Grid item>
+                        <Button
+                          variant="contained"
+                          color="primary"
+                          type="submit"
+                        >
+                          Finalizar
+                        </Button>
+                      </Grid>
                     </Grid>
                   </Grid>
                 </form>
