@@ -1,8 +1,8 @@
 import { Grid } from "@mui/material";
-import muestra1 from "../../../shared/assets/muestra1.webp";
-import muestra2 from "../../../shared/assets/muestra2.webp";
-import muestra3 from "../../../shared/assets/muestra3.webp";
-import CargarFotosButton from "../../../shared/components/inputs/CargarFotosButton";
+import muestra1 from "../../../../shared/assets/muestra1.webp";
+import muestra2 from "../../../../shared/assets/muestra2.webp";
+import muestra3 from "../../../../shared/assets/muestra3.webp";
+import CargarFotosButton from "../../../../shared/components/input/CargarFotosButton";
 
 const CargarFotosMascota = () => {
   const handleChange = () => {};

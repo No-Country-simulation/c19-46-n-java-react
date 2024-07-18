@@ -10,7 +10,7 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-import agregarMascota from "../../shared/assets/agregarMascota.webp";
+import agregarMascota from "../../../shared/assets/agregarMascota.webp";
 import CargarFotosMascota from "./cargar-fotos/CargarFotosMascota";
 
 const FormularioMascotaIndex = () => {

@@ -1,7 +1,6 @@
   .container {
-    font-family: Poppins;
     display: flex;
-    align-items: stretch;
+    align-items: center;
     justify-content: center;
     height: 100vh; /* Ocupa toda la altura de la ventana */ 
   }
@@ -29,7 +28,8 @@
     max-width: 400px; /* Ancho máximo del formulario */   
   }
 
-  body { 
+  .divisor { 
+    display: flex;
     justify-content: center; /* Centra el formulario horizontalmente */
     align-items: center; /* Centra el formulario verticalmente */
     height: 100vh; /* Ocupa toda la altura de la ventana */
