@@ -1,55 +1,97 @@
-import React from 'react';
+
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import Button from '../button/Button';
 import './LoginForm.css';
 import Input from '../input/Input';
-import Inicio from '../images/Inicio.png'; 
-
+import Inicio from '../images/Inicio.png';
 
 const LoginForm = () => {
-  const handleLogin = () => {
-    console.log('Entrar');
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
+
+  const handleLogin = async (e) => {
+    e.preventDefault();
+
+    if (isSubmitting) {
+      return;
+    }
+    console.log('No entra');
+
+    setIsSubmitting(true);
+    setError('');
+
+    try {
+      // Simula una petición de inicio de sesión
+      await fakeLoginRequest({ username, password });
+
+      // Lógica después de un inicio de sesión exitoso
+      console.log('Entrar');
+    } catch (err) {
+      setError('Nombre de usuario o contraseña incorrectos.');
+      setIsSubmitting(false);
+    }
   };
 
-  const handleRegister = () => {
-    console.log('Registrarse');
-  };
- 
   return (
-
     <div className="container">
       <div className="image">
-        <img src={Inicio} alt="Imagen de inicio"/>
+        <img src={Inicio} alt="Imagen de inicio" />
       </div>
-      <form className='form'>
+      <form className='form' onSubmit={handleLogin}>
         <h1>¡Bienvenido!</h1>
         <p>Por favor, inicia sesión para continuar</p>
-          <div className='campo'>
-            <Input 
-              placeholder={"nombre de usuario"}>
-            </Input>
-
-            <Input 
-              type={"password"}
-              placeholder={"contraseña"}>
-            </Input>
-          </div>
-          
+        <div className='campo'>
+          <Input
+            id="nicknameLogin"
+            placeholder={"nombre de usuario"}
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            maxLength={50}
+            required
+          />
+          <Input 
+            id={"password"}
+            type={"password"}
+            placeholder={"contraseña"}
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            maxLength={8}
+            required
+          />
+        </div>
+        {error && <div style={{ color: 'red' }}>{error}</div>}
         <div>
-          <Button onClick={handleLogin} className="btn-primary">
-          ENTRAR    
+          <Button type="submit" className="btn-primary" disabled={isSubmitting}>
+            {isSubmitting ? 'Enviando...' : 'ENTRAR'}
           </Button>
         </div>
-
         <div>
-          <Button onClick={handleRegister} className="btn-secondary">
-            REGISTRARSE
-          </Button>
+          <Link to="/register">
+            <Button className="btn-secondary">
+              REGISTRARSE
+            </Button>
+          </Link>
         </div>
         <p>olvidaste la contraseña...</p>
       </form>
     </div>
-
   );
+};
+
+// Simulación de petición de inicio de sesión
+const fakeLoginRequest = ({ username, password }) => {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      if (username === 'admin' && password === 'password') {
+        resolve();
+      } else {
+        reject();
+      }
+    }, 1000);
+  });
 };
 
 export default LoginForm;

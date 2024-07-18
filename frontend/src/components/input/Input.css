@@ -12,3 +12,7 @@
     width: 100%;
   
 }
+
+.required-asterisk {
+    color: red;
+  }
