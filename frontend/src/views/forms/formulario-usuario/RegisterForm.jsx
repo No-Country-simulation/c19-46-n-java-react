@@ -89,7 +89,7 @@ const LoginForm = () => {
             </Button>
           </div>
           <div>
-            <Link to="/register">
+            <Link to="">
               <Button className="btn-secondary">VOLVER</Button>
             </Link>
           </div>

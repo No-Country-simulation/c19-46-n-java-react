@@ -5,6 +5,7 @@ import "../Formulario.css";
 import Input from "../../../shared/components/input/Input";
 import Inicio from "../../../shared/assets/Inicio.png";
 
+
 const LoginForm = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [username, setUsername] = useState("");
@@ -17,7 +18,7 @@ const LoginForm = () => {
     if (isSubmitting) {
       return;
     }
-    console.log("No entra");
+    // console.log("No entra");
 
     setIsSubmitting(true);
     setError("");
@@ -73,7 +74,7 @@ const LoginForm = () => {
             </Button>
           </div>
           <div>
-            <Link to="/register">
+            <Link to="">
               <Button className="btn-secondary">REGISTRARSE</Button>
             </Link>
           </div>
