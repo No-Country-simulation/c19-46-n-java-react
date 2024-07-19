@@ -1,6 +1,6 @@
-# 🌟 frontend
+# 🌟 Nombre del proyecto: "frontend"
 
-El proyecto se llama frontend porque es sólo el front-end.
+Este es el front-end de un proyecto que lo describimos como un "Tinder" de perros hecho para No Country como una simulación laboral.
 
 ## 🛠 Tecnologías Utilizadas
 
