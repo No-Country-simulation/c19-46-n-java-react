@@ -49,15 +49,11 @@ git clone [LINK DEL REPOSITORIO]
 ### Instalación de IntelliJ IDEA
 
 1. **Descargar IntelliJ IDEA:**
-   - Visita la página oficial de [IntelliJ IDEA](https://www.jetbrains.com/idea/download/) y descarga la versión Community (gratuita) o la versión Ultimate (de pago).
+   - Visita la página oficial de [IntelliJ IDEA](https://www.jetbrains.com/idea/download/) y descarga la versión Community (gratuita).
 
 2. **Instalar IntelliJ IDEA:**
    - Sigue las instrucciones de instalación específicas para tu sistema operativo.
 
-3. **Configurar IntelliJ IDEA:**
-   - Abre IntelliJ IDEA y selecciona "New Project".
-   - Elige "Spring Initializr" y configura el proyecto con las siguientes dependencias: Spring Web, Spring Security, Spring Data JPA, MySQL Driver.
-   - Configura el SDK de Java en la configuración del proyecto.
 
 ### Instalación y configuración de MySQL
 
@@ -77,3 +73,34 @@ git clone [LINK DEL REPOSITORIO]
      CREATE DATABASE nombre_base_de_datos;
      ```
 
+### Creacion de Registro y lista de 20 ciudades de venezuela 
+
+**Pasos para probar backend:**
+- Abrir carpeta backend con intellij
+- instalar todas las sugerencias del ide
+-Crear bbdd en workbench (o SGBD que use) llamada "db_pettinder"
+
+- Modificar datos para usar bbdd:
+```java
+spring.datasource.username=usuarioSuBBDD
+spring.datasource.password=suContraseniaDeWorkbench
+```
+- Correr Proyecto en intellij
+
+**Probar endpoints:**
+- GET: http://localhost:8080/api/ciudades
+- POST: http://localhost:8080/api/usuarios/registro
+
+**JSON - Recibe:**
+
+```javascript
+{
+    "nickname": "usuario1",
+    "email": "usuario1@example.com",
+    "contrasenia": "contraseña123",
+    "confirmarContrasenia": "contraseña123",
+    "nombreCompleto": "Nombre Apellido",
+    "telefono": "1234567890",
+    "ciudadId": 20 
+}
+```
