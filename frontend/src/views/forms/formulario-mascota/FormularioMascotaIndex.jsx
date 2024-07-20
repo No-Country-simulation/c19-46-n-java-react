@@ -1,20 +1,105 @@
-import {
-  Button,
-  Card,
-  CardContent,
-  FormControl,
-  Grid,
-  InputLabel,
-  MenuItem,
-  Select,
-  TextField,
-  Typography,
-} from "@mui/material";
+import { useState } from "react";
+import { Card, CardContent, Grid, Typography } from "@mui/material";
 import agregarMascota from "../../../shared/assets/agregarMascota.webp";
 import CargarFotosMascota from "./cargar-fotos/CargarFotosMascota";
+import Input from "../../../shared/components/input/Input";
+import Button from "../../../shared/components/button/Button";
 
 const FormularioMascotaIndex = () => {
-  const handleSubmit = () => {};
+  const fakeRegisterRequest = ({
+    nombre,
+    edad,
+    sexo,
+    raza,
+    tamanio,
+    descripcion,
+    fotos,
+  }) => {
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        if (
+          nombre &&
+          edad &&
+          sexo &&
+          raza &&
+          tamanio &&
+          descripcion &&
+          fotos.length > 0
+        ) {
+          resolve();
+        } else {
+          reject();
+        }
+      }, 1000);
+    });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (isSubmitting) {
+      return;
+    }
+    if (!nombre || !edad || !sexo || fotos.length === 0) {
+      setError("Información requerida incompleta.");
+      return;
+    }
+    setIsSubmitting(true);
+    setError("");
+    try {
+      await fakeRegisterRequest({
+        nombre,
+        edad,
+        sexo,
+        raza,
+        tamanio,
+        descripcion,
+        fotos,
+      });
+      console.log("Registro exitoso");
+      setIsSubmitting(false);
+    } catch (err) {
+      setError("Error en el registro. Inténtalo de nuevo.");
+      setIsSubmitting(false);
+    }
+  };
+
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [error, setError] = useState("");
+
+  // Datos del formulario
+  const [nombre, setNombre] = useState("");
+  const [edad, setEdad] = useState("");
+  const [sexo, setSexo] = useState("");
+  const [raza, setRaza] = useState("");
+  const razas = [
+    { value: "", label: "Selecciona una raza" },
+    { value: "Caniche", label: "Caniche" },
+    { value: "Chihuahua", label: "Chihuahua" },
+    { value: "Chow-Chow", label: "Chow-Chow" },
+    { value: "Dogo", label: "Dogo" },
+    { value: "Pitbull", label: "Pitbull" },
+  ];
+  const [tamanio, setTamanio] = useState("");
+  const tamanios = [
+    {
+      value: "",
+      label: "Selecciona un tamaño",
+    },
+    {
+      value: "Pequeño",
+      label: "Pequeño",
+    },
+    {
+      value: "Mediano",
+      label: "Mediano",
+    },
+    {
+      value: "Grande",
+      label: "Grande",
+    },
+  ];
+  const [descripcion, setDescripcion] = useState("");
+  const [fotos, setFotos] = useState([]);
 
   return (
     <>
@@ -53,103 +138,105 @@ const FormularioMascotaIndex = () => {
               </Grid>
               <Grid item xs={12}>
                 <form onSubmit={handleSubmit}>
-                  <Grid container spacing={2}>
+                  <Grid container spacing={2} mt={2}>
+                    {/* Primera columna */}
                     <Grid item xs={12} md={4}>
-                      <TextField
-                        fullWidth
-                        label="Nombre"
-                        variant="outlined"
-                        margin="normal"
+                      <Input
                         id="formulario-mascota-nombre"
+                        placeholder={"Nombre"}
+                        value={nombre}
+                        onChange={(e) => setNombre(e.target.value)}
+                        maxLength={50}
+                        required
                       />
-                      <TextField
-                        fullWidth
-                        label="Edad"
-                        variant="outlined"
-                        margin="normal"
+                      <Input
                         id="formulario-mascota-edad"
+                        placeholder={"Edad"}
+                        value={edad}
+                        onChange={(e) => setEdad(e.target.value)}
+                        maxLength={50}
+                        required
                       />
-                      <FormControl fullWidth margin="normal">
-                        <InputLabel>Sexo</InputLabel>
-                        <Select
-                          variant="outlined"
-                          label="Sexo"
-                          id="formulario-mascota-sexo"
-                          defaultValue="Macho"
-                        >
-                          <MenuItem value="Macho">Macho</MenuItem>
-                          <MenuItem value="Hembra">Hembra</MenuItem>
-                        </Select>
-                      </FormControl>
-                      <FormControl fullWidth margin="normal">
-                        <InputLabel>Raza</InputLabel>
-                        <Select
-                          variant="outlined"
-                          label="Raza"
-                          id="formulario-mascota-raza"
-                          defaultValue="Caniche"
-                        >
-                          <MenuItem value="Caniche">Caniche</MenuItem>
-                          <MenuItem value="Doberman">Doberman</MenuItem>
-                          <MenuItem value="Dálmata">Dálmata</MenuItem>
-                        </Select>
-                      </FormControl>
-                    </Grid>
-                    <Grid item xs={12} md={4}>
-                      <FormControl fullWidth margin="normal">
-                        <InputLabel>Tamaño</InputLabel>
-                        <Select
-                          variant="outlined"
-                          label="Tamaño"
-                          id="formulario-mascota-tamaño"
-                          defaultValue="Pequeño"
-                        >
-                          <MenuItem value="Pequeño">Pequeño</MenuItem>
-                          <MenuItem value="Mediano">Mediano</MenuItem>
-                          <MenuItem value="Grande">Grande</MenuItem>
-                        </Select>
-                      </FormControl>
-                      <TextField
-                        fullWidth
-                        label="Cuenta lo que quieras de él/ella"
-                        variant="outlined"
-                        margin="normal"
-                        id="formulario-mascota-descripcion"
-                        multiline
-                        rows={4}
+                      <Input
+                        id="formulario-mascota-sexo"
+                        type="select"
+                        value={sexo}
+                        options={[
+                          { value: "", label: "Selecciona un sexo" },
+                          { value: "Macho", label: "Macho" },
+                          { value: "Hembra", label: "Hembra" },
+                        ]}
+                        onChange={(e) => setSexo(e.target.value)}
+                        required
+                      />
+                      <Input
+                        id="formulario-mascota-raza"
+                        type="select"
+                        value={raza}
+                        options={razas}
+                        onChange={(e) => setRaza(e.target.value)}
+                        required
                       />
                     </Grid>
 
+                    {/* Segunda columna */}
+                    <Grid item xs={12} md={4}>
+                      <Input
+                        id="formulario-mascota-tamanio"
+                        type="select"
+                        value={tamanio}
+                        options={tamanios}
+                        onChange={(e) => setTamanio(e.target.value)}
+                        required
+                      />
+                      <Input
+                        id="formulario-mascota-descripcion"
+                        type="textarea"
+                        placeholder={"Cuenta lo que quieras de él/ella"}
+                        value={descripcion}
+                        onChange={(e) => setDescripcion(e.target.value)}
+                        maxLength={150}
+                      />
+                    </Grid>
+
+                    {/* Tercera columna */}
                     {/* Fotos de muestra e input para las fotos */}
                     <Grid item xs={12} md={4}>
-                      <CargarFotosMascota />
+                      <CargarFotosMascota setFotos={setFotos} />
+                    </Grid>
+
+                    <Grid container justifyContent="flex-end">
+                      {fotos && fotos.length > 0 ? (
+                        <div style={{ color: "green", fontSize: "14px" }}>
+                          Fotos cargadas
+                        </div>
+                      ) : (
+                        <div style={{ color: "red", fontSize: "14px" }}>
+                          Debes cargar al menos una foto
+                        </div>
+                      )}
                     </Grid>
 
                     {/* Botones volver y finalizar */}
-                    <Grid
-                      container
-                      justifyContent="flex-end"
-                      marginTop="16px"
-                      spacing={2}
-                    >
+                    <Grid container justifyContent="flex-end" marginTop="16px">
                       <Grid item>
-                        <Button
-                          variant="contained"
-                          color="secondary"
-                          type="button"
-                        >
-                          Volver
-                        </Button>
+                        <Button className="btn-secondary">VOLVER</Button>
                       </Grid>
                       <Grid item>
                         <Button
-                          variant="contained"
-                          color="primary"
+                          id="formulario-mascota-submit"
                           type="submit"
+                          className="btn-primary"
+                          disabled={isSubmitting}
                         >
-                          Finalizar
+                          {isSubmitting ? "Enviando..." : "FINALIZAR"}
                         </Button>
                       </Grid>
+                    </Grid>
+
+                    {/* Mensaje de error */}
+                    <Grid container justifyContent="flex-end">
+                      {error && <div style={{ color: "red" }}>{error}</div>}
                     </Grid>
                   </Grid>
                 </form>

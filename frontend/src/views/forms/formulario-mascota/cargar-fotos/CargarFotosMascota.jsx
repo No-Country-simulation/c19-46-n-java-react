@@ -4,12 +4,19 @@ import muestra2 from "../../../../shared/assets/muestra2.webp";
 import muestra3 from "../../../../shared/assets/muestra3.webp";
 import CargarFotosButton from "../../../../shared/components/input/CargarFotosButton";
 
-const CargarFotosMascota = () => {
-  const handleChange = () => {};
+const CargarFotosMascota = ({ setFotos }) => {
+  const handleChange = (event) => {
+    if (event.target.files) {
+      setFotos(event.target.files);
+    }
+  };
 
   return (
     <>
       <Grid container justifyContent="center" alignItems="center">
+        {/* Fotos de muestra */}
+
+        {/* Primera Columna */}
         <Grid container spacing={16}>
           <Grid item xs={6} sm={3}>
             <img
@@ -35,6 +42,7 @@ const CargarFotosMascota = () => {
           </Grid>
         </Grid>
 
+        {/* Segunda Columna */}
         <Grid container spacing={16}>
           <Grid item xs={6} sm={3}>
             <img
@@ -47,8 +55,14 @@ const CargarFotosMascota = () => {
               }}
             />
           </Grid>
+
+          {/* Cargar fotos */}
           <Grid item xs={6} sm={3}>
-            <CargarFotosButton handleChange={handleChange} required={true} />
+            <CargarFotosButton
+              id="formulario-mascota-cargar-fotos"
+              handleChange={handleChange}
+              required={true}
+            />
           </Grid>
         </Grid>
       </Grid>

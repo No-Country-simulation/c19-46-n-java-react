@@ -5,8 +5,8 @@ import FormularioMascotaIndex from "./views/forms/formulario-mascota/FormularioM
 const ComponentePruebas = () => {
   return (
     <>
-      {/* <FormularioMascotaIndex /> */}
-      <LoginForm />
+      <FormularioMascotaIndex />
+      {/* <LoginForm /> */}
       {/* <RegisterForm /> */}
     </>
   );

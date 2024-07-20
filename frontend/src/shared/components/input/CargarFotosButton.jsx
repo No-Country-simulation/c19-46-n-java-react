@@ -1,19 +1,23 @@
 import FileUploadOutlinedIcon from "@mui/icons-material/FileUploadOutlined";
 
-const CargarFotosButton = ({ handleChange, required = false }) => {
+const CargarFotosButton = ({
+  id,
+  multiple = true,
+  handleChange,
+  required = false,
+}) => {
   return (
     <>
       <input
+        id={id}
         type="file"
         accept="image/*"
-        multiple
+        multiple={multiple}
         onChange={handleChange}
-        style={{ display: "none" }}
-        id="cargar-fotos"
-        required={required}
+        style={{ visibility: "hidden", position: "absolute" }}
       />
       <label
-        htmlFor="cargar-fotos"
+        htmlFor={id}
         style={{
           width: 120,
           height: 120,
@@ -26,6 +30,7 @@ const CargarFotosButton = ({ handleChange, required = false }) => {
         }}
       >
         <FileUploadOutlinedIcon />
+        {required && <span style={{ color: "red" }}>*</span>}
       </label>
     </>
   );

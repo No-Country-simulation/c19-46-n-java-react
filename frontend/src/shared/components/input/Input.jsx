@@ -1,21 +1,61 @@
-import React from 'react';
-import './Input.css';
+import "./Input.css";
 
-const Input = ({ id, type = "text", placeholder, value, onChange, maxLength, required=false }) => {
+const Input = ({
+  id,
+  type = "text",
+  placeholder,
+  value,
+  onChange,
+  maxLength,
+  required = false,
+  options,
+  rows = 5,
+}) => {
   return (
-    <div className="input-container">
-      <input
-        id={id}
-        type={type}
-        placeholder={placeholder}
-        value={value}
-        onChange={onChange}
-        maxLength={maxLength}
-        className="input"
-        required={required}
-      />
+    <>
+      {type === "select" && (
+        <select
+          id={id}
+          value={value}
+          onChange={onChange}
+          maxLength={maxLength}
+          className="input"
+          required={required}
+        >
+          {options &&
+            options.map((option, index) => (
+              <option key={index} value={option.value}>
+                {option.label}
+              </option>
+            ))}
+        </select>
+      )}
+      {type === "textarea" && (
+        <textarea
+          id={id}
+          placeholder={placeholder}
+          value={value}
+          onChange={onChange}
+          maxLength={maxLength}
+          className="textarea"
+          required={required}
+          rows={rows}
+        />
+      )}
+      {type === "text" && (
+        <input
+          id={id}
+          type={type}
+          placeholder={placeholder}
+          value={value}
+          onChange={onChange}
+          maxLength={maxLength}
+          className="input"
+          required={required}
+        />
+      )}
       {required && <span className="required-asterisk">*</span>}
-    </div>
+    </>
   );
 };
 
