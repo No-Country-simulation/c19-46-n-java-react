@@ -13,7 +13,7 @@ const Input = ({
 }) => {
   return (
     <>
-      {type === "select" && (
+      {type === "select" ? (
         <select
           id={id}
           value={value}
@@ -29,8 +29,7 @@ const Input = ({
               </option>
             ))}
         </select>
-      )}
-      {type === "textarea" && (
+      ) : type === "textarea" ? (
         <textarea
           id={id}
           placeholder={placeholder}
@@ -41,8 +40,7 @@ const Input = ({
           required={required}
           rows={rows}
         />
-      )}
-      {type === "text" && (
+      ) : (
         <input
           id={id}
           type={type}
@@ -54,20 +52,6 @@ const Input = ({
           required={required}
         />
       )}
-
-      {type === "password" &&(
-        <input
-          id={id}
-          type={type}
-          placeholder={placeholder}
-          value={value}
-          onChange={onChange}
-          maxLength={maxLength}
-          className="input"
-          required={required}
-        />
-      )}
-
       {required && <span className="required-asterisk">*</span>}
     </>
   );
