@@ -6,8 +6,8 @@ const ComponentePruebas = () => {
   return (
     <>
       {/* <FormularioMascotaIndex /> */}
-      <LoginForm />
-      {/* <RegisterForm /> */}
+      {/* <LoginForm /> */}
+      <RegisterForm />
     </>
   );
 };
