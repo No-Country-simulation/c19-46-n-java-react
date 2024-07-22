@@ -54,6 +54,20 @@ const Input = ({
           required={required}
         />
       )}
+
+      {type === "password" &&(
+        <input
+          id={id}
+          type={type}
+          placeholder={placeholder}
+          value={value}
+          onChange={onChange}
+          maxLength={maxLength}
+          className="input"
+          required={required}
+        />
+      )}
+
       {required && <span className="required-asterisk">*</span>}
     </>
   );

@@ -51,7 +51,7 @@ const LoginForm = () => {
               value={username}
               onChange={(e) => setUsername(e.target.value)}
               maxLength={50}
-              required
+              required="true"
             />
             <Input
               id={"password"}
