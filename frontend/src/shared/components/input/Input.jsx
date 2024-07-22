@@ -13,7 +13,7 @@ const Input = ({
 }) => {
   return (
     <>
-      {type === "select" && (
+      {type === "select" ? (
         <select
           id={id}
           value={value}
@@ -29,8 +29,7 @@ const Input = ({
               </option>
             ))}
         </select>
-      )}
-      {type === "textarea" && (
+      ) : type === "textarea" ? (
         <textarea
           id={id}
           placeholder={placeholder}
@@ -41,8 +40,7 @@ const Input = ({
           required={required}
           rows={rows}
         />
-      )}
-      {type === "text" && (
+      ) : (
         <input
           id={id}
           type={type}

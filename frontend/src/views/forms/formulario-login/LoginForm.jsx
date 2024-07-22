@@ -5,8 +5,7 @@ import "../Formulario.css";
 import Input from "../../../shared/components/input/Input";
 import Inicio from "../../../shared/assets/Inicio.png";
 
-
-const LoginForm = () => {
+const LoginForm = ({ onNext }) => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -25,10 +24,11 @@ const LoginForm = () => {
 
     try {
       // Simula una petición de inicio de sesión
-      await fakeLoginRequest({ username, password });
+      // await fakeLoginRequest({ username, password });
 
       // Lógica después de un inicio de sesión exitoso
       console.log("Entrar");
+      onNext();
     } catch (err) {
       setError("Nombre de usuario o contraseña incorrectos.");
       setIsSubmitting(false);
@@ -51,7 +51,7 @@ const LoginForm = () => {
               value={username}
               onChange={(e) => setUsername(e.target.value)}
               maxLength={50}
-              required
+              required="true"
             />
             <Input
               id={"password"}
