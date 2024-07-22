@@ -43,13 +43,6 @@ const LoginForm = () => {
   return (
     <div className="divisor">
       <div className="container">
-        <div className="image">
-          <img
-            src={Primerinicio}
-            alt="Imagen de inicio"
-            style={{ height: 550 }}
-          />
-        </div>
         <form className="form" onSubmit={handleRegister}>
           <h1>Completa tu perfil para comenzar</h1>
           <div className="campo">
@@ -94,6 +87,13 @@ const LoginForm = () => {
             </Link>
           </div>
         </form>
+        <div className="image">
+          <img
+            src={Primerinicio}
+            alt="Imagen de inicio"
+            style={{ height: 550 }}
+          />
+        </div>
       </div>
     </div>
   );
