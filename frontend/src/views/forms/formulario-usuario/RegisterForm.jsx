@@ -1,11 +1,10 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
 import Button from "../../../shared/components/button/Button";
 import "../Formulario.css";
 import Input from "../../../shared/components/input/Input";
 import Primerinicio from "../../../shared/assets/primerInicio.png";
 
-const LoginForm = () => {
+const LoginForm = ({ onPrevious, onNext }) => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
@@ -29,11 +28,12 @@ const LoginForm = () => {
 
     try {
       // Simula una petición de registro
-      await fakeRegisterRequest({ name, phone, city });
+      // await fakeRegisterRequest({ name, phone, city });
 
       // Lógica después de un registro exitoso
       console.log("Registro exitoso");
       setIsSubmitting(false); // Restablecer estado isSubmitting
+      onNext();
     } catch (err) {
       setError("Error en el registro. Inténtalo de nuevo.");
       setIsSubmitting(false); // Restablecer estado isSubmitting
@@ -82,9 +82,9 @@ const LoginForm = () => {
             </Button>
           </div>
           <div>
-            <Link to="">
-              <Button className="btn-secondary">VOLVER</Button>
-            </Link>
+            <Button className="btn-secondary" onClick={onPrevious}>
+              VOLVER
+            </Button>
           </div>
         </form>
         <div className="image">
