@@ -4,8 +4,11 @@ import agregarMascota from "../../../shared/assets/agregarMascota.webp";
 import CargarFotosMascota from "./cargar-fotos/CargarFotosMascota";
 import Input from "../../../shared/components/input/Input";
 import Button from "../../../shared/components/button/Button";
+import { useNavigate } from "react-router-dom";
 
-const FormularioMascotaIndex = () => {
+const FormularioMascotaIndex = ({ onPrevious }) => {
+  const navigate = useNavigate();
+
   const fakeRegisterRequest = ({
     nombre,
     edad,
@@ -46,17 +49,18 @@ const FormularioMascotaIndex = () => {
     setIsSubmitting(true);
     setError("");
     try {
-      await fakeRegisterRequest({
-        nombre,
-        edad,
-        sexo,
-        raza,
-        tamanio,
-        descripcion,
-        fotos,
-      });
+      // await fakeRegisterRequest({
+      //   nombre,
+      //   edad,
+      //   sexo,
+      //   raza,
+      //   tamanio,
+      //   descripcion,
+      //   fotos,
+      // });
       console.log("Registro exitoso");
       setIsSubmitting(false);
+      navigate("/main-menu");
     } catch (err) {
       setError("Error en el registro. Inténtalo de nuevo.");
       setIsSubmitting(false);
@@ -220,7 +224,9 @@ const FormularioMascotaIndex = () => {
                     {/* Botones volver y finalizar */}
                     <Grid container justifyContent="flex-end" marginTop="16px">
                       <Grid item>
-                        <Button className="btn-secondary">VOLVER</Button>
+                        <Button className="btn-secondary" onClick={onPrevious}>
+                          VOLVER
+                        </Button>
                       </Grid>
                       <Grid item>
                         <Button
