@@ -1,5 +1,11 @@
+import CiudadesComponent from "./CiudadesComponent";
+
 const BuscadorIndex = () => {
-  return <div>BuscadorIndex</div>;
+  return (
+    <>
+      <CiudadesComponent />
+    </>
+  );
 };
 
 export default BuscadorIndex;
