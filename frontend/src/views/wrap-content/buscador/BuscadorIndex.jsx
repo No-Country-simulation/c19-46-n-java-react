@@ -1,10 +1,7 @@
-import CiudadesComponent from "./CiudadesComponent";
 
 const BuscadorIndex = () => {
   return (
-    <>
-      <CiudadesComponent />
-    </>
+    <div>BuscadorIndex</div>
   );
 };
 
