@@ -1,9 +1,9 @@
 import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { UsuarioContexto } from "../utils/UsuarioContext";
-import { fetchLogin, fetchRegistrarUsuario } from "../api/usuario_api";
+import { fetchLogin, fetchRegistrarUsuario, fetchEditarUsuario } from "../api/usuario_api";
 
-export const useUsuario = () => {
+export const useUsuario = (onNext = null) => {
 
     // Estados del formulario
     const [error, setError] = useState("");
@@ -76,7 +76,50 @@ export const useUsuario = () => {
      * datos del usuario registrado si el registro es exitoso, o undefined si
      * falla.
      */
-    const handleRegister = async (e, onNext) => {
+    const handleRegister = async (e) => {
+        e.preventDefault();
+        if (isSubmitting) {
+            return;
+        }
+        if (!username || !email || !password || !confirmarPassword) {
+            setError("Información requerida incompleta.");
+            return;
+        }
+        setIsSubmitting(true);
+        setError("");
+        try {
+            // const data = await fetchRegistrarUsuario(
+            //     setError,
+            //     username,
+            //     email,
+            //     password,
+            //     confirmarPassword
+            // );
+            // if (data) {
+            //     setUsername("");
+            //     setEmail("");
+            //     setPassword("");
+            //     setConfirmarPassword("");
+            //     // onNext();
+            //     return data;
+            // }
+            onNext()
+        } catch (error) {
+            console.error(error);
+        } finally {
+            setIsSubmitting(false);
+        }
+    };
+
+
+    /**
+     * Función asíncrona que maneja el registro de perfil en el formulario de perfil.
+     * @param {Event} e - Evento de envío del formulario.
+     * @returns {Promise<object|undefined>} - Promesa que se resuelve con los
+     * datos del usuario registrado si el registro es exitoso, o undefined si
+     * falla.
+     */
+    const handleProfileRegister = async (e) => {
         e.preventDefault();
         if (isSubmitting) {
             return;
@@ -88,25 +131,19 @@ export const useUsuario = () => {
         setIsSubmitting(true);
         setError("");
         try {
-            const data = await fetchRegistrarUsuario(
-                setError,
-                username,
-                password,
-                confirmarPassword,
-                nombre,
-                telefono,
-                ciudad
-            );
-            if (data) {
-                setUsername("");
-                setPassword("");
-                setConfirmarPassword("");
-                setNombre("");
-                setTelefono("");
-                setCiudad(null);
-                onNext();
-                return data;
-            }
+            // const data = await fetchRegistrarUsuario(
+            //     // nombre,
+            //     // telefono,
+            //     // ciudad
+            // );
+            // if (data) {
+            //     // setNombre("");
+            //     // setTelefono("");
+            //     // setCiudad(null);
+            //     // 
+            //     return data;
+            // }
+            onNext()
         } catch (error) {
             console.error(error);
         } finally {
@@ -129,6 +166,7 @@ export const useUsuario = () => {
         handlePasswordChange,
         handleLogin,
         handleRegister,
+        handleProfileRegister,
         estadoForm: {
             error,
             setError,

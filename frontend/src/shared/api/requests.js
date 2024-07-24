@@ -18,6 +18,10 @@ export const USUARIOS_ENDPOINT = {
      * Registrar un nuevo usuario.
      */
     post_registrar_usuario: `${API_BASE_URL}/usuarios/registro`,
+    /**
+     * Editar un usuario.
+     */
+    put_editar_usuario: `${API_BASE_URL}/usuarios/editar`,
 };
 
 /**

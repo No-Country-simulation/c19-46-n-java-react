@@ -12,29 +12,31 @@ const RegisterForm = ({ onPrevious, onNext }) => {
       isSubmitting
     },
     estadoUsuario: {
-      setNombre,
+      setUsername,
       setEmail,
       setPassword,
-      nombre,
+      setConfirmarPassword,
+      username,
       email,
-      password
+      password,
+      confirmarPassword
     },
     handleRegister
-  } = useUsuario();
+  } = useUsuario(onNext);
 
 
   return (
     <div className="divisor image-below">
       <div className="container">
-        <form className="form" onSubmit={handleRegister(onNext)}>
+        <form className="form" onSubmit={handleRegister}>
           <h3>¡Únete a nuestra comunidad hoy!</h3>
           <p>Regístrate para empezar.</p>
           <div className="campo">
             <Input
               id="name"
-              placeholder="tu nombre"
-              value={nombre}
-              onChange={(e) => setNombre(e.target.value)}
+              placeholder="tu nombre de usuario"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
               maxLength={50}
               required
             />
@@ -53,6 +55,15 @@ const RegisterForm = ({ onPrevious, onNext }) => {
               type={"password"}
               value={password}
               onChange={(e) => setPassword(e.target.value)}
+              maxLength={8}
+              required
+            />
+            <Input
+              id="confirmar-password"
+              placeholder="confirmar contraseña"
+              type={"password"}
+              value={confirmarPassword}
+              onChange={(e) => setConfirmarPassword(e.target.value)}
               maxLength={8}
               required
             />

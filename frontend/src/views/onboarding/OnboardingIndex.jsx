@@ -38,14 +38,14 @@ const OnboardingIndex = () => {
 
   const Form3 = ({ onPrevious, onNext }) => (
     <>
-      {/* FORMULARIO MASCOTA - PAGINA 2 */}
+      {/* FORMULARIO PERFIL - PAGINA 2 */}
       <PerfilForm onPrevious={onPrevious} onNext={onNext} />
     </>
   );
 
   const Form4 = ({ onPrevious }) => (
     <>
-      {/* FORMULARIO PERFIL - PAGINA 3 */}
+      {/* FORMULARIO MASCOTA - PAGINA 3 */}
       <FormularioMascotaIndex onPrevious={onPrevious} />
     </>
   );
@@ -86,7 +86,7 @@ const OnboardingIndex = () => {
             exit={{ opacity: 0, x: -100 }}
             transition={{ duration: 0.5 }}
           >
-            {/* FORMULARIO MASCOTA - PAGINA 2 */}
+            {/* FORMULARIO PERFIL - PAGINA 2 */}
             <Form3 onPrevious={() => setStep(1)} onNext={() => setStep(3)} />
           </motion.div>
         )}
@@ -98,8 +98,8 @@ const OnboardingIndex = () => {
             exit={{ opacity: 0, x: -100 }}
             transition={{ duration: 0.5 }}
           >
-            {/* FORMULARIO PERFIL - PAGINA 3 */}
-            <Form4 onPrevious={() => setStep(1)} />
+            {/* FORMULARIO MASCOTA - PAGINA 3 */}
+            <Form4 onPrevious={() => setStep(2)} />
           </motion.div>
         )}
       </AnimatePresence>
