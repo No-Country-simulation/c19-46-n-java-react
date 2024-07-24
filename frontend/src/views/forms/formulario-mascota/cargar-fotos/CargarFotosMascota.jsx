@@ -3,16 +3,23 @@ import muestra1 from "../../../../shared/assets/muestra1.webp";
 import muestra2 from "../../../../shared/assets/muestra2.webp";
 import muestra3 from "../../../../shared/assets/muestra3.webp";
 import CargarFotosButton from "../../../../shared/components/input/CargarFotosButton";
+import MostrarImagen from "../../../../shared/components/images/MostrarImagen";
 
-const CargarFotosMascota = ({ setFotos }) => {
+const CargarFotosMascota = ({ fotos, setFotos }) => {
   const handleChange = (event) => {
     if (event.target.files) {
-      setFotos(event.target.files);
+      setFotos(Array.from(event.target.files));
     }
   };
-
   return (
     <>
+
+      <div>
+        {fotos.map((file, index) => (
+          <MostrarImagen file={file} key={index} id={`foto ${index + 1}`} />
+        ))}
+      </div>
+
       <Grid container justifyContent="center" alignItems="center">
         {/* Fotos de muestra */}
 

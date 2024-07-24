@@ -1,7 +1,11 @@
+import FormularioMascotaIndex from "../../forms/formulario-mascota/FormularioMascotaIndex";
 
 const BuscadorIndex = () => {
   return (
-    <div>BuscadorIndex</div>
+    // <div>BuscadorIndex</div>
+    <>
+      <FormularioMascotaIndex />
+    </>
   );
 };
 

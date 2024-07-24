@@ -9,33 +9,6 @@ import { useNavigate } from "react-router-dom";
 const FormularioMascotaIndex = ({ onPrevious }) => {
   const navigate = useNavigate();
 
-  const fakeRegisterRequest = ({
-    nombre,
-    edad,
-    sexo,
-    raza,
-    tamanio,
-    descripcion,
-    fotos,
-  }) => {
-    return new Promise((resolve, reject) => {
-      setTimeout(() => {
-        if (
-          nombre &&
-          edad &&
-          sexo &&
-          raza &&
-          tamanio &&
-          descripcion &&
-          fotos.length > 0
-        ) {
-          resolve();
-        } else {
-          reject();
-        }
-      }, 1000);
-    });
-  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -206,7 +179,7 @@ const FormularioMascotaIndex = ({ onPrevious }) => {
                     {/* Tercera columna */}
                     {/* Fotos de muestra e input para las fotos */}
                     <Grid item xs={12} md={4}>
-                      <CargarFotosMascota setFotos={setFotos} />
+                      <CargarFotosMascota fotos={fotos} setFotos={setFotos} />
                     </Grid>
 
                     <Grid container justifyContent="flex-end">
