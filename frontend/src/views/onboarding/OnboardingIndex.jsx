@@ -1,8 +1,10 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import LoginForm from "../forms/formulario-login/LoginForm";
-import RegisterForm from "../forms/formulario-usuario/RegisterForm";
+import RegisterForm from "../forms/formulario-registro/RegisterForm";
+import PerfilForm from "../forms/formulario-usuario/PerfilForm";
 import FormularioMascotaIndex from "../forms/formulario-mascota/FormularioMascotaIndex";
+
 
 /**
  * El componente utiliza el hook `useState` para manejar el estado de la 'página' actual del flujo.
@@ -20,10 +22,10 @@ import FormularioMascotaIndex from "../forms/formulario-mascota/FormularioMascot
  * El componente `OnboardingIndex` es exportado como el componente predeterminado para este archivo.
  */
 const OnboardingIndex = () => {
-  const Form1 = ({ onNext }) => (
+  const Form1 = ({ onNext, onRegister }) => (
     <>
       {/* FORMULARIO LOGIN - PAGINA 0 */}
-      <LoginForm onNext={onNext} />
+      <LoginForm onNext={onNext} onRegister={onRegister} />
     </>
   );
 
@@ -34,13 +36,19 @@ const OnboardingIndex = () => {
     </>
   );
 
-  const Form3 = ({ onPrevious }) => (
+  const Form3 = ({ onPrevious, onNext }) => (
     <>
       {/* FORMULARIO MASCOTA - PAGINA 2 */}
-      <FormularioMascotaIndex onPrevious={onPrevious} />
+      <PerfilForm  onPrevious={onPrevious} onNext={onNext} />
     </>
   );
 
+  const Form4 = ({ onPrevious }) => (
+    <>
+      {/* FORMULARIO PERFIL - PAGINA 3 */}
+      <FormularioMascotaIndex onPrevious={onPrevious} />
+    </>
+  );
   const [step, setStep] = useState(0);
 
   return (
@@ -55,7 +63,7 @@ const OnboardingIndex = () => {
             transition={{ duration: 0.5 }}
           >
             {/* FORMULARIO LOGIN - PAGINA 0 */}
-            <Form1 onNext={() => setStep(1)} />
+            <Form1 onRegister={() => setStep(1)} />
           </motion.div>
         )}
         {step === 1 && (
@@ -79,7 +87,19 @@ const OnboardingIndex = () => {
             transition={{ duration: 0.5 }}
           >
             {/* FORMULARIO MASCOTA - PAGINA 2 */}
-            <Form3 onPrevious={() => setStep(1)} />
+            <Form3 onPrevious={() => setStep(1)} onNext={() => setStep(3)} />
+          </motion.div>
+        )}
+        {step === 3 && (
+          <motion.div
+            key="form4"
+            initial={{ opacity: 0, x: 100 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: -100 }}
+            transition={{ duration: 0.5 }}
+          >
+            {/* FORMULARIO PERFIL - PAGINA 3 */}
+            <Form4 onPrevious={() => setStep(1)} />
           </motion.div>
         )}
       </AnimatePresence>

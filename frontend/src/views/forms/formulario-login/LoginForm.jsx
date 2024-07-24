@@ -5,7 +5,7 @@ import "../Formulario.css";
 import Input from "../../../shared/components/input/Input";
 import Inicio from "../../../shared/assets/Inicio.png";
 
-const LoginForm = ({ onNext }) => {
+const LoginForm = ({ onNext, onRegister }) => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -35,6 +35,16 @@ const LoginForm = ({ onNext }) => {
     }
   };
 
+  const handleUsernameChange = (e) => {
+    setUsername(e.target.value);
+    if (error) setError("");
+  };
+
+  const handlePasswordChange = (e) => {
+    setPassword(e.target.value);
+    if (error) setError("");
+  };
+
   return (
     <div className="divisor">
       <div className="container">
@@ -49,7 +59,7 @@ const LoginForm = ({ onNext }) => {
               id="nicknameLogin"
               placeholder={"nombre de usuario"}
               value={username}
-              onChange={(e) => setUsername(e.target.value)}
+              onChange={handleUsernameChange}
               maxLength={50}
               required="true"
             />
@@ -58,7 +68,7 @@ const LoginForm = ({ onNext }) => {
               type={"password"}
               placeholder={"contraseña"}
               value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              onChange={handlePasswordChange}
               maxLength={8}
               required
             />
@@ -74,9 +84,17 @@ const LoginForm = ({ onNext }) => {
             </Button>
           </div>
           <div>
-            <Link to="">
-              <Button className="btn-secondary">REGISTRARSE</Button>
-            </Link>
+            
+            <Button
+              type="button"
+              className="btn-secundary"
+              onClick={onRegister}
+              disabled={isSubmitting}            
+            >
+              {isSubmitting ? "Enviando..." : "REGISTRARSE"}
+              {/* REGISTRARSE */}
+              </Button>
+            
           </div>
           <p>olvidaste la contraseña...</p>
         </form>
