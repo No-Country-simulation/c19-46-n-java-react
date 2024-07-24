@@ -39,6 +39,17 @@
     color: black;
   }
 
-  h1 {
+  h1, h3 {
     color: #E36414 ;
   }
+
+  /* Estilos específicos para la imagen debajo del formulario */
+.image-below .container {
+  display: flex;
+  flex-direction: column; /* Asegura que el formulario y la imagen estén en columna */
+}
+
+.image-below-container {
+  margin-top: 20px; /* Añade un margen superior para separar la imagen del formulario */
+  text-align: center; /* Centra la imagen horizontalmente */
+}

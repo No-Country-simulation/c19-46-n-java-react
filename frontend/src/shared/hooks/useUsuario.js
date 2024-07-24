@@ -11,6 +11,7 @@ export const useUsuario = () => {
 
     // Estados del usuario
     const [username, setUsername] = useState("");
+    const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [confirmarPassword, setConfirmarPassword] = useState("");
     const [nombre, setNombre] = useState("");
@@ -113,7 +114,19 @@ export const useUsuario = () => {
         }
     };
 
+    const handleUsernameChange = (e) => {
+        setUsername(e.target.value);
+        if (error) setError("");
+    };
+
+    const handlePasswordChange = (e) => {
+        setPassword(e.target.value);
+        if (error) setError("");
+    };
+
     return {
+        handleUsernameChange,
+        handlePasswordChange,
         handleLogin,
         handleRegister,
         estadoForm: {
@@ -124,6 +137,8 @@ export const useUsuario = () => {
         },
         estadoUsuario: {
             username,
+            email,
+            setEmail,
             setUsername,
             password,
             setPassword,

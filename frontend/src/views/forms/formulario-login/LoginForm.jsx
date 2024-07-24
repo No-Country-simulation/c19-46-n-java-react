@@ -14,10 +14,10 @@ const LoginForm = ({ onNext }) => {
     estadoUsuario: {
       username,
       password,
-      setUsername,
-      setPassword,
     },
-    handleLogin
+    handleLogin,
+    handleUsernameChange,
+    handlePasswordChange
   } = useUsuario();
 
   return (
@@ -34,7 +34,7 @@ const LoginForm = ({ onNext }) => {
               id="nicknameLogin"
               placeholder={"nombre de usuario"}
               value={username}
-              onChange={(e) => setUsername(e.target.value)}
+              onChange={handleUsernameChange}
               maxLength={50}
               required={true}
             />
@@ -43,7 +43,7 @@ const LoginForm = ({ onNext }) => {
               type={"password"}
               placeholder={"contraseña"}
               value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              onChange={handlePasswordChange}
               maxLength={8}
               required={true}
             />
@@ -59,7 +59,16 @@ const LoginForm = ({ onNext }) => {
             </Button>
           </div>
           <div>
-            <Button className="btn-secondary" onClick={onNext}>REGISTRARSE</Button>
+            <Button
+              type="button"
+              className="btn-secundary"
+              onClick={onNext}
+              disabled={isSubmitting}
+            >
+              {isSubmitting ? "Enviando..." : "REGISTRARSE"}
+              {/* REGISTRARSE */}
+            </Button>
+
           </div>
           <p>olvidaste la contraseña...</p>
         </form>
