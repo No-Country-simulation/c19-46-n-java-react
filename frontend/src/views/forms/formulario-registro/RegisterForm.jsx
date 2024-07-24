@@ -41,7 +41,7 @@ const LoginForm = ({ onPrevious, onNext }) => {
   };
 
   return (
-    <div className="divisor">
+    <div className="divisor image-below">
       <div className="container">
         <form className="form" onSubmit={handleRegister}>
           <h3>¡Únete a nuestra comunidad hoy!</h3>
@@ -90,11 +90,11 @@ const LoginForm = ({ onPrevious, onNext }) => {
             </Button>
           </div>
         </form>
-        <div className="image">
+        <div className="image-below-container">
           <img
             src={formularioRegistro}
-            alt="Imagen de registro"
-            style={{ height: 550 }}
+            alt="Imagen de registro"           
+            style={{ height: 250 }}
           />
         </div>
       </div>
