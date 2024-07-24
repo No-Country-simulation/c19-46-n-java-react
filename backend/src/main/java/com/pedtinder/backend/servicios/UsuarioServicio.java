@@ -1,10 +1,10 @@
 package com.pedtinder.backend.servicios;
 
-import com.pedtinder.backend.dto.UsuarioRegistroDTO;
+import com.pedtinder.backend.dtos.UsuarioRegistroDTO;
 import com.pedtinder.backend.entidades.Usuario;
 import com.pedtinder.backend.entidades.Ciudad;
-import com.pedtinder.backend.repositorio.CiudadRepositorio;
-import com.pedtinder.backend.repositorio.UsuarioRepositorio;
+import com.pedtinder.backend.repositorios.CiudadRepositorio;
+import com.pedtinder.backend.repositorios.UsuarioRepositorio;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;

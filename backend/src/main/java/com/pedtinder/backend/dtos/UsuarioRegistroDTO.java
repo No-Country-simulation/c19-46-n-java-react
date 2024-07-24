@@ -1,4 +1,4 @@
-package com.pedtinder.backend.dto;
+package com.pedtinder.backend.dtos;
 
 import lombok.Data;
 

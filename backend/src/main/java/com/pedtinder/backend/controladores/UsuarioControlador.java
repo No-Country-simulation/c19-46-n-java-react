@@ -1,6 +1,6 @@
 package com.pedtinder.backend.controladores;
 
-import com.pedtinder.backend.dto.UsuarioRegistroDTO;
+import com.pedtinder.backend.dtos.UsuarioRegistroDTO;
 import com.pedtinder.backend.entidades.Usuario;
 import com.pedtinder.backend.servicios.UsuarioServicio;
 import org.springframework.beans.factory.annotation.Autowired;

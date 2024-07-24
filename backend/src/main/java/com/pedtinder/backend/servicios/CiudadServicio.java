@@ -1,7 +1,7 @@
 package com.pedtinder.backend.servicios;
 
 import com.pedtinder.backend.entidades.Ciudad;
-import com.pedtinder.backend.repositorio.CiudadRepositorio;
+import com.pedtinder.backend.repositorios.CiudadRepositorio;
 import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
