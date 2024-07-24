@@ -1,5 +1,8 @@
+
 const BuscadorIndex = () => {
-  return <div>BuscadorIndex</div>;
+  return (
+    <div>BuscadorIndex</div>
+  );
 };
 
 export default BuscadorIndex;
