@@ -24,7 +24,7 @@ public class UsuarioServicio {
     private PasswordEncoder passwordEncoder;
 
     @Transactional
-    public Usuario registrarUsuarioUno(UsuarioRegistroUnoDTO usuarioUnoDTO) {
+    public void registrarUsuarioUno(UsuarioRegistroUnoDTO usuarioUnoDTO) {
 
         if(usuarioUnoDTO.getContrasenia().length() > 8) {
 
@@ -55,12 +55,12 @@ public class UsuarioServicio {
         usuario.setEmail(usuarioUnoDTO.getEmail());
         usuario.setContrasenia(passwordEncoder.encode(usuarioUnoDTO.getContrasenia()));
 
-        return usuarioRepositorio.save(usuario);
+        usuarioRepositorio.save(usuario);
 
     }
 
     @Transactional
-    public Usuario registrarUsuarioDos(String nickname, UsuarioRegistroDosDTO usuarioDosDTO) {
+    public void registrarUsuarioDos(String nickname, UsuarioRegistroDosDTO usuarioDosDTO) {
 
         Usuario usuario = usuarioRepositorio.findByNickname(nickname).orElseThrow( () -> new IllegalArgumentException("Usuario no encontrado"));
 
@@ -70,7 +70,7 @@ public class UsuarioServicio {
         usuario.setTelefono(usuarioDosDTO.getTelefono());
         usuario.setCiudad(ciudad);
 
-        return usuarioRepositorio.save(usuario);
+        usuarioRepositorio.save(usuario);
 
     }
 
