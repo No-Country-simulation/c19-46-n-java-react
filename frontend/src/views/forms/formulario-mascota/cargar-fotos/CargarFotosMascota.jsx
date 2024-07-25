@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { Grid, IconButton, Typography } from "@mui/material";
 import PhotoCameraIcon from '@mui/icons-material/PhotoCamera';
 import BackspaceIcon from '@mui/icons-material/Backspace';
@@ -9,24 +8,23 @@ import CargarFotosButton from "../../../../shared/components/input/CargarFotosBu
 import Img from "../../../../shared/components/images/Img";
 
 
-const CargarFotosMascota = ({ setFotos }) => {
+const CargarFotosMascota = ({ fotos, setFotos, setFotosTemp }) => {
 
-  const [fotosCollection, setFotosCollection] = useState([]);
-  const MAXFILES = 10; // Máximo de fotos permitidas
+  const MAXFILES = 4; // Máximo de fotos permitidas
 
   const handleChange = (event) => {
     if (event.target.files) {
       const newFotos = Array.from(event.target.files);
       // Verificar que no exceda el máximo permitido
-      if (fotosCollection.length + newFotos.length > MAXFILES) {
+      if (fotos.length + newFotos.length > MAXFILES) {
         alert(`No puedes cargar más de ${MAXFILES} imágenes.`);
         return; // Salir de la función sin hacer nada
       }
-      setFotos(newFotos);
-      setFotosCollection((prevFotos) => [...prevFotos, ...newFotos]);
+      setFotosTemp(newFotos);
+      setFotos((prevFotos) => [...prevFotos, ...newFotos]);
     }
     else {
-      setFotos([]);
+      setFotosTemp([]);
     }
     event.target.value = null;
   };
@@ -40,10 +38,10 @@ const CargarFotosMascota = ({ setFotos }) => {
         <Grid container spacing={16}>
           <Grid item xs={6} sm={3}>
             {
-              fotosCollection && fotosCollection?.[0] ? (
+              fotos && fotos?.[0] ? (
                 <Img
-                  file={fotosCollection[0]}
-                  id={`nombre-foto-${fotosCollection[0]}-1`}
+                  file={fotos[0]}
+                  id={`nombre-foto-${fotos[0]}-1`}
                   style={{
                     width: 120,
                     height: 120,
@@ -51,7 +49,7 @@ const CargarFotosMascota = ({ setFotos }) => {
                   }} />
               )
                 :
-                fotosCollection && fotosCollection.length > 0 ? (
+                fotos && fotos.length > 0 ? (
                   <PhotoCameraIcon
                     fontSize="large"
                     color="primary"
@@ -74,10 +72,10 @@ const CargarFotosMascota = ({ setFotos }) => {
           </Grid>
           <Grid item xs={6} sm={3}>
             {
-              fotosCollection && fotosCollection?.[1] ? (
+              fotos && fotos?.[1] ? (
                 <Img
-                  file={fotosCollection[1]}
-                  id={`nombre-foto-${fotosCollection[1]}-2`}
+                  file={fotos[1]}
+                  id={`nombre-foto-${fotos[1]}-2`}
                   style={{
                     width: 120,
                     height: 120,
@@ -85,7 +83,7 @@ const CargarFotosMascota = ({ setFotos }) => {
                   }} />
               )
                 :
-                fotosCollection && fotosCollection.length > 0 ? (
+                fotos && fotos.length > 0 ? (
                   <PhotoCameraIcon
                     fontSize="large"
                     color="primary"
@@ -112,10 +110,10 @@ const CargarFotosMascota = ({ setFotos }) => {
         <Grid container spacing={16}>
           <Grid item xs={6} sm={3}>
             {
-              fotosCollection && fotosCollection?.[2] ? (
+              fotos && fotos?.[2] ? (
                 <Img
-                  file={fotosCollection[2]}
-                  id={`nombre-foto-${fotosCollection[2]}-3`}
+                  file={fotos[2]}
+                  id={`nombre-foto-${fotos[2]}-3`}
                   style={{
                     width: 120,
                     height: 120,
@@ -123,7 +121,7 @@ const CargarFotosMascota = ({ setFotos }) => {
                   }} />
               )
                 :
-                fotosCollection && fotosCollection.length > 0 ? (
+                fotos && fotos.length > 0 ? (
                   <PhotoCameraIcon
                     fontSize="large"
                     color="primary"
@@ -156,7 +154,7 @@ const CargarFotosMascota = ({ setFotos }) => {
         </Grid>
 
         {/* Lista de fotos cargadas */}
-        {fotosCollection && fotosCollection.length > 0 ? (
+        {fotos && fotos.length > 0 ? (
           <div style={{ display: "flex", flexDirection: "column", width: "100%" }}>
             <Typography
               fontSize={"14px"}
@@ -166,7 +164,7 @@ const CargarFotosMascota = ({ setFotos }) => {
               Fotos cargadas:
             </Typography>
             {
-              fotosCollection?.map((f, index) => (
+              fotos?.map((f, index) => (
                 <div key={index}>
                   <Grid container justifyContent="space-between" spacing={8}>
                     <Grid item xs={6}>
@@ -175,7 +173,7 @@ const CargarFotosMascota = ({ setFotos }) => {
                     <Grid item xs={6}>
                       <IconButton
                         onClick={() => {
-                          setFotosCollection(fotosCollection.filter((e, i) => i !== index));
+                          setFotos(fotos.filter((e, i) => i !== index));
                         }}
                         style={{ padding: 0, marginLeft: 4 }}
                       >

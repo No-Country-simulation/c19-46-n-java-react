@@ -9,7 +9,6 @@ import { useNavigate } from "react-router-dom";
 const FormularioMascotaIndex = ({ onPrevious }) => {
   const navigate = useNavigate();
 
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (isSubmitting) {
@@ -77,6 +76,7 @@ const FormularioMascotaIndex = ({ onPrevious }) => {
   ];
   const [descripcion, setDescripcion] = useState("");
   const [fotos, setFotos] = useState([]);
+  const [fotosTemp, setFotosTemp] = useState([]);
 
   return (
     <>
@@ -179,7 +179,7 @@ const FormularioMascotaIndex = ({ onPrevious }) => {
                     {/* Tercera columna */}
                     {/* Fotos de muestra e input para las fotos */}
                     <Grid item xs={12} md={4}>
-                      <CargarFotosMascota setFotos={setFotos} />
+                      <CargarFotosMascota fotos={fotos} setFotos={setFotos} setFotosTemp={setFotosTemp} />
                     </Grid>
 
                     {/* Botones volver y finalizar */}

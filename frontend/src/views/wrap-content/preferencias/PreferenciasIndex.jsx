@@ -1,5 +1,7 @@
 const PreferenciasIndex = () => {
-  return <div>PreferenciasIndex</div>;
+  return <>
+
+  </>;
 };
 
 export default PreferenciasIndex;
