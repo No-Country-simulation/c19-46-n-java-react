@@ -1,15 +1,13 @@
 package com.pedtinder.backend.entidades;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import jakarta.persistence.*;
+import lombok.*;
 
-@Entity
 @Data
+@AllArgsConstructor
 @NoArgsConstructor
+@Entity
+@Table(name = "ciudades")
 public class Ciudad {
 
     @Id
@@ -20,6 +18,7 @@ public class Ciudad {
     public Ciudad(String nombreCiudad) {
 
         this.nombreCiudad = nombreCiudad;
+
     }
 
 }

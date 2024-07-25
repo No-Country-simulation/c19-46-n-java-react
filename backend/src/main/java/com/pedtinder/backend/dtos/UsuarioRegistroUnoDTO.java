@@ -1,16 +1,15 @@
 package com.pedtinder.backend.dtos;
 
 import lombok.Data;
+import org.antlr.v4.runtime.misc.NotNull;
 
 @Data
-public class UsuarioRegistroDTO {
+public class UsuarioRegistroUnoDTO {
+
 
     private String nickname;
     private String email;
     private String contrasenia;
     private String confirmarContrasenia;
-    private String nombreCompleto;
-    private String telefono;
-    private Long ciudadId;
 
 }

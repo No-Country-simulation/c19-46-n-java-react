@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
+import java.util.Set;
 
 @RestController
 @RequestMapping("/api/ciudades")
@@ -17,7 +17,7 @@ public class CiudadControlador {
     private CiudadServicio ciudadServicio;
 
     @GetMapping
-    public List<Ciudad> obtenerCiudades() {
+    public Set<Ciudad> obtenerCiudades() {
 
         return ciudadServicio.obtenerCiudades();
     }

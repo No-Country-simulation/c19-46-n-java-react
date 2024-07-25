@@ -1,15 +1,20 @@
 package com.pedtinder.backend.entidades;
 
 import jakarta.persistence.*;
-import lombok.Data;
+import lombok.*;
 
-@Entity
+
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Entity
+@Table (name = "usuarios")
 public class Usuario {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private String nickname;
     private String email;
     private String contrasenia;
@@ -17,7 +22,6 @@ public class Usuario {
     private String telefono;
 
     @ManyToOne
-    @JoinColumn(name = "ciudad_id")
     private Ciudad ciudad;
 
 }

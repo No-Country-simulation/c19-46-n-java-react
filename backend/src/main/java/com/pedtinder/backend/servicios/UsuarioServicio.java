@@ -1,15 +1,15 @@
 package com.pedtinder.backend.servicios;
 
-import com.pedtinder.backend.dtos.UsuarioRegistroDTO;
+import com.pedtinder.backend.dtos.UsuarioRegistroDosDTO;
+import com.pedtinder.backend.dtos.UsuarioRegistroUnoDTO;
 import com.pedtinder.backend.entidades.Usuario;
 import com.pedtinder.backend.entidades.Ciudad;
 import com.pedtinder.backend.repositorios.CiudadRepositorio;
 import com.pedtinder.backend.repositorios.UsuarioRepositorio;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-
-import java.util.Optional;
 
 @Service
 public class UsuarioServicio {
@@ -21,45 +21,53 @@ public class UsuarioServicio {
     private CiudadRepositorio ciudadRepositorio;
 
     @Autowired
-    private BCryptPasswordEncoder passwordEncoder;
+    private PasswordEncoder passwordEncoder;
 
-    public boolean nicknameExiste(String nickname) {
+    @Transactional
+    public Usuario registrarUsuarioUno(UsuarioRegistroUnoDTO usuarioUnoDTO) {
 
-        Optional<Usuario> usuarioPorNickname = usuarioRepositorio.findByNickname(nickname);
-        return usuarioPorNickname.isPresent();
+        if(usuarioUnoDTO.getContrasenia().length() > 8) {
 
-    }
+            throw new IllegalArgumentException("La contraseña no debe superar los 8 caracteres");
 
-    public boolean emailExiste(String email) {
-
-        Optional<Usuario> usuarioPorEmail = usuarioRepositorio.findByEmail(email);
-        return usuarioPorEmail.isPresent();
-
-    }
-
-    public Usuario registrarUsuario(UsuarioRegistroDTO usuarioDTO) {
-
-        if(nicknameExiste(usuarioDTO.getNickname())) {
-            throw new IllegalArgumentException("El usuario ingresado ya existe.");
         }
 
-        if (emailExiste(usuarioDTO.getEmail())) {
-            throw new IllegalArgumentException("El email ingresado ya existe.");
+        if(!usuarioUnoDTO.getContrasenia().equals(usuarioUnoDTO.getConfirmarContrasenia())) {
+
+            throw new IllegalArgumentException("Las contraseñas no coinciden");
+
         }
 
-        if (!usuarioDTO.getContrasenia().equals(usuarioDTO.getConfirmarContrasenia())) {
-            throw new IllegalArgumentException("Las contraseñas no coinciden.");
+        if (usuarioRepositorio.existsByEmail(usuarioUnoDTO.getEmail())) {
+
+            throw  new IllegalArgumentException("Ya existe un usuario con este email");
+
         }
 
-        Optional<Ciudad> ciudadOptional = ciudadRepositorio.findById(usuarioDTO.getCiudadId());
-        Ciudad ciudad = ciudadOptional.orElseThrow(() -> new IllegalArgumentException("Ciudad no válida."));
+        if (usuarioRepositorio.existsByNickname(usuarioUnoDTO.getNickname())) {
+
+            throw  new IllegalArgumentException("Ya existe un usuario con este nickname");
+
+        }
 
         Usuario usuario = new Usuario();
-        usuario.setNickname(usuarioDTO.getNickname());
-        usuario.setEmail(usuarioDTO.getEmail());
-        usuario.setContrasenia(passwordEncoder.encode(usuarioDTO.getContrasenia()));
-        usuario.setNombreCompleto(usuarioDTO.getNombreCompleto());
-        usuario.setTelefono(usuarioDTO.getTelefono());
+        usuario.setNickname(usuarioUnoDTO.getNickname());
+        usuario.setEmail(usuarioUnoDTO.getEmail());
+        usuario.setContrasenia(passwordEncoder.encode(usuarioUnoDTO.getContrasenia()));
+
+        return usuarioRepositorio.save(usuario);
+
+    }
+
+    @Transactional
+    public Usuario registrarUsuarioDos(String nickname, UsuarioRegistroDosDTO usuarioDosDTO) {
+
+        Usuario usuario = usuarioRepositorio.findByNickname(nickname).orElseThrow( () -> new IllegalArgumentException("Usuario no encontrado"));
+
+        Ciudad ciudad = ciudadRepositorio.findById(usuarioDosDTO.getCiudadId()).orElseThrow( () -> new IllegalArgumentException("Ciudad no encontrada"));
+
+        usuario.setNombreCompleto(usuarioDosDTO.getNombreCompleto());
+        usuario.setTelefono(usuarioDosDTO.getTelefono());
         usuario.setCiudad(ciudad);
 
         return usuarioRepositorio.save(usuario);
