@@ -23,6 +23,19 @@ export const useUsuario = () => {
     const navigate = useNavigate();
 
     /**
+     * Función que resetea los estados de los usuarios, limpiando los campos de formulario.
+     * @returns {void} No devuelve nada.
+     */
+    const resetEstadosUsuario = () => {
+        setUsername("");
+        setPassword("");
+        setConfirmarPassword("");
+        setNombre("");
+        setTelefono("");
+        setCiudad(null);
+    }
+
+    /**
      * Función asíncrona que maneja el inicio de sesión en el formulario de inicio de sesión.
      * @param {Event} e - Evento de envío del formulario.
      * @returns {Promise<object|undefined>} - Promesa que se resuelve con los
@@ -42,13 +55,7 @@ export const useUsuario = () => {
                 username,
                 password);
             if (data) {
-                setUsername("");
-                setPassword("");
-                setConfirmarPassword("");
-                setNombre("");
-                setTelefono("");
-                setCiudad("");
-
+                resetEstadosUsuario();
                 // Si en la data tiene una ciudad significa que completo todo el formulario de registro
                 if (data.ciudad) {
                     // Setea el usuario en el contexto global
@@ -97,12 +104,7 @@ export const useUsuario = () => {
                 ciudad
             );
             if (data) {
-                setUsername("");
-                setPassword("");
-                setConfirmarPassword("");
-                setNombre("");
-                setTelefono("");
-                setCiudad(null);
+                resetEstadosUsuario();
                 onNext();
                 return data;
             }

@@ -179,19 +179,7 @@ const FormularioMascotaIndex = ({ onPrevious }) => {
                     {/* Tercera columna */}
                     {/* Fotos de muestra e input para las fotos */}
                     <Grid item xs={12} md={4}>
-                      <CargarFotosMascota fotos={fotos} setFotos={setFotos} />
-                    </Grid>
-
-                    <Grid container justifyContent="flex-end">
-                      {fotos && fotos.length > 0 ? (
-                        <div style={{ color: "green", fontSize: "14px" }}>
-                          Fotos cargadas
-                        </div>
-                      ) : (
-                        <div style={{ color: "red", fontSize: "14px" }}>
-                          Debes cargar al menos una foto
-                        </div>
-                      )}
+                      <CargarFotosMascota setFotos={setFotos} />
                     </Grid>
 
                     {/* Botones volver y finalizar */}
