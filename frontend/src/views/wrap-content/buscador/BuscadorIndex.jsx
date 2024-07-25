@@ -1,4 +1,3 @@
-
 const BuscadorIndex = () => {
   return (
     <div>BuscadorIndex</div>

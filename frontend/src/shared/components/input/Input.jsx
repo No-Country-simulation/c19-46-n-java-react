@@ -33,7 +33,7 @@ const Input = ({
         <textarea
           id={id}
           placeholder={placeholder}
-          value={value}
+          value={value || ""}
           onChange={onChange}
           maxLength={maxLength}
           className="textarea"
@@ -45,7 +45,7 @@ const Input = ({
           id={id}
           type={type}
           placeholder={placeholder}
-          value={value}
+          value={value || ""}
           onChange={onChange}
           maxLength={maxLength}
           className="input"

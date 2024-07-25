@@ -24,6 +24,19 @@ export const useUsuario = (onNext = null) => {
     const navigate = useNavigate();
 
     /**
+     * Función que resetea los estados de los usuarios, limpiando los campos de formulario.
+     * @returns {void} No devuelve nada.
+     */
+    const resetEstadosUsuario = () => {
+        setUsername("");
+        setPassword("");
+        setConfirmarPassword("");
+        setNombre("");
+        setTelefono("");
+        setCiudad(null);
+    }
+
+    /**
      * Función asíncrona que maneja el inicio de sesión en el formulario de inicio de sesión.
      * @param {Event} e - Evento de envío del formulario.
      * @returns {Promise<object|undefined>} - Promesa que se resuelve con los
@@ -43,13 +56,7 @@ export const useUsuario = (onNext = null) => {
                 username,
                 password);
             if (data) {
-                setUsername("");
-                setPassword("");
-                setConfirmarPassword("");
-                setNombre("");
-                setTelefono("");
-                setCiudad("");
-
+                resetEstadosUsuario();
                 // Si en la data tiene una ciudad significa que completo todo el formulario de registro
                 if (data.ciudad) {
                     // Setea el usuario en el contexto global
@@ -96,12 +103,8 @@ export const useUsuario = (onNext = null) => {
             //     confirmarPassword
             // );
             // if (data) {
-            //     setUsername("");
-            //     setEmail("");
-            //     setPassword("");
-            //     setConfirmarPassword("");
-            //     // onNext();
-            //     return data;
+            //      resetEstadosUsuario();
+            //      onNext();
             // }
             onNext()
         } catch (error) {
@@ -132,16 +135,17 @@ export const useUsuario = (onNext = null) => {
         setError("");
         try {
             // const data = await fetchRegistrarUsuario(
-            //     // nombre,
-            //     // telefono,
-            //     // ciudad
+            //     setError,
+            //     username,
+            //     password,
+            //     confirmarPassword,
+            //     nombre,
+            //     telefono,
+            //     ciudad
             // );
             // if (data) {
-            //     // setNombre("");
-            //     // setTelefono("");
-            //     // setCiudad(null);
-            //     // 
-            //     return data;
+            //     resetEstadosUsuario();
+            //     onNext();
             // }
             onNext()
         } catch (error) {
@@ -151,19 +155,7 @@ export const useUsuario = (onNext = null) => {
         }
     };
 
-    const handleUsernameChange = (e) => {
-        setUsername(e.target.value);
-        if (error) setError("");
-    };
-
-    const handlePasswordChange = (e) => {
-        setPassword(e.target.value);
-        if (error) setError("");
-    };
-
     return {
-        handleUsernameChange,
-        handlePasswordChange,
         handleLogin,
         handleRegister,
         handleProfileRegister,

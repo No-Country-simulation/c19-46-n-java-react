@@ -14,10 +14,10 @@ const LoginForm = ({ onNext }) => {
     estadoUsuario: {
       username,
       password,
+      setUsername,
+      setPassword
     },
     handleLogin,
-    handleUsernameChange,
-    handlePasswordChange
   } = useUsuario();
 
   return (
@@ -34,7 +34,7 @@ const LoginForm = ({ onNext }) => {
               id="nicknameLogin"
               placeholder={"nombre de usuario"}
               value={username}
-              onChange={handleUsernameChange}
+              onChange={(e) => setUsername(e.target.value)}
               maxLength={50}
               required={true}
             />
@@ -43,7 +43,7 @@ const LoginForm = ({ onNext }) => {
               type={"password"}
               placeholder={"contraseña"}
               value={password}
-              onChange={handlePasswordChange}
+              onChange={(e) => setPassword(e.target.value)}
               maxLength={8}
               required={true}
             />
