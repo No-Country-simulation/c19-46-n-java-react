@@ -8,6 +8,7 @@ const Input = ({
   onChange,
   maxLength,
   required = false,
+  autoComplete = "",
   options,
   rows = 5,
 }) => {
@@ -49,6 +50,7 @@ const Input = ({
           onChange={onChange}
           maxLength={maxLength}
           className="input"
+          autoComplete={autoComplete}
           required={required}
         />
       )}

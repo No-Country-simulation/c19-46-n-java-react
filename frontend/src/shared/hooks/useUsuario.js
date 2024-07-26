@@ -3,7 +3,12 @@ import { useNavigate } from "react-router-dom";
 import { UsuarioContexto } from "../utils/UsuarioContext";
 import { fetchLogin, fetchRegistrarUsuario, fetchEditarUsuario } from "../api/usuario_api";
 
-export const useUsuario = (onNext = null) => {
+export const useUsuario = (
+    onNext = null,
+    newEmail = "",
+    newPassword = "",
+    newPasswordConfirm = ""
+) => {
 
     // Estados del formulario
     const [error, setError] = useState("");
@@ -155,10 +160,59 @@ export const useUsuario = (onNext = null) => {
         }
     };
 
+    const handleSubmitChangeEmail = (e) => {
+        e.preventDefault();
+        if (isSubmitting) {
+            return;
+        }
+        setIsSubmitting(true);
+        setError("");
+        try {
+            // const data = await fetchCambioEmail(
+            //     setError,
+            //     newEmail
+            // );
+            // if (data) {
+            //     onNext();
+            // }
+            console.log("EXITOO")
+        } catch (error) {
+            console.error(error);
+        } finally {
+            setIsSubmitting(false);
+        }
+    };
+
+    const handleSubmitChangePassword = (e) => {
+        e.preventDefault();
+        if (isSubmitting) {
+            return;
+        }
+        setIsSubmitting(true);
+        setError("");
+        try {
+            // const data = await fetchCambioPassword(
+            //     setError,
+            //     newPassword,
+            //     newPasswordConfirm
+            // );
+            // if (data) {
+            //     onNext();
+            // }
+            console.log("EXITOO")
+        } catch (error) {
+            console.error(error);
+        } finally {
+            setIsSubmitting(false);
+        }
+    };
+
     return {
         handleLogin,
         handleRegister,
         handleProfileRegister,
+        handleSubmitChangeEmail,
+        handleSubmitChangePassword,
         estadoForm: {
             error,
             setError,
