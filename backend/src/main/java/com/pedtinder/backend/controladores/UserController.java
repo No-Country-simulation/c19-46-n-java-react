@@ -1,9 +1,8 @@
 package com.pedtinder.backend.controladores;
 
-import com.pedtinder.backend.dtos.UsuarioRegistroDosDTO;
-import com.pedtinder.backend.dtos.UsuarioRegistroUnoDTO;
-import com.pedtinder.backend.servicios.UsuarioServicio;
-import lombok.Builder;
+import com.pedtinder.backend.dtos.CompleteUserRegistrationDTO;
+import com.pedtinder.backend.auth.UsuarioRegistroUnoDTO;
+import com.pedtinder.backend.servicios.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,14 +13,14 @@ import org.springframework.web.bind.annotation.*;
 public class UsuarioControlador {
 
     @Autowired
-    private UsuarioServicio usuarioServicio;
+    private UserService userService;
 
     @PostMapping("/registro")
     public ResponseEntity<String> resgistro(@RequestBody UsuarioRegistroUnoDTO usuarioUnoDTO) {
 
         try {
 
-            usuarioServicio.registrarUsuarioUno(usuarioUnoDTO);
+            userService.registrarUsuarioUno(usuarioUnoDTO);
             return ResponseEntity.status(HttpStatus.CREATED).body("Usuario registrado con exito");
 
         } catch (IllegalArgumentException e) {
@@ -37,11 +36,11 @@ public class UsuarioControlador {
     }
 
     @PostMapping("/continua")
-    public ResponseEntity<String> continua(@RequestParam String nickname, @RequestBody UsuarioRegistroDosDTO usuarioDosDTO) {
+    public ResponseEntity<String> continua(@RequestParam String nickname, @RequestBody CompleteUserRegistrationDTO usuarioDosDTO) {
 
         try {
 
-            usuarioServicio.registrarUsuarioDos(nickname, usuarioDosDTO);
+            userService.registrarUsuarioDos(nickname, usuarioDosDTO);
             return ResponseEntity.ok("Datos de usuario completados");
 
         } catch (IllegalArgumentException e) {

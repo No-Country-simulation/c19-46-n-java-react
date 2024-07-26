@@ -1,7 +1,7 @@
 package com.pedtinder.backend.controladores;
 
-import com.pedtinder.backend.entidades.Ciudad;
-import com.pedtinder.backend.servicios.CiudadServicio;
+import com.pedtinder.backend.entidades.City;
+import com.pedtinder.backend.servicios.CityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,12 +14,12 @@ import java.util.Set;
 public class CiudadControlador {
 
     @Autowired
-    private CiudadServicio ciudadServicio;
+    private CityService cityService;
 
     @GetMapping
-    public Set<Ciudad> obtenerCiudades() {
+    public Set<City> getCities() {
 
-        return ciudadServicio.obtenerCiudades();
+        return cityService.getCities();
     }
 
 }

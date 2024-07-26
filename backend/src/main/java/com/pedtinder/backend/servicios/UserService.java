@@ -2,7 +2,7 @@ package com.pedtinder.backend.servicios;
 
 import com.pedtinder.backend.dtos.UsuarioRegistroDosDTO;
 import com.pedtinder.backend.dtos.UsuarioRegistroUnoDTO;
-import com.pedtinder.backend.entidades.Usuario;
+import com.pedtinder.backend.entidades.User;
 import com.pedtinder.backend.entidades.Ciudad;
 import com.pedtinder.backend.repositorios.CiudadRepositorio;
 import com.pedtinder.backend.repositorios.UsuarioRepositorio;
@@ -50,27 +50,27 @@ public class UsuarioServicio {
 
         }
 
-        Usuario usuario = new Usuario();
-        usuario.setNickname(usuarioUnoDTO.getNickname());
-        usuario.setEmail(usuarioUnoDTO.getEmail());
-        usuario.setContrasenia(passwordEncoder.encode(usuarioUnoDTO.getContrasenia()));
+        User user = new User();
+        user.setNickname(usuarioUnoDTO.getNickname());
+        user.setEmail(usuarioUnoDTO.getEmail());
+        user.setContrasenia(passwordEncoder.encode(usuarioUnoDTO.getContrasenia()));
 
-        usuarioRepositorio.save(usuario);
+        usuarioRepositorio.save(user);
 
     }
 
     @Transactional
     public void registrarUsuarioDos(String nickname, UsuarioRegistroDosDTO usuarioDosDTO) {
 
-        Usuario usuario = usuarioRepositorio.findByNickname(nickname).orElseThrow( () -> new IllegalArgumentException("Usuario no encontrado"));
+        User user = usuarioRepositorio.findByNickname(nickname).orElseThrow( () -> new IllegalArgumentException("Usuario no encontrado"));
 
         Ciudad ciudad = ciudadRepositorio.findById(usuarioDosDTO.getCiudadId()).orElseThrow( () -> new IllegalArgumentException("Ciudad no encontrada"));
 
-        usuario.setNombreCompleto(usuarioDosDTO.getNombreCompleto());
-        usuario.setTelefono(usuarioDosDTO.getTelefono());
-        usuario.setCiudad(ciudad);
+        user.setNombreCompleto(usuarioDosDTO.getNombreCompleto());
+        user.setTelefono(usuarioDosDTO.getTelefono());
+        user.setCiudad(ciudad);
 
-        usuarioRepositorio.save(usuario);
+        usuarioRepositorio.save(user);
 
     }
 
