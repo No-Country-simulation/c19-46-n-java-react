@@ -20,9 +20,9 @@ const FormularioCambioPassword = ({
             <Card
                 style={{
                     backgroundColor: "#e3e3e3", // Gris
-                    width: "40vw", // Ancho
-                    maxWidth: "500px", // Ancho máximo fijo
-                    height: "50vh", // Altura
+                    width: "100vw", // Ancho
+                    maxWidth: "450px", // Ancho máximo fijo
+                    height: "60vh", // Altura
                     overflowY: "auto", // Agregar scrollbar horizontal
                     maxHeight: "600px", // Altura máxima fija
                 }}
@@ -44,12 +44,14 @@ const FormularioCambioPassword = ({
 
                         <form onSubmit={handleSubmitChangePassword}>
 
+                            {/* Este input lo agregue porque tiraba un warning en el navegador, esta al pedo, no hace nada y esta oculto */}
                             <input
                                 id="-"
-                                name="username"
+                                name="-"
                                 type="text"
-                                style={{ visibility: "hidden", position: "absolute" }} // Esto oculta el campo visualmente
-                                tabIndex="-1" // Esto lo excluye de la navegación con teclado
+                                style={{ visibility: "hidden", position: "absolute" }}
+                                tabIndex="-1"
+                                autoComplete="off"
                             />
 
                             <Grid item xs={12} >

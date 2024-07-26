@@ -17,9 +17,9 @@ const PreferenciasIndex = () => {
       isSubmitting
     },
     estadoUsuario: {
-      username,
+      email,
+      setEmail,
       password,
-      setUsername,
       setPassword
     },
     handleSubmitChangePassword,
@@ -45,8 +45,8 @@ const PreferenciasIndex = () => {
       <FormularioCambioEmail
         error={error}
         isSubmitting={isSubmitting}
-        username={username}
-        setUsername={setUsername}
+        email={email}
+        setEmail={setEmail}
         newEmail={newEmail}
         setNewEmail={setNewEmail}
         handleSubmitChangeEmail={handleSubmitChangeEmail}
