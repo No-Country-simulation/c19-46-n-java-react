@@ -1,9 +1,6 @@
 package com.pedtinder.backend.enums;
 
-
-
-public enum Role {
-
-    USER
+public enum PetSex {
+    DOG, BITCH
 
 }
