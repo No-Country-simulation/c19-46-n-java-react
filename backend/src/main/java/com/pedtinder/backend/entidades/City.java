@@ -7,17 +7,17 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "ciudades")
-public class Ciudad {
+@Table(name = "cities")
+public class City {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String nombreCiudad;
+    private String name;
 
-    public Ciudad(String nombreCiudad) {
+    public City(String name) {
 
-        this.nombreCiudad = nombreCiudad;
+        this.name = name;
 
     }
 

@@ -1,35 +1,44 @@
 package com.pedtinder.backend.configuraciones;
 
+import com.pedtinder.backend.auth.jwt.JwtAuthenticationFilter;
+import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
-import org.springframework.security.config.Customizer;
-import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
+import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 
 @Configuration
 @EnableWebSecurity
-public class  ConfigSeguridad {
+@RequiredArgsConstructor
+public class SecuriryConfig {
+
+
+    private final JwtAuthenticationFilter jwtAuthenticationFilter;
+    private final AuthenticationProvider authProvider;
 
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
 
-         httpSecurity
-            .csrf(csrf -> csrf.disable())
-            .httpBasic(Customizer.withDefaults())
-            .authorizeHttpRequests(http -> {
-                http.requestMatchers(HttpMethod.GET, "/api/ciudades").permitAll();
-                http.requestMatchers(HttpMethod.POST, "/api/usuarios/registro", "/api/usuarios/continua").permitAll();
-                http.anyRequest().authenticated();
-            });
-        return   httpSecurity.build();
+        return   httpSecurity
+                .csrf(csrf -> csrf.disable())
+                .authorizeHttpRequests(http -> {
+                    http.requestMatchers(HttpMethod.GET, "/api/cities").permitAll();
+                    http.requestMatchers(HttpMethod.POST, "/auth/**").permitAll();
+                    http.anyRequest().authenticated();
+                })
+                .sessionManagement( sessionManager ->
+                        sessionManager
+                                .sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+                .authenticationProvider(authProvider)
+                .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
+                .build();
 
     }
 

@@ -1,46 +1,25 @@
 package com.pedtinder.backend.controladores;
 
 import com.pedtinder.backend.dtos.CompleteUserRegistrationDTO;
-import com.pedtinder.backend.auth.UsuarioRegistroUnoDTO;
 import com.pedtinder.backend.servicios.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/api/usuarios")
-public class UsuarioControlador {
+@RequestMapping("/api/")
+@RequiredArgsConstructor
+public class UserController {
 
-    @Autowired
-    private UserService userService;
+    private final UserService userService;
 
-    @PostMapping("/registro")
-    public ResponseEntity<String> resgistro(@RequestBody UsuarioRegistroUnoDTO usuarioUnoDTO) {
-
-        try {
-
-            userService.registrarUsuarioUno(usuarioUnoDTO);
-            return ResponseEntity.status(HttpStatus.CREATED).body("Usuario registrado con exito");
-
-        } catch (IllegalArgumentException e) {
-
-            return ResponseEntity.badRequest().body(e.getMessage());
-
-        }catch (Exception e) {
-
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error interno del servidor");
-
-        }
-
-    }
-
-    @PostMapping("/continua")
-    public ResponseEntity<String> continua(@RequestParam String nickname, @RequestBody CompleteUserRegistrationDTO usuarioDosDTO) {
+    @PostMapping("/complet")
+    public ResponseEntity<String> continua(@RequestParam String username, @RequestBody CompleteUserRegistrationDTO request) {
 
         try {
 
-            userService.registrarUsuarioDos(nickname, usuarioDosDTO);
+            userService.completeUserRegister(username, request);
             return ResponseEntity.ok("Datos de usuario completados");
 
         } catch (IllegalArgumentException e) {

@@ -3,10 +3,10 @@ package com.pedtinder.backend.dtos;
 import lombok.Data;
 
 @Data
-public class UsuarioRegistroDosDTO {
+public class CompleteUserRegistrationDTO {
 
-    private String nombreCompleto;
-    private String telefono;
-    private Long ciudadId;
+    private String firstname;
+    private String phone;
+    private Long cityId;
 
 }

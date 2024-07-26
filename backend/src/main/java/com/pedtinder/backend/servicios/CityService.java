@@ -1,75 +1,72 @@
 package com.pedtinder.backend.servicios;
 
-import com.pedtinder.backend.entidades.Ciudad;
-import com.pedtinder.backend.repositorios.CiudadRepositorio;
+import com.pedtinder.backend.entidades.City;
+import com.pedtinder.backend.repositorios.CityRepository;
 import jakarta.annotation.PostConstruct;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 @Service
-public class CiudadServicio {
+public class CityService {
 
-    private final CiudadRepositorio ciudadRepositorio;
+    private final CityRepository cityRepository;
 
     @Autowired
-    public CiudadServicio(CiudadRepositorio ciudadRepositorio) {
+    public CityService(CityRepository cityRepository) {
 
-        this.ciudadRepositorio = ciudadRepositorio;
+        this.cityRepository = cityRepository;
 
     }
 
     @PostConstruct
     @Transactional
     public void init() {
-        if(ciudadRepositorio.count() == 0) {
+        if(cityRepository.count() == 0) {
 
-            Set<Ciudad> ciudades = Set.of(
-                    new Ciudad("Caracas"),
-                    new Ciudad("Maracaibo"),
-                    new Ciudad("Barquisimeto"),
-                    new Ciudad("Valencia"),
-                    new Ciudad("Ciudad Guayana"),
-                    new Ciudad("Maturín"),
-                    new Ciudad("Barcelona"),
-                    new Ciudad("Maracay"),
-                    new Ciudad("Ciudad Bolívar"),
-                    new Ciudad("Cumaná"),
-                    new Ciudad("Barinas"),
-                    new Ciudad("San Cristóbal"),
-                    new Ciudad("Cabimas"),
-                    new Ciudad("Punto Fijo"),
-                    new Ciudad("Puerto La Cruz"),
-                    new Ciudad("Guarenas"),
-                    new Ciudad("Los Teques"),
-                    new Ciudad("Mérida"),
-                    new Ciudad("Carora"),
-                    new Ciudad("Puerto Ayacucho"),
-                    new Ciudad("San Fernando de Apure"),
-                    new Ciudad("San Carlos"),
-                    new Ciudad("Tucupita"),
-                    new Ciudad("Coro"),
-                    new Ciudad("San Juan de los Morros"),
-                    new Ciudad("La Asunción"),
-                    new Ciudad("Guanare"),
-                    new Ciudad("Trujillo"),
-                    new Ciudad("La Guaira"),
-                    new Ciudad("San Felipe"),
-                    new Ciudad("Ciudad Ojeda")
+            Set<City> ciudades = Set.of(
+                    new City("Caracas"),
+                    new City("Maracaibo"),
+                    new City("Barquisimeto"),
+                    new City("Valencia"),
+                    new City("Ciudad Guayana"),
+                    new City("Maturín"),
+                    new City("Barcelona"),
+                    new City("Maracay"),
+                    new City("Ciudad Bolívar"),
+                    new City("Cumaná"),
+                    new City("Barinas"),
+                    new City("San Cristóbal"),
+                    new City("Cabimas"),
+                    new City("Punto Fijo"),
+                    new City("Puerto La Cruz"),
+                    new City("Guarenas"),
+                    new City("Los Teques"),
+                    new City("Mérida"),
+                    new City("Carora"),
+                    new City("Puerto Ayacucho"),
+                    new City("San Fernando de Apure"),
+                    new City("San Carlos"),
+                    new City("Tucupita"),
+                    new City("Coro"),
+                    new City("San Juan de los Morros"),
+                    new City("La Asunción"),
+                    new City("Guanare"),
+                    new City("Trujillo"),
+                    new City("La Guaira"),
+                    new City("San Felipe"),
+                    new City("Ciudad Ojeda")
 
             );
-            ciudadRepositorio.saveAll(ciudades);
+            cityRepository.saveAll(ciudades);
         }
     }
 
-    public Set<Ciudad> obtenerCiudades() {
+    public Set<City> getCities() {
 
-        return ciudadRepositorio.findAllByOrderById();
+        return cityRepository.findAllByOrderById();
 
     }
 

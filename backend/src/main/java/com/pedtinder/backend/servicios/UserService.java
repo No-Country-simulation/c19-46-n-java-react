@@ -1,76 +1,34 @@
 package com.pedtinder.backend.servicios;
 
-import com.pedtinder.backend.dtos.UsuarioRegistroDosDTO;
-import com.pedtinder.backend.dtos.UsuarioRegistroUnoDTO;
+import com.pedtinder.backend.dtos.CompleteUserRegistrationDTO;
+import com.pedtinder.backend.entidades.City;
 import com.pedtinder.backend.entidades.User;
-import com.pedtinder.backend.entidades.Ciudad;
-import com.pedtinder.backend.repositorios.CiudadRepositorio;
-import com.pedtinder.backend.repositorios.UsuarioRepositorio;
-import jakarta.transaction.Transactional;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.password.PasswordEncoder;
+import com.pedtinder.backend.repositorios.CityRepository;
+import com.pedtinder.backend.repositorios.UserRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
-public class UsuarioServicio {
+@RequiredArgsConstructor
+public class UserService {
 
-    @Autowired
-    private UsuarioRepositorio usuarioRepositorio;
 
-    @Autowired
-    private CiudadRepositorio ciudadRepositorio;
-
-    @Autowired
-    private PasswordEncoder passwordEncoder;
+    private final UserRepository userRepository;
+    private final CityRepository cityRepository;
 
     @Transactional
-    public void registrarUsuarioUno(UsuarioRegistroUnoDTO usuarioUnoDTO) {
+    public void completeUserRegister(String username, CompleteUserRegistrationDTO request) {
 
-        if(usuarioUnoDTO.getContrasenia().length() > 8) {
+        User user = userRepository.findByUsername(username).orElseThrow( () -> new IllegalArgumentException("Usuario no encontrado"));
 
-            throw new IllegalArgumentException("La contraseña no debe superar los 8 caracteres");
+        City city = cityRepository.findById(request.getCityId()).orElseThrow( () -> new IllegalArgumentException("Ciudad no encontrada"));
 
-        }
+        user.setFirstname(request.getFirstname());
+        user.setPhone(request.getPhone());
+        user.setCity(city);
 
-        if(!usuarioUnoDTO.getContrasenia().equals(usuarioUnoDTO.getConfirmarContrasenia())) {
-
-            throw new IllegalArgumentException("Las contraseñas no coinciden");
-
-        }
-
-        if (usuarioRepositorio.existsByEmail(usuarioUnoDTO.getEmail())) {
-
-            throw  new IllegalArgumentException("Ya existe un usuario con este email");
-
-        }
-
-        if (usuarioRepositorio.existsByNickname(usuarioUnoDTO.getNickname())) {
-
-            throw  new IllegalArgumentException("Ya existe un usuario con este nickname");
-
-        }
-
-        User user = new User();
-        user.setNickname(usuarioUnoDTO.getNickname());
-        user.setEmail(usuarioUnoDTO.getEmail());
-        user.setContrasenia(passwordEncoder.encode(usuarioUnoDTO.getContrasenia()));
-
-        usuarioRepositorio.save(user);
-
-    }
-
-    @Transactional
-    public void registrarUsuarioDos(String nickname, UsuarioRegistroDosDTO usuarioDosDTO) {
-
-        User user = usuarioRepositorio.findByNickname(nickname).orElseThrow( () -> new IllegalArgumentException("Usuario no encontrado"));
-
-        Ciudad ciudad = ciudadRepositorio.findById(usuarioDosDTO.getCiudadId()).orElseThrow( () -> new IllegalArgumentException("Ciudad no encontrada"));
-
-        user.setNombreCompleto(usuarioDosDTO.getNombreCompleto());
-        user.setTelefono(usuarioDosDTO.getTelefono());
-        user.setCiudad(ciudad);
-
-        usuarioRepositorio.save(user);
+        userRepository.save(user);
 
     }
 
