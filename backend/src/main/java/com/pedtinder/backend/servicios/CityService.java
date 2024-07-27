@@ -4,7 +4,9 @@ import com.pedtinder.backend.entidades.City;
 import com.pedtinder.backend.repositorios.CityRepository;
 import jakarta.annotation.PostConstruct;
 import jakarta.transaction.Transactional;
+
 import lombok.RequiredArgsConstructor;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,7 +17,6 @@ import java.util.Set;
 public class CityService {
 
     private final CityRepository cityRepository;
-
 
     @PostConstruct
     @Transactional

@@ -1,7 +1,6 @@
 import { Routes, Route } from "react-router-dom";
 import App from "../App";
 import MainMenu from "../views/MainMenu";
-import ComponentePruebas from "../ComponentePruebas";
 
 const routes = [
   {
@@ -15,10 +14,6 @@ const routes = [
   {
     path: "main-menu/*",
     element: <MainMenu />,
-  },
-  {
-    path: "pruebas/",
-    element: <ComponentePruebas />,
   },
 ];
 

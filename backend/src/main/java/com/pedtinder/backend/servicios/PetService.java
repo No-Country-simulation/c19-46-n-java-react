@@ -3,6 +3,7 @@ package com.pedtinder.backend.servicios;
 import com.pedtinder.backend.dtos.RegistrationPetDTO;
 import com.pedtinder.backend.entidades.Pet;
 import com.pedtinder.backend.entidades.PetPhoto;
+
 import com.pedtinder.backend.entidades.User;
 import com.pedtinder.backend.repositorios.PetRepository;
 import com.pedtinder.backend.repositorios.UserRepository;
@@ -11,10 +12,12 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.util.List;
+
 
 @Service
 @RequiredArgsConstructor
@@ -40,6 +43,7 @@ public class PetService {
                 .petSize(request.getPetSize())
                 .user(user)
                 .build();
+
 
         if (!file.isEmpty()) {  // Si cargo una imágen, se la setteo al paciente.
             PetPhoto petPhoto = petPhotoService.uploadPetPhoto(file);

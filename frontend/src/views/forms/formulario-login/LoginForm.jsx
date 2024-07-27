@@ -1,39 +1,24 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
 import Button from "../../../shared/components/button/Button";
 import "../Formulario.css";
 import Input from "../../../shared/components/input/Input";
 import Inicio from "../../../shared/assets/Inicio.png";
+import { useUsuario } from "../../../shared/hooks/useUsuario";
 
+const LoginForm = ({ onNext }) => {
 
-const LoginForm = () => {
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
-
-  const handleLogin = async (e) => {
-    e.preventDefault();
-
-    if (isSubmitting) {
-      return;
-    }
-    // console.log("No entra");
-
-    setIsSubmitting(true);
-    setError("");
-
-    try {
-      // Simula una petición de inicio de sesión
-      await fakeLoginRequest({ username, password });
-
-      // Lógica después de un inicio de sesión exitoso
-      console.log("Entrar");
-    } catch (err) {
-      setError("Nombre de usuario o contraseña incorrectos.");
-      setIsSubmitting(false);
-    }
-  };
+  const {
+    estadoForm: {
+      error,
+      isSubmitting
+    },
+    estadoUsuario: {
+      username,
+      password,
+      setUsername,
+      setPassword
+    },
+    handleLogin,
+  } = useUsuario();
 
   return (
     <div className="divisor">
@@ -51,7 +36,7 @@ const LoginForm = () => {
               value={username}
               onChange={(e) => setUsername(e.target.value)}
               maxLength={50}
-              required
+              required={true}
             />
             <Input
               id={"password"}
@@ -60,7 +45,7 @@ const LoginForm = () => {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               maxLength={8}
-              required
+              required={true}
             />
           </div>
           {error && <div style={{ color: "red" }}>{error}</div>}
@@ -70,32 +55,26 @@ const LoginForm = () => {
               className="btn-primary"
               disabled={isSubmitting}
             >
-              {isSubmitting ? "Enviando..." : "ENTRAR"}
+              {isSubmitting ? "Enviando..." : "INICIAR SESION"}
             </Button>
           </div>
           <div>
-            <Link to="">
-              <Button className="btn-secondary">REGISTRARSE</Button>
-            </Link>
+            <Button
+              type="button"
+              className="btn-secundary"
+              onClick={onNext}
+              disabled={isSubmitting}
+            >
+              {isSubmitting ? "Enviando..." : "REGISTRARSE"}
+              {/* REGISTRARSE */}
+            </Button>
+
           </div>
           <p>olvidaste la contraseña...</p>
         </form>
       </div>
     </div>
   );
-};
-
-// Simulación de petición de inicio de sesión
-const fakeLoginRequest = ({ username, password }) => {
-  return new Promise((resolve, reject) => {
-    setTimeout(() => {
-      if (username === "admin" && password === "password") {
-        resolve();
-      } else {
-        reject();
-      }
-    }, 1000);
-  });
 };
 
 export default LoginForm;

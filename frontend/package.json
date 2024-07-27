@@ -16,12 +16,16 @@
     "@fontsource/roboto": "^5.0.13",
     "@mui/icons-material": "^5.16.0",
     "@mui/material": "^5.16.0",
+    "axios": "^1.7.2",
+    "framer-motion": "^11.3.8",
     "playwright": "^1.45.1",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-router-dom": "^6.24.1"
   },
   "devDependencies": {
+    "@playwright/test": "^1.45.3",
+    "@types/node": "^20.14.11",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
     "@vitejs/plugin-react": "^4.3.1",

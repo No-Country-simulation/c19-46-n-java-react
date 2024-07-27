@@ -4,6 +4,7 @@ import { CssBaseline, ThemeProvider, createTheme } from "@mui/material";
 import { BrowserRouter } from "react-router-dom";
 import Root from "./routes/Root.jsx";
 import "./main.css";
+import { UserProvider } from "./shared/utils/UsuarioContext.jsx";
 
 const customTheme = createTheme({
   palette: {
@@ -35,7 +36,9 @@ ReactDOM.createRoot(document.getElementById("root")).render(
     <ThemeProvider theme={customTheme}>
       <CssBaseline />
       <BrowserRouter>
-        <Root />
+        <UserProvider>
+          <Root />
+        </UserProvider>
       </BrowserRouter>
     </ThemeProvider>
   </React.StrictMode>
