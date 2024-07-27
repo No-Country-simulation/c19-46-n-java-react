@@ -1,0 +1,29 @@
+.input {
+    font-size: 14.4px;
+    color: #8F8F8F;
+    text-align: center;
+    background-color: #ffffff;
+    border: none;
+    padding: 10px 15px;
+    margin: 13px;  
+    border-radius: 56px;   
+    max-width: 200px;
+    width: 100%;
+}
+
+.required-asterisk {
+    color: red;
+}
+
+.textarea {
+    font-size: 14.4px;
+    color: #8F8F8F;
+    text-align: center;
+    background-color: #ffffff;
+    border: none;
+    padding: 10px 15px;
+    margin: 13px;  
+    border-radius: 20px;   
+    max-width: 200px;
+    width: 100%;
+}
