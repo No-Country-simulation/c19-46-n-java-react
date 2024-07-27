@@ -2,6 +2,8 @@ package com.pedtinder.backend.servicios;
 
 import com.pedtinder.backend.dtos.RegistrationPetDTO;
 import com.pedtinder.backend.entidades.Pet;
+import com.pedtinder.backend.entidades.PetPhoto;
+
 import com.pedtinder.backend.entidades.User;
 import com.pedtinder.backend.repositorios.PetRepository;
 import com.pedtinder.backend.repositorios.UserRepository;
@@ -11,15 +13,22 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.IOException;
+import java.util.List;
+
+
 @Service
 @RequiredArgsConstructor
 public class PetService {
 
     private final PetRepository petRepository;
     private final UserRepository userRepository;
+    private final PetPhotoService petPhotoService;
 
     @Transactional
-    public void petRegistration(RegistrationPetDTO request) {
+    public void petRegistration(MultipartFile file, RegistrationPetDTO request) throws IOException {
 
         String username = SecurityContextHolder.getContext().getAuthentication().getName();
         User user = userRepository.findByUsername(username).orElseThrow(() -> new IllegalArgumentException("Usuario no encontrado"));
@@ -34,6 +43,12 @@ public class PetService {
                 .petSize(request.getPetSize())
                 .user(user)
                 .build();
+
+
+        if (!file.isEmpty()) {  // Si cargo una imágen, se la setteo al paciente.
+            PetPhoto petPhoto = petPhotoService.uploadPetPhoto(file);
+            pet.setPhoto(petPhoto);
+        }
 
         petRepository.save(pet);
 

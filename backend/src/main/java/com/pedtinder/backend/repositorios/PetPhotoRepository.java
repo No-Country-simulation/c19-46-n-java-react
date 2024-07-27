@@ -1,12 +1,9 @@
 package com.pedtinder.backend.repositorios;
 
-import com.pedtinder.backend.entidades.City;
+import com.pedtinder.backend.entidades.PetPhoto;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import java.util.Set;
-
 @Repository
-public interface CityRepository extends JpaRepository<City, Long> {
-    Set<City> findAllByOrderById();
+public interface PetPhotoRepository extends JpaRepository<PetPhoto, String> {
 }
