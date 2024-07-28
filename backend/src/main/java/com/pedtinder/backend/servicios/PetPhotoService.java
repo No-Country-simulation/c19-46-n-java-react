@@ -22,7 +22,7 @@ public class PetPhotoService {
 
             PetPhoto petPhoto = PetPhoto.builder()
                     .mime(file.getContentType())
-                    .name(file.getName())
+                    .name(file.getOriginalFilename())
                     .data(file.getBytes())
                     .build();
 

@@ -29,7 +29,6 @@ public class SecuriryConfig {
         return   httpSecurity
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(http -> {
-                    http.requestMatchers(HttpMethod.GET, "/api/cities").permitAll();
                     http.requestMatchers(HttpMethod.POST, "/auth/**").permitAll();
                     http.anyRequest().authenticated();
                 })

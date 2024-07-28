@@ -26,8 +26,6 @@ public class PetPhoto {
     @Column(name = "data", columnDefinition = "LONGBLOB")
     private byte[] data;
 
-    /*@ManyToOne
-    @JoinColumn(name = "pet_id")*/
     @OneToOne
     private Pet pet;
 

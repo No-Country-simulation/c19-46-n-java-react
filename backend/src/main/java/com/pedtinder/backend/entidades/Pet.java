@@ -8,8 +8,6 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.ArrayList;
-import java.util.List;
 
 @Data
 @Builder
@@ -39,10 +37,7 @@ public class Pet {
     @JoinColumn(name = "id_user")
     private User user;
 
-    @OneToOne
+    @OneToOne(mappedBy = "pet")
     private PetPhoto photo;
-
-    /*@OneToMany(mappedBy = "pet")
-    private List<PetPhoto> photos = new ArrayList<>();*/
 
 }
