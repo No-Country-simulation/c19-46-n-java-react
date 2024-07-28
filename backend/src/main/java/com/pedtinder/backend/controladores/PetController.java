@@ -1,10 +1,9 @@
 package com.pedtinder.backend.controladores;
 
-import com.pedtinder.backend.dtos.CompleteUserRegistrationDTO;
 import com.pedtinder.backend.dtos.RegistrationPetDTO;
-import com.pedtinder.backend.entidades.Pet;
 import com.pedtinder.backend.servicios.PetService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,10 +19,22 @@ public class PetController {
     private final PetService petService;
 
     @PostMapping("/register")
-    public ResponseEntity<Void> registerPet(@RequestParam("file") MultipartFile file, @ModelAttribute RegistrationPetDTO request) throws IOException {
+    public ResponseEntity<String> registerPet(@RequestParam("file") MultipartFile file, @ModelAttribute RegistrationPetDTO request) throws IOException {
 
-        petService.petRegistration(file, request);
-        return ResponseEntity.ok().build();
+        try {
+
+            petService.petRegistration(file, request);
+            return ResponseEntity.ok("Mascota registrada");
+
+        } catch (IllegalArgumentException e) {
+
+            return ResponseEntity.badRequest().body(e.getMessage());
+
+        }catch (Exception e) {
+
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error interno del servidor");
+
+        }
 
     }
 

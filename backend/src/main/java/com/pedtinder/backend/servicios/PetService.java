@@ -9,14 +9,12 @@ import com.pedtinder.backend.repositorios.PetRepository;
 import com.pedtinder.backend.repositorios.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
-import java.util.List;
 
 
 @Service
@@ -45,32 +43,14 @@ public class PetService {
                 .build();
 
 
-        if (!file.isEmpty()) {  // Si cargo una imágen, se la setteo al paciente.
+        if (!file.isEmpty()) {
             PetPhoto petPhoto = petPhotoService.uploadPetPhoto(file);
             pet.setPhoto(petPhoto);
+            petPhoto.setPet(pet);
         }
 
         petRepository.save(pet);
 
     }
-
-
-
-   /* private void userInSession() {
-
-        Object principal = SecurityContextHolder
-                .getContext()
-                .getAuthentication().getPrincipal();
-
-        UserDetails userDetails = null;
-
-        if (principal instanceof UserDetails) {
-
-            userDetails = (UserDetails) principal;
-
-        }
-
-        String userName = userDetails.getUsername();
-    }*/
 
 }
