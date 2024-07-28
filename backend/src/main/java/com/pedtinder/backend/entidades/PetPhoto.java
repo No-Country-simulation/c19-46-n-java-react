@@ -1,5 +1,6 @@
 package com.pedtinder.backend.entidades;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -26,7 +27,13 @@ public class PetPhoto {
     @Column(name = "data", columnDefinition = "LONGBLOB")
     private byte[] data;
 
-    @OneToOne
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_pet")
+    @JsonBackReference
     private Pet pet;
+
+    /* @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_pet")
+    private Pet pet;*/
 
 }

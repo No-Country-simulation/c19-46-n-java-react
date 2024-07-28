@@ -1,5 +1,6 @@
 package com.pedtinder.backend.entidades;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.pedtinder.backend.enums.Role;
 import jakarta.persistence.*;
 import lombok.*;
@@ -39,6 +40,7 @@ public class User implements UserDetails {
     private City city;
 
     @OneToMany(mappedBy = "user")
+    @JsonManagedReference
     private List<Pet> pets;
 
     @Override

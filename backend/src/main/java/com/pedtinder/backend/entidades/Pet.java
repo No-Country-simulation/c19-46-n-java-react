@@ -1,5 +1,7 @@
 package com.pedtinder.backend.entidades;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.pedtinder.backend.enums.PetSex;
 import com.pedtinder.backend.enums.PetSize;
 import jakarta.persistence.*;
@@ -35,9 +37,14 @@ public class Pet {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_user")
+    @JsonBackReference
     private User user;
 
     @OneToOne(mappedBy = "pet")
+    @JsonManagedReference
     private PetPhoto photo;
+
+    /*@OneToMany(mappedBy = "pet")
+    private List<PetPhoto> photos;*/
 
 }
