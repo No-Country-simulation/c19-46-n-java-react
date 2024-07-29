@@ -1,5 +1,6 @@
 package com.pedtinder.backend.controladores;
 
+import com.pedtinder.backend.dtos.PetProfileDTO;
 import com.pedtinder.backend.dtos.RegistrationPetDTO;
 import com.pedtinder.backend.servicios.PetService;
 import lombok.RequiredArgsConstructor;
@@ -35,6 +36,13 @@ public class PetController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error interno del servidor");
 
         }
+
+    }
+
+    @GetMapping("/{petid}")
+    public PetProfileDTO getPetProfile(@PathVariable Long petid) throws IOException {
+
+        return petService.getPetProfile(petid);
 
     }
 

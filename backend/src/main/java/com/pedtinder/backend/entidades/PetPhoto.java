@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "photos")
+@Table(name = "pet_photos")
 public class PetPhoto {
 
     @Id
@@ -20,19 +20,15 @@ public class PetPhoto {
     private Long id;
 
 
-    private String mime;
+    private String path;
     private String name;
-
-    @Lob
-    @Column(name = "data", columnDefinition = "LONGBLOB")
-    private byte[] data;
 
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_pet")
     @JsonBackReference
     private Pet pet;
 
-    /* @ManyToOne(fetch = FetchType.LAZY)
+    /* @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "id_pet")
     private Pet pet;*/
 

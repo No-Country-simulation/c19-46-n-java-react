@@ -1,10 +1,12 @@
 package com.pedtinder.backend.servicios;
 
+import com.pedtinder.backend.dtos.PetProfileDTO;
 import com.pedtinder.backend.dtos.RegistrationPetDTO;
 import com.pedtinder.backend.entidades.Pet;
 import com.pedtinder.backend.entidades.PetPhoto;
 
 import com.pedtinder.backend.entidades.User;
+import com.pedtinder.backend.repositorios.PetPhotoRepository;
 import com.pedtinder.backend.repositorios.PetRepository;
 import com.pedtinder.backend.repositorios.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -24,6 +26,7 @@ public class PetService {
     private final PetRepository petRepository;
     private final UserRepository userRepository;
     private final PetPhotoService petPhotoService;
+    private final PetPhotoRepository petPhotoRepository;
 
     @Transactional
     public void petRegistration(MultipartFile file, RegistrationPetDTO request) throws IOException {
@@ -43,13 +46,39 @@ public class PetService {
                 .build();
 
 
-        if (!file.isEmpty()) {
+        if (!file.isEmpty()) {  // Se agrega una foto a la mascota
             PetPhoto petPhoto = petPhotoService.uploadPetPhoto(file);
             pet.setPhoto(petPhoto);
             petPhoto.setPet(pet);
         }
 
         petRepository.save(pet);
+
+    }
+
+    public PetProfileDTO getPetProfile(Long petid) throws IOException {
+
+        Pet pet = petRepository.findById(petid).orElseThrow(() -> new IllegalArgumentException("Mascota no encontrada"));
+
+        PetPhoto photo = petPhotoRepository.findByPetId(petid);
+
+        String  imgDirectory  =  "src/main/resources/static/images" ;
+
+        String photoPath = photo.getPath();
+
+        // Obtener datos de imagen como matrices de bytes
+        byte [] imageByte = petPhotoService.getPhoto(imgDirectory, photoPath);
+
+        return PetProfileDTO.builder()
+                .id(pet.getId())
+                .name(pet.getName())
+                .age(pet.getAge())
+                .race(pet.getRace())
+                .description(pet.getDescription())
+                .petSex(pet.getPetSex())
+                .petSize(pet.getPetSize())
+                .photo(imageByte)
+                .build();
 
     }
 

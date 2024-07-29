@@ -39,7 +39,7 @@ public class User implements UserDetails {
     @ManyToOne
     private City city;
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     @JsonManagedReference
     private List<Pet> pets;
 

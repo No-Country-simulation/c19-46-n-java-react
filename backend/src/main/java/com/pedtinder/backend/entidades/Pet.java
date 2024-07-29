@@ -10,6 +10,11 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.Collection;
+import java.util.Iterator;
+import java.util.List;
+import java.util.ListIterator;
+
 
 @Data
 @Builder
@@ -44,7 +49,7 @@ public class Pet {
     @JsonManagedReference
     private PetPhoto photo;
 
-    /*@OneToMany(mappedBy = "pet")
-    private List<PetPhoto> photos;*/
+    /*@OneToMany(mappedBy = "pet", cascade = CascadeType.ALL)
+    private List<PetPhoto> photos; */
 
 }
