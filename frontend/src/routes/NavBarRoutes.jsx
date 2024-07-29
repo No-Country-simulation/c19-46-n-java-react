@@ -1,25 +1,30 @@
 import { Route, Routes } from "react-router-dom";
-import BuscadorIndex from "../views/wrap-content/buscador/BuscadorIndex";
-import MiPerfilIndex from "../views/wrap-content/mi-perfil/MiPerfilIndex";
-import PreferenciasIndex from "../views/wrap-content/preferencias/PreferenciasIndex";
+import HomeIndex from "../views/wrap-content/home/Home_Index";
+import MensajeIndex from "../views/wrap-content/mensaje/MensajeIndex";
+import PerfilIndex from "../views/wrap-content/perfil/PerfilIndex";
+import ConfiguracionIndex from "../views/wrap-content/configuracion/ConfiguracionIndex";
 
 const NavBarRoutes = () => {
   const routes = [
     {
       path: "*",
-      element: <BuscadorIndex />,
+      element: <HomeIndex />,
     },
     {
-      path: "buscador/*",
-      element: <BuscadorIndex />,
+      path: "home/*",
+      element: <HomeIndex />,
     },
     {
-      path: "mi-perfil/*",
-      element: <MiPerfilIndex />,
+      path: "mensaje/*",
+      element: <MensajeIndex />,
     },
     {
-      path: "preferencias/*",
-      element: <PreferenciasIndex />,
+      path: "perfil/*",
+      element: <PerfilIndex />,
+    },
+    {
+      path: "configuracion/*",
+      element: <ConfiguracionIndex />,
     },
   ];
 

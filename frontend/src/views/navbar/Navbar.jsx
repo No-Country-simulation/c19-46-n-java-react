@@ -6,10 +6,17 @@ import AccountBoxIcon from "@mui/icons-material/AccountBox";
 import SettingsApplicationsIcon from "@mui/icons-material/SettingsApplications";
 import { Grid } from "@mui/material";
 import { Link, useLocation } from "react-router-dom";
-import home from '../../shared/assets/home.svg';
-import mensajes from '../../shared/assets/mensajes.svg';
-import perfil from '../../shared/assets/perfil.svg';
-import config from '../../shared/assets/config.svg';
+import home_default from '../../shared/assets/home_default.png';
+import mensaje_default from '../../shared/assets/mensaje_default.png';
+import perfil_default from '../../shared/assets/perfil_default.png';
+import configuracion_default from '../../shared/assets/configuracion_default.png';
+import home_hover from '../../shared/assets/home_hover.png';
+import mensaje_hover from '../../shared/assets/mensaje_hover.png';
+import perfil_hover from '../../shared/assets/perfil_hover.png';
+import configuracion_hover from '../../shared/assets/configuracion_hover.png';
+import "./navbar.css"
+
+
 //import "./navbar.css";
 
 const Navbar = () => {
@@ -17,12 +24,14 @@ const Navbar = () => {
   const getValueFromPath = (path) => {
     switch (path) {
       case "/main-menu":
-      case "/main-menu/buscador":
+      case "/main-menu/home":
         return 0;
-      case "/main-menu/mi-perfil":
+      case "/main-menu/mensaje":
         return 1;
-      case "/main-menu/preferencias":
+      case "/main-menu/perfil":
         return 2;
+      case "/main-menu/configuracion":
+        return 3;
       default:
         return 0;
     }
@@ -39,35 +48,36 @@ const Navbar = () => {
   };
 
   return (
-    <Grid container justifyContent="center">
+    <Grid container justifyContent="flex-end">
       <Tabs 
         value={value}
         onChange={handleChange}
         aria-label=" icon label tabs example"
+        TabIndicatorProps={{ style: { display: 'none'} }}
       >
         <Tab
-          icon={<img src={home} alt="Home" />}
+          icon={<img src={value === 0 ? home_hover : home_default} alt="Home" />}
           // label="HOME"
           component={Link}
-          to="/main-menu/buscador"
+          to="/main-menu/home"
         />
         <Tab
-          icon={<img src={mensajes} alt="mensajes" />}
+          icon={<img src={value === 1 ? mensaje_hover : mensaje_default} alt="Mensajes" />}
           // label="MENSAJES"
           component={Link}
-          to="/main-menu/mi-perfil"         
+          to="/main-menu/mensaje"       
         />
         <Tab
-          icon={<img src={perfil} alt="perfil" />}
+          icon={<img src={value === 2 ? perfil_hover : perfil_default} alt="Perfil" />}
           // label="PERFIL"
           component={Link}
-          to="/main-menu/preferencias"
+          to="/main-menu/perfil" 
         />
         <Tab
-          icon={<img src={config} alt="configuracion" />}
+          icon={<img src={value === 3 ? configuracion_hover : configuracion_default} alt="Configuracion" />}
           // label="CONFIGURACION"
           component={Link}
-          to="/main-menu/preferencias"
+          to="/main-menu/configuracion"
         />
       </Tabs>
     </Grid>
