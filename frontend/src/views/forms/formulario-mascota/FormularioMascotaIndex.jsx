@@ -1,82 +1,39 @@
-import { useState } from "react";
 import { Card, CardContent, Grid, Typography } from "@mui/material";
 import agregarMascota from "../../../shared/assets/agregarMascota.webp";
 import CargarFotosMascota from "./cargar-fotos/CargarFotosMascota";
 import Input from "../../../shared/components/input/Input";
 import Button from "../../../shared/components/button/Button";
-import { useNavigate } from "react-router-dom";
+import { useMascota } from "../../../shared/hooks/useMascota";
 
 const FormularioMascotaIndex = ({ onPrevious }) => {
-  const navigate = useNavigate();
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    if (isSubmitting) {
-      return;
-    }
-    if (!nombre || !edad || !sexo || fotos.length === 0) {
-      setError("Información requerida incompleta.");
-      return;
-    }
-    setIsSubmitting(true);
-    setError("");
-    try {
-      // await fakeRegisterRequest({
-      //   nombre,
-      //   edad,
-      //   sexo,
-      //   raza,
-      //   tamanio,
-      //   descripcion,
-      //   fotos,
-      // });
-      console.log("Registro exitoso");
-      setIsSubmitting(false);
-      navigate("/main-menu");
-    } catch (err) {
-      setError("Error en el registro. Inténtalo de nuevo.");
-      setIsSubmitting(false);
-    }
-  };
+  const {
+    estadoForm: {
+      error,
+      isSubmitting
+    },
+    estadoMascota: {
+      setNombre,
+      setEdad,
+      setSexo,
+      setRaza,
+      setTamanio,
+      setDescripcion,
+      setFotos,
+      nombre,
+      edad,
+      sexo,
+      raza,
+      tamanio,
+      descripcion,
+      fotos
+    },
+    handleRegister,
+    getRazas
+  } = useMascota()
 
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [error, setError] = useState("");
-
-  // Datos del formulario
-  const [nombre, setNombre] = useState("");
-  const [edad, setEdad] = useState("");
-  const [sexo, setSexo] = useState("");
-  const [raza, setRaza] = useState("");
-  const razas = [
-    { value: "", label: "Selecciona una raza" },
-    { value: "Caniche", label: "Caniche" },
-    { value: "Chihuahua", label: "Chihuahua" },
-    { value: "Chow-Chow", label: "Chow-Chow" },
-    { value: "Dogo", label: "Dogo" },
-    { value: "Pitbull", label: "Pitbull" },
-  ];
-  const [tamanio, setTamanio] = useState("");
-  const tamanios = [
-    {
-      value: "",
-      label: "Selecciona un tamaño",
-    },
-    {
-      value: "Pequeño",
-      label: "Pequeño",
-    },
-    {
-      value: "Mediano",
-      label: "Mediano",
-    },
-    {
-      value: "Grande",
-      label: "Grande",
-    },
-  ];
-  const [descripcion, setDescripcion] = useState("");
-  const [fotos, setFotos] = useState([]);
-  const [fotosTemp, setFotosTemp] = useState([]);
+  // Obtenemos las razas de una peticion
+  const razas = getRazas();
 
   return (
     <>
@@ -114,7 +71,7 @@ const FormularioMascotaIndex = ({ onPrevious }) => {
                 </Typography>
               </Grid>
               <Grid item xs={12}>
-                <form onSubmit={handleSubmit}>
+                <form onSubmit={handleRegister}>
                   <Grid container spacing={2} mt={2}>
                     {/* Primera columna */}
                     <Grid item xs={12} md={4}>
@@ -162,7 +119,12 @@ const FormularioMascotaIndex = ({ onPrevious }) => {
                         id="formulario-mascota-tamanio"
                         type="select"
                         value={tamanio}
-                        options={tamanios}
+                        options={[
+                          { value: "", label: "Selecciona un tamaño", },
+                          { value: "Pequeño", label: "Pequeño", },
+                          { value: "Mediano", label: "Mediano", },
+                          { value: "Grande", label: "Grande", },
+                        ]}
                         onChange={(e) => setTamanio(e.target.value)}
                         required
                       />
@@ -179,7 +141,7 @@ const FormularioMascotaIndex = ({ onPrevious }) => {
                     {/* Tercera columna */}
                     {/* Fotos de muestra e input para las fotos */}
                     <Grid item xs={12} md={4}>
-                      <CargarFotosMascota fotos={fotos} setFotos={setFotos} setFotosTemp={setFotosTemp} />
+                      <CargarFotosMascota fotos={fotos} setFotos={setFotos} />
                     </Grid>
 
                     {/* Botones volver y finalizar */}
