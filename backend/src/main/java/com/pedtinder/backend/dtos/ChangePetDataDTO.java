@@ -6,21 +6,17 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.core.io.Resource;
 
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class PetProfileDTO {
+public class ChangePetDataDTO {
 
-    private Long id;
-    private String name;
-    private String age;
     private String race;
+    private String age;
     private String description;
     private PetSex  petSex;
     private PetSize petSize;
-    private String photoUrl;
 
 }

@@ -20,4 +20,5 @@ public class RegistrationPetDTO {
     private String description;
     PetSex petSex;
     PetSize petSize;
+
 }

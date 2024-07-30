@@ -1,17 +1,14 @@
 package com.pedtinder.backend.servicios;
 
-import com.pedtinder.backend.dtos.PetProfileDTO;
+import com.pedtinder.backend.dtos.ChangePetDataDTO;
 import com.pedtinder.backend.dtos.RegistrationPetDTO;
 import com.pedtinder.backend.entidades.Pet;
 import com.pedtinder.backend.entidades.PetPhoto;
 
 import com.pedtinder.backend.entidades.User;
-import com.pedtinder.backend.repositorios.PetPhotoRepository;
 import com.pedtinder.backend.repositorios.PetRepository;
 import com.pedtinder.backend.repositorios.UserRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.core.io.Resource;
-import org.springframework.core.io.UrlResource;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -19,11 +16,9 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
-import java.net.MalformedURLException;
-import java.nio.file.Path;
-import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
+import java.util.Objects;
 
 
 @Service
@@ -33,7 +28,6 @@ public class PetService {
     private final PetRepository petRepository;
     private final UserRepository userRepository;
     private final PetPhotoService petPhotoService;
-    private final PetPhotoRepository petPhotoRepository;
 
     @Transactional
     public void petRegistration(MultipartFile file, RegistrationPetDTO request) throws IOException {
@@ -64,53 +58,52 @@ public class PetService {
     }
 
     @Transactional
-    public PetProfileDTO getPetProfile(Long petid) throws IOException {
+    public List<Pet> getAllPet() {
 
-        Pet pet = petRepository.findById(petid).orElseThrow(() -> new IllegalArgumentException("Mascota no encontrada"));
+        List<Pet> pets = new ArrayList<Pet>();
 
-        PetPhoto photo = petPhotoRepository.findByPetId(petid);
-        String photopath = photo.getPath();
+        petRepository.findAll().forEach(pet1 -> pets.add(pet1));
 
-        Path imgdirectory  = Paths.get("src/main/resources/static/images" ).resolve(photopath);
+        return pets;
 
-        Resource resource;
-        try {
-            resource = new UrlResource(imgdirectory.toUri());
-            if (!resource.exists()) {
-                throw new IOException("Archivo no encontrado: " + photopath);
-            }
-        } catch (MalformedURLException e) {
-            throw new IOException("Error al cargar la imagen", e);
+    }
+
+    @Transactional
+    public Pet getPet(Long id) {
+
+        return petRepository.findById(id).get();
+
+    }
+
+    @Transactional
+    public Pet updatePet(Long id, ChangePetDataDTO pet) {
+
+        Pet petdb = petRepository.findById(id).get();
+
+        if (Objects.nonNull(pet.getRace()) && !"".equalsIgnoreCase(pet.getRace())) {
+
+            petdb.setRace(pet.getRace());
+        }
+        if (Objects.nonNull(pet.getAge()) && !"".equalsIgnoreCase(pet.getAge())) {
+
+            petdb.setAge(pet.getAge());
+        }
+        if (Objects.nonNull(pet.getDescription()) && !"".equalsIgnoreCase(pet.getDescription())) {
+
+            petdb.setDescription(pet.getDescription());
         }
 
-        String url = "http://localhost:8080/images/" + photopath;
+        if (Objects.nonNull(pet.getPetSex())) {
 
-        return PetProfileDTO.builder()
-                .id(pet.getId())
-                .name(pet.getName())
-                .age(pet.getAge())
-                .race(pet.getRace())
-                .description(pet.getDescription())
-                .petSex(pet.getPetSex())
-                .petSize(pet.getPetSize())
-                .photoUrl(url)
-                .build();
+            petdb.setPetSex(pet.getPetSex());
+        }
 
+        if (Objects.nonNull(pet.getPetSize())) {
+
+            petdb.setPetSize(pet.getPetSize());
+        }
+
+        return petRepository.save(petdb);
     }
 
-    @Transactional
-    public Optional<Pet> getPet(Long id) {
-        return petRepository.findById(id);
-    }
-
-    @Transactional
-    public Pet updatePet(Pet pet) {
-
-        return petRepository.save(pet);
-    }
-
-    @Transactional
-    public List<Pet> getPetAll() {
-        return petRepository.findAll();
-    }
 }

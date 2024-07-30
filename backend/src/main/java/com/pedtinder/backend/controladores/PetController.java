@@ -1,5 +1,6 @@
 package com.pedtinder.backend.controladores;
 
+import com.pedtinder.backend.dtos.ChangePetDataDTO;
 import com.pedtinder.backend.dtos.RegistrationPetDTO;
 import com.pedtinder.backend.entidades.Pet;
 import com.pedtinder.backend.servicios.PetService;
@@ -13,7 +14,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -43,55 +43,28 @@ public class PetController {
 
     }
 
-   /* @GetMapping("/{petid}")
-    public ResponseEntity<PetProfileDTO> getPetProfile(@PathVariable Long petid) throws IOException {
+//    Muestra todos los pets
+    @GetMapping("/all")
+    public List<Pet> getAllPets() {
 
-        try {
+        return petService.getAllPet();
 
-            PetProfileDTO petProfile = petService.getPetProfile(petid);
-            return ResponseEntity.ok(petProfile);
+    }
 
-        }catch (IOException e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
-        } catch (IllegalArgumentException e) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
-        }
-
-
-    }*/
-
+//    Muestra un pet por id
     @Transactional
     @GetMapping("/{id}")
-    public ResponseEntity<Pet> getPetById(@PathVariable("id") Long id){
+    public Pet getPetById(@PathVariable("id") Long id){
 
-        Pet pet = petService.getPet(id).orElseThrow(() -> new IllegalArgumentException("Mascota no encontrado $id"));
-
-        return new ResponseEntity<Pet>(pet, HttpStatus.OK);
+        return petService.getPet(id);
 
     }
 
+//    Modifica un pet por is
     @PutMapping("/{id}")
-    public Pet updatePet(@PathVariable("id") Long id, @Validated @RequestBody Pet pet){
+    public Pet updatePet(@PathVariable("id") Long id, @Validated @RequestBody ChangePetDataDTO pet){
 
-        Pet pet1 = petService.getPet(id).orElseThrow(() -> new IllegalArgumentException("Mascota no encontrada"));
-
-        pet1.setName(pet.getName());
-        pet1.setAge(pet.getAge());
-        pet1.setDescription(pet.getDescription());
-        pet1.setRace(pet.getRace());
-
-        return petService.updatePet(pet1);
-
-    }
-
-    @GetMapping("/all")
-    public ResponseEntity<List<Pet>> getAllPets() {
-
-        List<Pet> pets = new ArrayList<>();
-
-        pets = petService.getPetAll();
-
-        return new ResponseEntity<List<Pet>>(pets, HttpStatus.OK);
+        return petService.updatePet(id, pet);
 
     }
 

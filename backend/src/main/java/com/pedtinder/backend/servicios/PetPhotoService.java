@@ -1,5 +1,6 @@
 package com.pedtinder.backend.servicios;
 
+import com.pedtinder.backend.entidades.Pet;
 import com.pedtinder.backend.entidades.PetPhoto;
 import com.pedtinder.backend.repositorios.PetPhotoRepository;
 import lombok.RequiredArgsConstructor;
@@ -14,6 +15,7 @@ import java.net.MalformedURLException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -88,38 +90,14 @@ public class PetPhotoService {
     }
 
 
-
-
-    // Método para recuperar una imagen del almacenamiento local
-    public Resource getPhoto(String photopath)  {
-
-        try {
-
-            Path path = Paths.get(uploaddirectory);
-
-            Path phot = path.resolve(photopath);
-            Resource resource = new UrlResource(path.toUri());
-
-            if (resource.exists() || resource.isReadable()) {
-
-                return resource;
-
-            } else {
-
-                throw new RuntimeException("Imagen no encontrada: " + photopath);
-
-            }
-
-        }catch (MalformedURLException e) {
-
-            throw new RuntimeException("No se pudo leer el archivo");
-        }
-
-    }
-
+//retorna lista de photos
     public List<PetPhoto> findPetPhotoAll() {
 
-        return petPhotoRepository.findAll();
+        List<PetPhoto> photos = new ArrayList<PetPhoto>();
+
+        petPhotoRepository.findAll().forEach(photo -> photos.add(photo));
+
+        return photos;
 
     }
 
