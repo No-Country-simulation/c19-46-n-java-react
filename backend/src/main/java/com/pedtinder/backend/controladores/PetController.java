@@ -1,6 +1,5 @@
 package com.pedtinder.backend.controladores;
 
-import com.pedtinder.backend.dtos.PetProfileDTO;
 import com.pedtinder.backend.dtos.RegistrationPetDTO;
 import com.pedtinder.backend.entidades.Pet;
 import com.pedtinder.backend.servicios.PetService;
@@ -90,7 +89,7 @@ public class PetController {
 
         List<Pet> pets = new ArrayList<>();
 
-        pets = petService.findPetAll();
+        pets = petService.getPetAll();
 
         return new ResponseEntity<List<Pet>>(pets, HttpStatus.OK);
 
