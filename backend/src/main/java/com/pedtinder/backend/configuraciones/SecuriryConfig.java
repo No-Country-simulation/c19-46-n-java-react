@@ -15,6 +15,8 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import java.util.Arrays;
 
@@ -36,7 +38,6 @@ public class SecuriryConfig {
                 .cors(cors -> cors.configurationSource(corsConfigurationSource()))
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(http -> {
-                    http.requestMatchers(HttpMethod.GET, "/pet/**").permitAll();
                     http.requestMatchers(HttpMethod.POST, "/auth/**").permitAll();
                     http.anyRequest().authenticated();
                 })
@@ -49,17 +50,17 @@ public class SecuriryConfig {
 
     }
 
-  /*  @Bean
+    @Bean
     public CorsFilter corsFilter() {
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         CorsConfiguration config = new CorsConfiguration();
         config.setAllowCredentials(true);
-        config.addAllowedOrigin("http://localhost:5173"); // Cambia esto según sea necesario
+        config.addAllowedOrigin("http://127.0.0.1:5500"); // Cambia esto según sea necesario
         config.addAllowedHeader("*");
         config.addAllowedMethod("*");
         source.registerCorsConfiguration("/**", config);
         return new CorsFilter(source);
-    }*/
+    }
 
     private UrlBasedCorsConfigurationSource corsConfigurationSource() {
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
@@ -70,6 +71,19 @@ public class SecuriryConfig {
         config.addAllowedMethod("*");
         source.registerCorsConfiguration("/**", config);
         return source;
+    }
+
+    @Bean
+    public WebMvcConfigurer webMvcConfigurer() {
+
+        return new WebMvcConfigurer() {
+            @Override
+            public void addCorsMappings(CorsRegistry registry) {
+                registry.addMapping("/")
+                        .allowedOrigins("*")
+                        .allowedMethods("*");
+            }
+        };
     }
 
 

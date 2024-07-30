@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.core.io.Resource;
 
 @Data
 @Builder
@@ -20,7 +21,6 @@ public class PetProfileDTO {
     private String description;
     private PetSex  petSex;
     private PetSize petSize;
-//    private String photo;
-    private byte[] photo;
+    private String photoUrl;
 
 }

@@ -3,13 +3,18 @@ package com.pedtinder.backend.servicios;
 import com.pedtinder.backend.entidades.PetPhoto;
 import com.pedtinder.backend.repositorios.PetPhotoRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.UrlResource;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
 import java.io.IOException;
+import java.net.MalformedURLException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.StandardCopyOption;
+import java.nio.file.Paths;
+import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -18,21 +23,49 @@ public class PetPhotoService {
 
     private final PetPhotoRepository petPhotoRepository;
 
+    private String uploaddirectory = "src/main/resources/static/images/";
+
 
 //    Guarda imagen en directorio local
-    public String saveImageToStorage(String uploadDirectory, MultipartFile imageFile) throws IOException {
-        String uniqueFileName = UUID.randomUUID().toString() + "_" + imageFile.getOriginalFilename();
+    public String saveImageToStorage(MultipartFile file) {
 
-        Path uploadPath = Path.of(uploadDirectory);
-        Path filePath = uploadPath.resolve(uniqueFileName);
+        try {
 
-        if (!Files.exists(uploadPath)) {
-            Files.createDirectories(uploadPath);
+            String fileName = UUID.randomUUID().toString();
+            String fileOriginalName = file.getOriginalFilename();
+
+            long fileSize = file.getSize();
+            long maxFileSize = 2 * 1024 * 1024;
+
+            if (fileSize > maxFileSize){
+
+                throw new RuntimeException("Archivo supera el tamaño limite");
+            }
+
+            if (!fileOriginalName.endsWith(".jpg") && !fileOriginalName.endsWith(".jpeg") && !fileOriginalName.endsWith(".png")){
+
+                throw new RuntimeException("Solo JPG, JPEG, PNG");
+
+            }
+
+            String fileExtension = fileOriginalName.substring(fileOriginalName.lastIndexOf("."));
+            String newFileName = fileName + fileExtension;
+
+            File folder = new File(uploaddirectory);
+            if (!folder.exists()) {
+                folder.mkdirs();
+            }
+
+            Path path = Paths.get(uploaddirectory + newFileName);
+            Files.write(path, file.getBytes());
+
+            return newFileName;
+
+        } catch (IOException e){
+
+            throw new RuntimeException("Fallo la carga");
         }
 
-        Files.copy(imageFile.getInputStream(), filePath, StandardCopyOption.REPLACE_EXISTING);
-
-        return uniqueFileName;
     }
 
 //    Guarda imagen en bbdd
@@ -40,12 +73,10 @@ public class PetPhotoService {
 
         if (file != null) {
 
-            String uploadDirectory = "src/main/resources/static/images";
-
-            String uniqueFileName = saveImageToStorage(uploadDirectory, file);
+            String fileName = saveImageToStorage(file);
 
             PetPhoto petPhoto = PetPhoto.builder()
-                    .path(uniqueFileName)    // // Recupera el nombre del archivo para mostrar en pantalla
+                    .path(fileName)    // // Recupera el nombre del archivo para mostrar en pantalla
                     .name(file.getOriginalFilename())
                     .build();
 
@@ -57,51 +88,40 @@ public class PetPhotoService {
     }
 
 
-//    Guarda más de una foto en bbdd
-    public PetPhoto uploadPetPhotos(MultipartFile[] files) throws IOException{
 
-        if (files != null && files.length > 0) {
 
-            String uploadDirectory = "src/main/resources/static/images";
-            StringBuilder petsImagesString  =  new StringBuilder();
+    // Método para recuperar una imagen del almacenamiento local
+    public Resource getPhoto(String photopath)  {
 
-            for (MultipartFile file : files) {
+        try {
 
-                String uniqueFileName = saveImageToStorage(uploadDirectory, file);
-                petsImagesString.append(uniqueFileName).append(","); // "," Recuperar los nombres de los archivos para mostrar en pantalla
+            Path path = Paths.get(uploaddirectory);
+
+            Path phot = path.resolve(photopath);
+            Resource resource = new UrlResource(path.toUri());
+
+            if (resource.exists() || resource.isReadable()) {
+
+                return resource;
+
+            } else {
+
+                throw new RuntimeException("Imagen no encontrada: " + photopath);
 
             }
 
-            PetPhoto petPhoto = PetPhoto.builder()
-                    .path(String.valueOf(petsImagesString))
-                    .name("varias img")
-                    .build();
+        }catch (MalformedURLException e) {
 
-            return petPhotoRepository.save(petPhoto);
-
-        }
-
-        return null;
-
-    }
-
-    // Método para recuperar una imagen del almacenamiento local
-    public byte[] getPhoto(String imgDirectory, String photoPath) throws IOException {
-
-        Path imagenPath = Path.of(imgDirectory, photoPath);
-
-        if (Files.exists(imagenPath)) {
-
-            byte [] imgBytes;
-            imgBytes = Files.readAllBytes(imagenPath);
-            return imgBytes;
-
-        } else {
-
-            throw new IOException("Imagen no encontrada: " + photoPath);
-
+            throw new RuntimeException("No se pudo leer el archivo");
         }
 
     }
+
+    public List<PetPhoto> findPetPhotoAll() {
+
+        return petPhotoRepository.findAll();
+
+    }
+
 
 }

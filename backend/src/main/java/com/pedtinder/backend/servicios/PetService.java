@@ -10,6 +10,8 @@ import com.pedtinder.backend.repositorios.PetPhotoRepository;
 import com.pedtinder.backend.repositorios.PetRepository;
 import com.pedtinder.backend.repositorios.UserRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.UrlResource;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -17,6 +19,11 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.net.MalformedURLException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.List;
+import java.util.Optional;
 
 
 @Service
@@ -56,18 +63,27 @@ public class PetService {
 
     }
 
+    @Transactional
     public PetProfileDTO getPetProfile(Long petid) throws IOException {
 
         Pet pet = petRepository.findById(petid).orElseThrow(() -> new IllegalArgumentException("Mascota no encontrada"));
 
         PetPhoto photo = petPhotoRepository.findByPetId(petid);
+        String photopath = photo.getPath();
 
-        String  imgDirectory  =  "src/main/resources/static/images" ;
+        Path imgdirectory  = Paths.get("src/main/resources/static/images" ).resolve(photopath);
 
-        String photoPath = photo.getPath();
+        Resource resource;
+        try {
+            resource = new UrlResource(imgdirectory.toUri());
+            if (!resource.exists()) {
+                throw new IOException("Archivo no encontrado: " + photopath);
+            }
+        } catch (MalformedURLException e) {
+            throw new IOException("Error al cargar la imagen", e);
+        }
 
-        // Obtener datos de imagen como matrices de bytes
-        byte [] imageByte = petPhotoService.getPhoto(imgDirectory, photoPath);
+        String url = "http://localhost:8080/images/" + photopath;
 
         return PetProfileDTO.builder()
                 .id(pet.getId())
@@ -77,9 +93,24 @@ public class PetService {
                 .description(pet.getDescription())
                 .petSex(pet.getPetSex())
                 .petSize(pet.getPetSize())
-                .photo(imageByte)
+                .photoUrl(url)
                 .build();
 
     }
 
+    @Transactional
+    public Optional<Pet> getPet(Long id) {
+        return petRepository.findById(id);
+    }
+
+    @Transactional
+    public Pet updatePet(Pet pet) {
+
+        return petRepository.save(pet);
+    }
+
+    @Transactional
+    public List<Pet> findPetAll() {
+        return petRepository.findAll();
+    }
 }
