@@ -1,6 +1,7 @@
 package com.pedtinder.backend.servicios;
 
-import com.pedtinder.backend.dtos.ChangePasswordRequese;
+import com.pedtinder.backend.dtos.ChangeEmailRequest;
+import com.pedtinder.backend.dtos.ChangePasswordRequest;
 import com.pedtinder.backend.dtos.CompleteUserRegistrationDTO;
 import com.pedtinder.backend.entidades.City;
 import com.pedtinder.backend.entidades.User;
@@ -39,7 +40,7 @@ public class UserService {
 
     }
 
-    public void changePassword(ChangePasswordRequese request, Principal connectedUser) {
+    public void changePassword(ChangePasswordRequest request, Principal connectedUser) {
 
         var user = (User)((UsernamePasswordAuthenticationToken) connectedUser).getPrincipal();
 
@@ -60,4 +61,26 @@ public class UserService {
         userRepository.save(user);
 
     }
+
+    public void changeEmail(ChangeEmailRequest request, Principal connectedUser){
+
+        var user = (User)((UsernamePasswordAuthenticationToken) connectedUser).getPrincipal();
+
+//        Verificamos si el actual es correcto
+        if(!request.getCurrentEmail().equals(user.getEmail())){
+
+            throw new IllegalStateException("Email incorrecto incorrecta");
+        }
+
+        //        Verificamos si los emails ingresados son iguales
+        if (!request.getNewEmail().equals(request.getConfirmationEmail())){
+
+            throw new IllegalStateException("Los emails no son iguales");
+        }
+
+        user.setEmail(request.getNewEmail());
+        userRepository.save(user);
+
+    }
+
 }

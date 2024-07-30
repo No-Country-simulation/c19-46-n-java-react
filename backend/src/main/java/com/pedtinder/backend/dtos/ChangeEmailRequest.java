@@ -9,10 +9,10 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class ChangePasswordRequese {
+public class ChangeEmailRequest {
 
-    private String currentPassword;
-    private String newPassword;
-    private String confirmationPassword;
+    private String currentEmail;
+    private String newEmail;
+    private String confirmationEmail;
 
 }
