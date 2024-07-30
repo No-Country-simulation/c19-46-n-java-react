@@ -16,9 +16,6 @@ import perfil_hover from '../../shared/assets/perfil_hover.png';
 import configuracion_hover from '../../shared/assets/configuracion_hover.png';
 import "./navbar.css"
 
-
-//import "./navbar.css";
-
 const Navbar = () => {
   const location = useLocation();
   const getValueFromPath = (path) => {
@@ -48,8 +45,8 @@ const Navbar = () => {
   };
 
   return (
-    <Grid container justifyContent="flex-end">
-      <Tabs 
+    <Grid  container justifyContent="flex-end">
+      <Tabs
         value={value}
         onChange={handleChange}
         aria-label=" icon label tabs example"
