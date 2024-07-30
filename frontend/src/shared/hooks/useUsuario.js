@@ -97,6 +97,10 @@ export const useUsuario = (
             setError("Información requerida incompleta.");
             return;
         }
+        if (password !== confirmarPassword) {
+            setError("Las contraseñas no coinciden");
+            return;
+        }
         setIsSubmitting(true);
         setError("");
         try {
