@@ -63,7 +63,7 @@ export const useMascota = () => {
         }
     };
 
-    const getRazas = async () => {
+    const getRazas = () => {
         try {
             // const razas = await fetchRazas();
             // return razas;
