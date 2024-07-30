@@ -110,7 +110,7 @@ public class PetService {
     }
 
     @Transactional
-    public List<Pet> findPetAll() {
+    public List<Pet> getPetAll() {
         return petRepository.findAll();
     }
 }
