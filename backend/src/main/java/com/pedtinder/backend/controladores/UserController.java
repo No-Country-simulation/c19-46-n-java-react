@@ -1,11 +1,15 @@
 package com.pedtinder.backend.controladores;
 
+import com.pedtinder.backend.dtos.ChangeEmailRequest;
+import com.pedtinder.backend.dtos.ChangePasswordRequest;
 import com.pedtinder.backend.dtos.CompleteUserRegistrationDTO;
 import com.pedtinder.backend.servicios.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.security.Principal;
 
 @RestController
 @RequestMapping("/api")
@@ -15,11 +19,11 @@ public class UserController {
     private final UserService userService;
 
     @PostMapping("/complet")
-    public ResponseEntity<String> continua(@RequestParam String username, @RequestBody CompleteUserRegistrationDTO request) {
+    public ResponseEntity<String> continua(@RequestBody CompleteUserRegistrationDTO request, Principal connectedUser) {
 
         try {
 
-            userService.completeUserRegister(username, request);
+            userService.completeUserRegister(request, connectedUser);
             return ResponseEntity.ok("Datos de usuario completados");
 
         } catch (IllegalArgumentException e) {
@@ -32,6 +36,23 @@ public class UserController {
 
         }
 
+    }
+
+    @PutMapping("change/pass")
+    public ResponseEntity<?> changePassword(@RequestBody ChangePasswordRequest request,
+                                            Principal connectedUser) {
+
+        userService.changePassword(request, connectedUser);
+        return ResponseEntity.accepted().build();
+
+    }
+
+    @PutMapping("change/email")
+    public ResponseEntity<?> changeEmail(@RequestBody ChangeEmailRequest request,
+                                            Principal connectedUser) {
+
+        userService.changeEmail(request, connectedUser);
+        return ResponseEntity.accepted().build();
 
     }
 

@@ -11,6 +11,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 
+
 @Data
 @Builder
 @AllArgsConstructor
@@ -44,7 +45,8 @@ public class Pet {
     @JsonManagedReference
     private PetPhoto photo;
 
-    /*@OneToMany(mappedBy = "pet")
-    private List<PetPhoto> photos;*/
+
+    /*@OneToMany(mappedBy = "pet", cascade = CascadeType.ALL)
+    private List<PetPhoto> photos; */
 
 }

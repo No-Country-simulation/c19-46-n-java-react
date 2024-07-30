@@ -7,18 +7,16 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-
 @Data
 @Builder
-@NoArgsConstructor
 @AllArgsConstructor
-public class RegistrationPetDTO {
+@NoArgsConstructor
+public class ChangePetDataDTO {
 
-    private String name;
-    private String age;
     private String race;
+    private String age;
     private String description;
-    PetSex petSex;
-    PetSize petSize;
+    private PetSex  petSex;
+    private PetSize petSize;
 
 }
