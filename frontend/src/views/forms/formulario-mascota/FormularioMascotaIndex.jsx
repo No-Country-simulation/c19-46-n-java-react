@@ -10,6 +10,7 @@ const FormularioMascotaIndex = ({ onPrevious }) => {
   const {
     estadoForm: {
       error,
+      setError,
       isSubmitting
     },
     estadoMascota: {
@@ -141,7 +142,12 @@ const FormularioMascotaIndex = ({ onPrevious }) => {
                     {/* Tercera columna */}
                     {/* Fotos de muestra e input para las fotos */}
                     <Grid item xs={12} md={4}>
-                      <CargarFotosMascota fotos={fotos} setFotos={setFotos} />
+                      <CargarFotosMascota
+                        fotos={fotos}
+                        setFotos={setFotos}
+                        error={error}
+                        setError={setError}
+                      />
                     </Grid>
 
                     {/* Botones volver y finalizar */}

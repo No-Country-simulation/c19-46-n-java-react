@@ -1,45 +1,37 @@
 import { Card, CardContent, Grid, Typography } from "@mui/material"
-import { useMascota } from "../../../../shared/hooks/useMascota"
 import Input from "../../../../shared/components/input/Input"
 import Button from "../../../../shared/components/button/Button"
 
-const FormEditarMascotaIndex = () => {
+const FormEditarMascotaIndex = ({
+    error,
+    isSubmitting,
+    setNombre,
+    setEdad,
+    setSexo,
+    setRaza,
+    setTamanio,
+    setDescripcion,
+    nombre,
+    edad,
+    sexo,
+    raza,
+    razas,
+    tamanio,
+    descripcion,
+    handleRegister,
+}) => {
 
     const styleGridItem = {
         display: "flex",
         justifyContent: "center"
     }
 
-    const {
-        estadoForm: {
-            error,
-            isSubmitting
-        },
-        estadoMascota: {
-            setNombre,
-            setEdad,
-            setSexo,
-            setRaza,
-            setTamanio,
-            setDescripcion,
-            nombre,
-            edad,
-            sexo,
-            raza,
-            tamanio,
-            descripcion,
-        },
-        handleRegister,
-        getRazas
-    } = useMascota()
-
-    const razas = getRazas();
     return (
         <>
             <Card
                 style={{
                     backgroundColor: "#e3e3e3", // Gris
-                    width: "25vw", // Ancho
+                    width: "21vw", // Ancho
                     maxWidth: "1000px", // Ancho máximo fijo
                     height: "100vh", // Altura
                     overflowY: "auto", // Agregar scrollbar horizontal
@@ -47,7 +39,7 @@ const FormEditarMascotaIndex = () => {
                 }}
             >
                 <CardContent>
-                    <Grid container justifyContent="space-between" spacing={2}>
+                    <Grid container justifyContent="center" spacing={2}>
                         <Grid container>
                             {/* Titulo - Nombre */}
                             <Grid item xs={12} style={styleGridItem}>

@@ -88,6 +88,18 @@ export const useMascota = () => {
         }
     };
 
+    const getFotos = () => {
+        try {
+            // const fotos = await fetchFotos();
+            // return fotos;
+            const fotos = []
+            return fotos;
+        } catch (err) {
+            setError("Error obteniendo las fotos. Inténtalo de nuevo.");
+            setIsSubmitting(false);
+        }
+    }
+
     return {
         estadoForm: {
             error,
@@ -112,6 +124,7 @@ export const useMascota = () => {
             setFotos
         },
         handleRegister,
-        getRazas
+        getRazas,
+        getFotos
     }
 }

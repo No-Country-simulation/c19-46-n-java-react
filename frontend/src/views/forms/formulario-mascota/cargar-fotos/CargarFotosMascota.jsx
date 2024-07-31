@@ -9,7 +9,7 @@ import Img from "../../../../shared/components/images/Img";
 import CargarFotosButton from "../../../../shared/components/input/CargarFotosButton";
 
 
-const CargarFotosMascota = ({ fotos, setFotos }) => {
+const CargarFotosMascota = ({ fotos, setFotos, error, setError }) => {
 
   // Estilos
   const styleFoto = {
@@ -63,8 +63,12 @@ const CargarFotosMascota = ({ fotos, setFotos }) => {
               fotos && fotos?.[0] ? (
                 <Img
                   file={fotos[0]}
+                  setFile={setFotos}
                   id={`nombre-foto-${fotos[0]}-1`}
-                  style={styleFoto} />
+                  style={styleFoto}
+                  error={error}
+                  setError={setError}
+                />
               )
                 :
                 fotos && fotos.length > 0 ? (
@@ -89,7 +93,10 @@ const CargarFotosMascota = ({ fotos, setFotos }) => {
                 <Img
                   file={fotos[1]}
                   id={`nombre-foto-${fotos[1]}-2`}
-                  style={styleFoto} />
+                  style={styleFoto}
+                  error={error}
+                  setError={setError}
+                />
               )
                 :
                 fotos && fotos.length > 0 ? (
@@ -118,7 +125,10 @@ const CargarFotosMascota = ({ fotos, setFotos }) => {
                 <Img
                   file={fotos[2]}
                   id={`nombre-foto-${fotos[2]}-3`}
-                  style={styleFoto} />
+                  style={styleFoto}
+                  error={error}
+                  setError={setError}
+                />
               )
                 :
                 fotos && fotos.length > 0 ? (
@@ -169,6 +179,9 @@ const CargarFotosMascota = ({ fotos, setFotos }) => {
                       <IconButton
                         onClick={() => {
                           setFotos(fotos.filter((e, i) => i !== index));
+                          if (error) {
+                            setError("")
+                          }
                         }}
                         style={{ padding: 0, marginLeft: 4 }}
                       >

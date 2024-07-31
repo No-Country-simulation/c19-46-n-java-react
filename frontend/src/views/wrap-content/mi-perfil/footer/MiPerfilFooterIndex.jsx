@@ -1,7 +1,14 @@
+import Button from "../../../../shared/components/button/Button"
 
 const MiPerfilFooterIndex = () => {
     return (
-        <h1>Aca van los botones</h1>
+        <>
+            <div style={{ marginRight: "2em" }}>
+                <Button className="btn-secondary">
+                    VOLVER
+                </Button>
+            </div>
+        </>
     )
 }
 
