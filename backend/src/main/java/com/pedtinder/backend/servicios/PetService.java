@@ -6,6 +6,7 @@ import com.pedtinder.backend.entidades.Pet;
 import com.pedtinder.backend.entidades.PetPhoto;
 
 import com.pedtinder.backend.entidades.User;
+import com.pedtinder.backend.repositorios.PetPhotoRepository;
 import com.pedtinder.backend.repositorios.PetRepository;
 import com.pedtinder.backend.repositorios.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -76,7 +77,7 @@ public class PetService {
     }
 
     @Transactional
-    public Pet updatePet(Long id, ChangePetDataDTO pet) {
+    public void updatePet(Long id, ChangePetDataDTO pet) {
 
         Pet petdb = petRepository.findById(id).get();
 
@@ -103,7 +104,8 @@ public class PetService {
             petdb.setPetSize(pet.getPetSize());
         }
 
-        return petRepository.save(petdb);
+        petRepository.save(petdb);
     }
+
 
 }
