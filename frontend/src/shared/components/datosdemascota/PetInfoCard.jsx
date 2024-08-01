@@ -12,10 +12,12 @@ const PetInfoCard = ({ nombre, raza, sexo, photos, like, liked, flechaIzquierda,
 
   const handlePhotoLeftClick = () => {
     setCurrentIndex((prevIndex) => (prevIndex - 1 + photos.length) % photos.length);
+    handleLeftClick();
   };
 
   const handlePhotoRightClick = () => {
     setCurrentIndex((prevIndex) => (prevIndex + 1) % photos.length);
+    handleRightClick();
   };
 
   const mainPhoto = photos[currentIndex];
