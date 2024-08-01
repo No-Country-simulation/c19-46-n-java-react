@@ -1,17 +1,39 @@
+import { useState } from "react";
 import { Grid, IconButton, Typography } from "@mui/material";
-import PhotoCameraIcon from '@mui/icons-material/PhotoCamera';
+import rellenoFoto from "../../../../shared/assets/rellenoFoto.svg";
 import BackspaceIcon from '@mui/icons-material/Backspace';
 import muestra1 from "../../../../shared/assets/muestra1.webp";
 import muestra2 from "../../../../shared/assets/muestra2.webp";
 import muestra3 from "../../../../shared/assets/muestra3.webp";
-import CargarFotosButton from "../../../../shared/components/input/CargarFotosButton";
 import Img from "../../../../shared/components/images/Img";
+import CargarFotosButton from "../../../../shared/components/input/CargarFotosButton";
 
 
-const CargarFotosMascota = ({ fotos, setFotos, setFotosTemp }) => {
+const CargarFotosMascota = ({ fotos, setFotos, error, setError }) => {
 
-  const MAXFILES = 4; // Máximo de fotos permitidas
+  // Estilos
+  const styleFoto = {
+    width: 120,
+    height: 120,
+    borderRadius: 20,
+  }
 
+  const styleRelleno = {
+    width: 40,
+    height: 40,
+    borderRadius: 20,
+  }
+
+  // Máximo de fotos permitidas
+  const MAXFILES = 4;
+
+  // Estado para guardar temporalmente las fotos
+  const [fotosTemp, setFotosTemp] = useState([]);
+
+  /**
+   * Función para manejar el cambio de archivos seleccionados.
+   * Verifica si se supera el máximo permitido y actualiza el estado de fotos.
+   */
   const handleChange = (event) => {
     if (event.target.files) {
       const newFotos = Array.from(event.target.files);
@@ -41,32 +63,27 @@ const CargarFotosMascota = ({ fotos, setFotos, setFotosTemp }) => {
               fotos && fotos?.[0] ? (
                 <Img
                   file={fotos[0]}
+                  setFile={setFotos}
                   id={`nombre-foto-${fotos[0]}-1`}
-                  style={{
-                    width: 120,
-                    height: 120,
-                    borderRadius: 20,
-                  }} />
+                  style={styleFoto}
+                  error={error}
+                  setError={setError}
+                />
               )
                 :
                 fotos && fotos.length > 0 ? (
-                  <PhotoCameraIcon
-                    fontSize="large"
-                    color="primary"
-                    style={{
-                      width: 120,
-                      height: 120,
-                    }}
-                  />
+                  <Grid container justifyContent="center" alignItems="center" style={{ height: 120, width: 120 }} >
+                    <Img
+                      muestra={rellenoFoto}
+                      id={"relleno-1"}
+                      style={styleRelleno}
+                    />
+                  </Grid>
                 ) :
                   <Img
                     muestra={muestra1}
                     id={"muestra-1"}
-                    style={{
-                      width: 120,
-                      height: 120,
-                      borderRadius: 20,
-                    }}
+                    style={styleFoto}
                   />
             }
           </Grid>
@@ -76,31 +93,25 @@ const CargarFotosMascota = ({ fotos, setFotos, setFotosTemp }) => {
                 <Img
                   file={fotos[1]}
                   id={`nombre-foto-${fotos[1]}-2`}
-                  style={{
-                    width: 120,
-                    height: 120,
-                    borderRadius: 20,
-                  }} />
+                  style={styleFoto}
+                  error={error}
+                  setError={setError}
+                />
               )
                 :
                 fotos && fotos.length > 0 ? (
-                  <PhotoCameraIcon
-                    fontSize="large"
-                    color="primary"
-                    style={{
-                      width: 120,
-                      height: 120,
-                    }}
-                  />
+                  <Grid container justifyContent="center" alignItems="center" style={{ height: 120, width: 120 }} >
+                    <Img
+                      muestra={rellenoFoto}
+                      id={"relleno-2"}
+                      style={styleRelleno}
+                    />
+                  </Grid>
                 ) :
                   <Img
                     muestra={muestra2}
                     id={"muestra-2"}
-                    style={{
-                      width: 120,
-                      height: 120,
-                      borderRadius: 20,
-                    }}
+                    style={styleFoto}
                   />
             }
           </Grid>
@@ -114,31 +125,25 @@ const CargarFotosMascota = ({ fotos, setFotos, setFotosTemp }) => {
                 <Img
                   file={fotos[2]}
                   id={`nombre-foto-${fotos[2]}-3`}
-                  style={{
-                    width: 120,
-                    height: 120,
-                    borderRadius: 20,
-                  }} />
+                  style={styleFoto}
+                  error={error}
+                  setError={setError}
+                />
               )
                 :
                 fotos && fotos.length > 0 ? (
-                  <PhotoCameraIcon
-                    fontSize="large"
-                    color="primary"
-                    style={{
-                      width: 120,
-                      height: 120,
-                    }}
-                  />
+                  <Grid container justifyContent="center" alignItems="center" style={{ height: 120, width: 120 }} >
+                    <Img
+                      muestra={rellenoFoto}
+                      id={"relleno-3"}
+                      style={styleRelleno}
+                    />
+                  </Grid>
                 ) :
                   <Img
                     muestra={muestra3}
                     id={"muestra-3"}
-                    style={{
-                      width: 120,
-                      height: 120,
-                      borderRadius: 20,
-                    }}
+                    style={styleFoto}
                   />
             }
           </Grid>
@@ -174,6 +179,9 @@ const CargarFotosMascota = ({ fotos, setFotos, setFotosTemp }) => {
                       <IconButton
                         onClick={() => {
                           setFotos(fotos.filter((e, i) => i !== index));
+                          if (error) {
+                            setError("")
+                          }
                         }}
                         style={{ padding: 0, marginLeft: 4 }}
                       >

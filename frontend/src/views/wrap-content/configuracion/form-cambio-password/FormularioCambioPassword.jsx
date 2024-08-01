@@ -46,7 +46,7 @@ const FormularioCambioPassword = ({
 
                             {/* Este input lo agregue porque tiraba un warning en el navegador, esta al pedo, no hace nada y esta oculto */}
                             <input
-                                id="-"
+                                id="-a"
                                 name="-"
                                 type="text"
                                 style={{ visibility: "hidden", position: "absolute" }}

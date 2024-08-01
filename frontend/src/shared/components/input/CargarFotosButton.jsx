@@ -5,6 +5,16 @@ const CargarFotosButton = ({
   multiple = true,
   handleChange,
   required = false,
+  style = {
+    width: 120,
+    height: 120,
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "#e3e3e3",
+    borderRadius: 20,
+    cursor: "pointer",
+  }
 }) => {
   return (
     <>
@@ -18,16 +28,7 @@ const CargarFotosButton = ({
       />
       <label
         htmlFor={id}
-        style={{
-          width: 120,
-          height: 120,
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          backgroundColor: "white",
-          borderRadius: 20,
-          cursor: "pointer",
-        }}
+        style={style}
       >
         <FileUploadOutlinedIcon />
         {required && <span style={{ color: "red" }}>*</span>}
