@@ -19,8 +19,8 @@ public class PetPhoto {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-
-    private String path;
+    @Column(columnDefinition = "LONGTEXT")
+    private String content;
     private String name;
 
     @OneToOne(fetch = FetchType.LAZY)
