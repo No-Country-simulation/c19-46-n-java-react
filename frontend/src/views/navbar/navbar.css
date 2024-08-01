@@ -1,0 +1,19 @@
+.navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000; /* Asegura que la navbar esté siempre en la parte superior */
+}
+
+/* Media queries para pantallas más pequeñas */
+@media (max-width: 768px) {
+    .navbar img {
+        width: 30px; /* Ajuste el tamaño de los iconos para pantallas pequeñas */
+    }
+}
+
+@media (max-width: 480px) {
+    .navbar img {
+        width: 25px; /* Ajuste adicional para smartphones */
+    }
+}

@@ -1,9 +1,6 @@
 import * as React from "react";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
-import PetsIcon from "@mui/icons-material/Pets";
-import AccountBoxIcon from "@mui/icons-material/AccountBox";
-import SettingsApplicationsIcon from "@mui/icons-material/SettingsApplications";
 import { Grid } from "@mui/material";
 import { Link, useLocation } from "react-router-dom";
 import home_default from '../../shared/assets/home_default.png';
@@ -45,34 +42,30 @@ const Navbar = () => {
   };
 
   return (
-    <Grid  container justifyContent="flex-end">
+    <Grid container justifyContent="flex-end" className="navbar">
       <Tabs
         value={value}
         onChange={handleChange}
-        aria-label=" icon label tabs example"
+        aria-label="icon label tabs example"
         TabIndicatorProps={{ style: { display: 'none'} }}
       >
         <Tab
           icon={<img src={value === 0 ? home_hover : home_default} alt="Home" />}
-          // label="HOME"
           component={Link}
           to="/main-menu/home"
         />
         <Tab
           icon={<img src={value === 1 ? mensaje_hover : mensaje_default} alt="Mensajes" />}
-          // label="MENSAJES"
           component={Link}
           to="/main-menu/mensaje"       
         />
         <Tab
           icon={<img src={value === 2 ? perfil_hover : perfil_default} alt="Perfil" />}
-          // label="PERFIL"
           component={Link}
           to="/main-menu/perfil" 
         />
         <Tab
           icon={<img src={value === 3 ? configuracion_hover : configuracion_default} alt="Configuracion" />}
-          // label="CONFIGURACION"
           component={Link}
           to="/main-menu/configuracion"
         />

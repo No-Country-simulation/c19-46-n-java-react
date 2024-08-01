@@ -3,7 +3,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 50px; /* Ajusta para que no quede debajo de la navbar */
+    margin-top: 120px; /* Aumenta el margen superior para compensar la navbar */
 }
 
 .pet-photo-container {
@@ -86,4 +86,83 @@
     width: 90px; /* Ajusta el tamaño de las flechas */
     height: auto;
     cursor: pointer; /* Cambia el cursor a un puntero al pasar sobre la imagen */
+}
+
+/* Media queries para pantallas más pequeñas */
+@media (max-width: 1200px) {
+    .pet-photo-container.main {
+        width: 500px; /* Ajuste para pantallas más pequeñas */
+        height: 750px;
+    }
+
+    .pet-photo-container.small {
+        width: 300px;
+        height: 450px;
+    }
+
+    .pet-like-image {
+        width: 150px; /* Ajuste para pantallas más pequeñas */
+    }
+
+    .pet-flecha {
+        width: 70px; /* Ajuste para pantallas más pequeñas */
+    }
+}
+
+@media (max-width: 768px) {
+    .pet-photo-container.main {
+        width: 400px; /* Ajuste para tablets */
+        height: 600px;
+    }
+
+    .pet-photo-container.small {
+        display: none; /* Ocultar fotos laterales en pantallas pequeñas */
+    }
+
+    .pet-like-image {
+        width: 120px; /* Ajuste para tablets */
+    }
+
+    .pet-flecha-container {
+        width: 200px; /* Ajuste para tablets */
+    }
+
+    .pet-flecha {
+        width: 60px; /* Ajuste para tablets */
+    }
+}
+
+@media (max-width: 480px) {
+    .pet-photo-container.main {
+        width: 300px; /* Ajuste para smartphones */
+        height: 450px;
+    }
+
+    .pet-info-card {
+        top: -30px; /* Ajuste para smartphones */
+        width: 200px;
+        padding: 10px;
+    }
+
+    .pet-nombre {
+        font-size: 30px; /* Ajuste para smartphones */
+    }
+
+    .pet-raza,
+    .pet-sexo {
+        font-size: 16px; /* Ajuste para smartphones */
+    }
+
+    .pet-like-image {
+        width: 100px; /* Ajuste para smartphones */
+    }
+
+    .pet-flecha-container {
+        bottom: -80px; /* Ajuste para smartphones */
+        width: 150px;
+    }
+
+    .pet-flecha {
+        width: 50px; /* Ajuste para smartphones */
+    }
 }
