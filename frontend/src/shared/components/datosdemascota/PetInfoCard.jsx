@@ -3,7 +3,19 @@ import PropTypes from 'prop-types';
 import { motion, AnimatePresence } from 'framer-motion';
 import './PetInfoCard.css'; // Archivo CSS para los estilos
 
-const PetInfoCard = ({ nombre, raza, sexo, photos, like, liked, flechaIzquierda, flechaDerecha, handleLeftClick, handleRightClick }) => {
+const PetInfoCard = ({
+  nombre,
+  raza,
+  sexo,
+  photos,
+  like,
+  liked,
+  flechaIzquierda,
+  flechaDerecha,
+  handleLeftClick,
+  handleRightClick
+}) => {
+
   const [isLiked, setIsLiked] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [direction, setDirection] = useState(1); // 1 para derecha, -1 para izquierda
@@ -83,10 +95,10 @@ const PetInfoCard = ({ nombre, raza, sexo, photos, like, liked, flechaIzquierda,
           <p className="pet-sexo">{sexo}</p>
         </div>
         {/* Imagen de like */}
-        <img 
-          src={isLiked ? liked : like} 
-          alt="Like" 
-          className="pet-like-image" 
+        <img
+          src={isLiked ? liked : like}
+          alt="Like"
+          className="pet-like-image"
           onClick={handleLikeClick}
         />
         {/* Flechas de navegación */}
@@ -95,7 +107,7 @@ const PetInfoCard = ({ nombre, raza, sexo, photos, like, liked, flechaIzquierda,
             src={flechaIzquierda} 
             alt="Flecha izquierda" 
             className="pet-flecha" 
-            onClick={handleRightArrowClick}
+            onClick={handleLeftArrowClick}
             whileTap={{ scale: 0.9 }}
             whileHover={{ scale: 1.1 }}
           />
@@ -103,7 +115,7 @@ const PetInfoCard = ({ nombre, raza, sexo, photos, like, liked, flechaIzquierda,
             src={flechaDerecha} 
             alt="Flecha derecha" 
             className="pet-flecha" 
-            onClick={handleLeftArrowClick}
+            onClick={handleRightArrowClick}
             whileTap={{ scale: 0.9 }}
             whileHover={{ scale: 1.1 }}
           />
