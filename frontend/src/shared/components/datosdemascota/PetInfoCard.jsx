@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import PropTypes from 'prop-types';
 import './PetInfoCard.css'; // Archivo CSS para los estilos
 
@@ -39,10 +39,10 @@ const PetInfoCard = ({ nombre, raza, sexo, photos, like, liked, flechaIzquierda,
           <p className="pet-sexo">{sexo}</p>
         </div>
         {/* Imagen de like */}
-        <img 
-          src={isLiked ? liked : like} 
-          alt="Like" 
-          className="pet-like-image" 
+        <img
+          src={isLiked ? liked : like}
+          alt="Like"
+          className="pet-like-image"
           onClick={handleLikeClick}
         />
         {/* Flechas de navegación */}

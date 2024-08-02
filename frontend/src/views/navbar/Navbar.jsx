@@ -1,4 +1,4 @@
-import * as React from "react";
+import { useEffect, useState } from "react";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import { Grid } from "@mui/material";
@@ -11,10 +11,12 @@ import home_hover from '../../shared/assets/home_hover.png';
 import mensaje_hover from '../../shared/assets/mensaje_hover.png';
 import perfil_hover from '../../shared/assets/perfil_hover.png';
 import configuracion_hover from '../../shared/assets/configuracion_hover.png';
-import "./navbar.css"
+import "./navbar.css";
+import logo from "../../shared/assets/logo.png";
 
 const Navbar = () => {
   const location = useLocation();
+
   const getValueFromPath = (path) => {
     switch (path) {
       case "/main-menu":
@@ -31,9 +33,9 @@ const Navbar = () => {
     }
   };
 
-  const [value, setValue] = React.useState(getValueFromPath(location.pathname));
+  const [value, setValue] = useState(getValueFromPath(location.pathname));
 
-  React.useEffect(() => {
+  useEffect(() => {
     setValue(getValueFromPath(location.pathname));
   }, [location.pathname]);
 
@@ -42,12 +44,25 @@ const Navbar = () => {
   };
 
   return (
-    <Grid container justifyContent="flex-end" className="navbar">
+    <Grid container justifyContent="flex-end" >
+      <div style={{ position: "absolute", top: 0, left: 0 }}>
+        <img
+          src={logo}
+          alt="Logo"
+          style={{
+            width: 100,
+            height: 100,
+            objectFit: "contain",
+            objectPosition: "center",
+            marginLeft: 10,
+          }}
+        />
+      </div>
+
       <Tabs
         value={value}
         onChange={handleChange}
-        aria-label="icon label tabs example"
-        TabIndicatorProps={{ style: { display: 'none'} }}
+        TabIndicatorProps={{ style: { display: 'none' } }}
       >
         <Tab
           icon={<img src={value === 0 ? home_hover : home_default} alt="Home" />}
@@ -57,12 +72,12 @@ const Navbar = () => {
         <Tab
           icon={<img src={value === 1 ? mensaje_hover : mensaje_default} alt="Mensajes" />}
           component={Link}
-          to="/main-menu/mensaje"       
+          to="/main-menu/mensaje"
         />
         <Tab
           icon={<img src={value === 2 ? perfil_hover : perfil_default} alt="Perfil" />}
           component={Link}
-          to="/main-menu/perfil" 
+          to="/main-menu/perfil"
         />
         <Tab
           icon={<img src={value === 3 ? configuracion_hover : configuracion_default} alt="Configuracion" />}

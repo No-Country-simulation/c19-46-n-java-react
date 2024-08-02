@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
+import { motion } from 'framer-motion';
 import PetInfoCard from '../../../shared/components/datosdemascota/PetInfoCard';
 import muestra1 from '../../../shared/assets/muestra1.webp';
 import muestra2 from '../../../shared/assets/muestra2.webp';
@@ -43,11 +44,16 @@ const HomeIndex = () => {
   const currentPet = petDataList[currentIndex];
 
   return (
-    <div>
-      <PetInfoCard 
-        nombre={currentPet.nombre} 
-        raza={currentPet.raza} 
-        sexo={currentPet.sexo} 
+    <motion.div
+      initial={{ opacity: 0, x: 100 }}
+      animate={{ opacity: 1, x: 0 }}
+      exit={{ opacity: 0, x: -100 }}
+      transition={{ duration: 0.5 }}
+    >
+      <PetInfoCard
+        nombre={currentPet.nombre}
+        raza={currentPet.raza}
+        sexo={currentPet.sexo}
         photos={currentPet.photos}
         like={like}
         liked={liked}
@@ -56,7 +62,7 @@ const HomeIndex = () => {
         handleLeftClick={handleLeftClick}
         handleRightClick={handleRightClick}
       />
-    </div>
+    </motion.div>
   );
 };
 

@@ -16,9 +16,10 @@ const customTheme = createTheme({
       main: "#0F4C5C", // Secundario: Azul
     },
     background: {
-      default: "#121212", // Fondo oscuro
-      //default: "#f1f1f1", // Fondo gris 0.5
-      //default: "#e3e3e3", // Fondo gris 1
+      // default: "#121212", // Fondo oscuro
+      // default: "#f1f1f1", // Fondo gris 0.5
+      // default: "#e3e3e3", // Fondo gris 1
+      default: "#c9c9c9", // Fondo gris 2
       paper: "#ffffff", // Fondo de componentes
     },
     text: {

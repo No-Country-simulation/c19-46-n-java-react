@@ -3,7 +3,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 120px; /* Aumenta el margen superior para compensar la navbar */
 }
 
 .pet-photo-container {
@@ -15,14 +14,14 @@
 }
 
 .pet-photo-container.main {
-    width: 600px; /* Tamaño más grande para la foto principal */
-    height: 900px;
+    width: 500px; /* Tamaño más grande para la foto principal */
+    height: 700px;
     z-index: 1; /* Asegura que la foto principal esté por encima de las laterales */
 }
 
 .pet-photo-container.small {
-    width: 400px; /* Tamaño más pequeño para las fotos laterales */
-    height: 600px;
+    width: 200px; /* Tamaño más pequeño para las fotos laterales */
+    height: 400px;
     margin: 0 20px; /* Espacio adicional entre las fotos */
 }
 
@@ -40,7 +39,7 @@
     background-color: #94D1E1; /* Fondo celeste */
     border-radius: 10px; /* Bordes redondeados */
     padding: 20px;
-    width: 250px; /* Ajusta el tamaño según sea necesario */
+    width: 200px; /* Ajusta el tamaño según sea necesario */
     text-align: center;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Sombra para dar un efecto de elevación */
     z-index: 2; /* Asegura que la etiqueta esté por encima de la foto principal */
@@ -48,14 +47,14 @@
 
 .pet-nombre {
     color: #092E37; /* Color azul oscuro */
-    font-size: 40px; /* Tamaño un poquito más grande */
+    font-size: 1.5em; /* Tamaño un poquito más grande */
     margin: 0px;
 }
 
 .pet-raza,
 .pet-sexo {
     color: #092E37; /* Color azul oscuro */
-    font-size: 20px;
+    font-size: 1em;
     margin: 0px;
 }
 
@@ -65,7 +64,7 @@
     bottom: 30px; /* Ajusta según sea necesario */
     left: 50%;
     transform: translateX(-50%);
-    width: 200px; /* Ajusta el tamaño según sea necesario */
+    width: 100px; /* Ajusta el tamaño según sea necesario */
     height: auto;
     z-index: 2; /* Asegura que la imagen de like esté por encima de la foto */
     cursor: pointer; /* Cambia el cursor a un puntero al pasar sobre la imagen */
@@ -74,18 +73,19 @@
 /* Estilo para las flechas de navegación */
 .pet-flecha-container {
     position: absolute;
-    bottom: -120px; /* Ajusta según sea necesario */
+    bottom: -80px; /* Ajusta según sea necesario */
     left: 50%;
     transform: translateX(-50%);
     display: flex;
     justify-content: space-between;
-    width: 250px; /* Ajusta el ancho total según el tamaño de las flechas */
+    width: 100px; /* Ajusta el ancho total según el tamaño de las flechas */
 }
 
 .pet-flecha {
-    width: 90px; /* Ajusta el tamaño de las flechas */
+    width: 50px; /* Ajusta el tamaño de las flechas */
     height: auto;
     cursor: pointer; /* Cambia el cursor a un puntero al pasar sobre la imagen */
+    margin: 5px;
 }
 
 /* Media queries para pantallas más pequeñas */
