@@ -1,9 +1,21 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { motion, AnimatePresence } from 'framer-motion';
 import './PetInfoCard.css'; // Archivo CSS para los estilos
 
-const PetInfoCard = ({ nombre, raza, sexo, photos, like, liked, flechaIzquierda, flechaDerecha, handleLeftClick, handleRightClick }) => {
+const PetInfoCard = ({
+  nombre,
+  raza,
+  sexo,
+  photos,
+  like,
+  liked,
+  flechaIzquierda,
+  flechaDerecha,
+  handleLeftClick,
+  handleRightClick
+}) => {
+
   const [isLiked, setIsLiked] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [direction, setDirection] = useState(1); // 1 para derecha, -1 para izquierda
