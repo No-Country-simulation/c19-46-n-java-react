@@ -1,31 +1,41 @@
-import * as React from "react";
+import { useEffect, useState } from "react";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
-import PetsIcon from "@mui/icons-material/Pets";
-import AccountBoxIcon from "@mui/icons-material/AccountBox";
-import SettingsApplicationsIcon from "@mui/icons-material/SettingsApplications";
 import { Grid } from "@mui/material";
 import { Link, useLocation } from "react-router-dom";
+import home_default from '../../shared/assets/home_default.png';
+import mensaje_default from '../../shared/assets/mensaje_default.png';
+import perfil_default from '../../shared/assets/perfil_default.png';
+import configuracion_default from '../../shared/assets/configuracion_default.png';
+import home_hover from '../../shared/assets/home_hover.png';
+import mensaje_hover from '../../shared/assets/mensaje_hover.png';
+import perfil_hover from '../../shared/assets/perfil_hover.png';
+import configuracion_hover from '../../shared/assets/configuracion_hover.png';
+import "./navbar.css";
+import logo from "../../shared/assets/logo.png";
 
 const Navbar = () => {
   const location = useLocation();
+
   const getValueFromPath = (path) => {
     switch (path) {
       case "/main-menu":
-      case "/main-menu/buscador":
+      case "/main-menu/home":
         return 0;
-      case "/main-menu/mi-perfil":
+      case "/main-menu/mensaje":
         return 1;
-      case "/main-menu/preferencias":
+      case "/main-menu/perfil":
         return 2;
+      case "/main-menu/configuracion":
+        return 3;
       default:
         return 0;
     }
   };
 
-  const [value, setValue] = React.useState(getValueFromPath(location.pathname));
+  const [value, setValue] = useState(getValueFromPath(location.pathname));
 
-  React.useEffect(() => {
+  useEffect(() => {
     setValue(getValueFromPath(location.pathname));
   }, [location.pathname]);
 
@@ -34,29 +44,45 @@ const Navbar = () => {
   };
 
   return (
-    <Grid container justifyContent="center">
+    <Grid container justifyContent="flex-end" >
+      <div style={{ position: "absolute", top: 0, left: 0 }}>
+        <img
+          src={logo}
+          alt="Logo"
+          style={{
+            width: 100,
+            height: 100,
+            objectFit: "contain",
+            objectPosition: "center",
+            marginLeft: 10,
+          }}
+        />
+      </div>
+
       <Tabs
         value={value}
         onChange={handleChange}
-        aria-label="icon label tabs example"
+        TabIndicatorProps={{ style: { display: 'none' } }}
       >
         <Tab
-          icon={<PetsIcon />}
-          label="BUSCADOR"
+          icon={<img src={value === 0 ? home_hover : home_default} alt="Home" />}
           component={Link}
-          to="/main-menu/buscador"
+          to="/main-menu/home"
         />
         <Tab
-          icon={<AccountBoxIcon />}
-          label="MI PERFIL"
+          icon={<img src={value === 1 ? mensaje_hover : mensaje_default} alt="Mensajes" />}
           component={Link}
-          to="/main-menu/mi-perfil"
+          to="/main-menu/mensaje"
         />
         <Tab
-          icon={<SettingsApplicationsIcon />}
-          label="PREFERENCIAS"
+          icon={<img src={value === 2 ? perfil_hover : perfil_default} alt="Perfil" />}
           component={Link}
-          to="/main-menu/preferencias"
+          to="/main-menu/perfil"
+        />
+        <Tab
+          icon={<img src={value === 3 ? configuracion_hover : configuracion_default} alt="Configuracion" />}
+          component={Link}
+          to="/main-menu/configuracion"
         />
       </Tabs>
     </Grid>

@@ -34,17 +34,49 @@ export const fetchLogin = async (setError, username, password) => {
 * Función asíncrona que realiza una solicitud HTTP POST para registrar un nuevo usuario.
 * @param {function} setError - Función que se utiliza para establecer el estado de error.
 * @param {string} username - Nombre de usuario.
+* @param {string} email - Email de usuario.
 * @param {string} password - Contraseña del usuario.
 * @param {string} confirmarPassword - Confirmación de la contraseña del usuario.
-* @param {string} nombre - Nombre completo del usuario.
-* @param {string} telefono - Número de teléfono del usuario.
-* @param {object} ciudad - Objeto con el ID de la ciudad asociada al usuario.
 * @returns {Promise<object>} - Promesa que se resuelve con los datos del usuario registrado.
 * @throws {Error} - Si ocurre algún error durante la solicitud HTTP.
 */
-export const fetchRegistrarUsuario = async (setError, username, password, confirmarPassword, nombre, telefono, ciudad) => {
+export const fetchRegistrarUsuario = async (setError, username, email, password, confirmarPassword) => {
     const usuarioData = {
         nickname: username,
+        email: email,
+        contrasenia: password,
+        confirmarContrasenia: confirmarPassword
+    }
+    try {
+        const data = await fetchData(USUARIOS_ENDPOINT.post_registrar_usuario, 'POST', usuarioData);
+        return data;
+    } catch (error) {
+        if (error.response && error.response.status === 400) {
+            setError('Error en los datos del usuario');
+        } else {
+            setError('Error registrando usuario');
+        }
+        throw error;
+    }
+};
+
+/**
+* Función asíncrona que realiza una solicitud HTTP PUT para editar los datos de un usuario.
+* @param {function} setError - Función que se utiliza para establecer el estado de error.
+* @param {string} username - Nombre de usuario.
+* @param {string} email - Email de usuario.
+* @param {string} password - Contraseña del usuario.
+* @param {string} confirmarPassword - Confirmación de la contraseña del usuario.
+* @param {string} nombre - Nombre completo del usuario.
+* @param {string} telefono - Teléfono del usuario.
+* @param {object} ciudad - Objeto de ciudad, con la propiedad id.
+* @returns {Promise<object>} - Promesa que se resuelve con los datos del usuario editado.
+* @throws {Error} - Si ocurre algún error durante la solicitud HTTP.
+*/
+export const fetchEditarUsuario = async (setError, username, email, password, confirmarPassword, nombre, telefono, ciudad) => {
+    const usuarioData = {
+        nickname: username,
+        email: email,
         contrasenia: password,
         confirmarContrasenia: confirmarPassword,
         nombreCompleto: nombre,
@@ -52,7 +84,7 @@ export const fetchRegistrarUsuario = async (setError, username, password, confir
         ciudadId: ciudad.id
     }
     try {
-        const data = await fetchData(USUARIOS_ENDPOINT.post_registrar_usuario, 'POST', usuarioData);
+        const data = await fetchData(USUARIOS_ENDPOINT.put_editar_usuario, 'PUT', usuarioData);
         return data;
     } catch (error) {
         if (error.response && error.response.status === 400) {

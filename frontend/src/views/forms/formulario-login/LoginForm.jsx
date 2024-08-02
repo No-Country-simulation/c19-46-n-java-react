@@ -15,9 +15,9 @@ const LoginForm = ({ onNext }) => {
       username,
       password,
       setUsername,
-      setPassword,
+      setPassword
     },
-    handleLogin
+    handleLogin,
   } = useUsuario();
 
   return (
@@ -59,7 +59,16 @@ const LoginForm = ({ onNext }) => {
             </Button>
           </div>
           <div>
-            <Button className="btn-secondary" onClick={onNext}>REGISTRARSE</Button>
+            <Button
+              type="button"
+              className="btn-secundary"
+              onClick={onNext}
+              disabled={isSubmitting}
+            >
+              {isSubmitting ? "Enviando..." : "REGISTRARSE"}
+              {/* REGISTRARSE */}
+            </Button>
+
           </div>
           <p>olvidaste la contraseña...</p>
         </form>

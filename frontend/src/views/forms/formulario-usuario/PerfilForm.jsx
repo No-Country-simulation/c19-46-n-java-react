@@ -19,13 +19,13 @@ const RegisterForm = ({ onPrevious, onNext }) => {
       setTelefono,
       setCiudad
     },
-    handleRegister
-  } = useUsuario();
+    handleProfileRegister
+  } = useUsuario(onNext);
 
   return (
     <div className="divisor">
       <div className="container">
-        <form className="form" onSubmit={handleRegister(onNext)}>
+        <form className="form" onSubmit={handleProfileRegister}>
           <h1>Completa tu perfil para comenzar</h1>
           <div className="campo">
             <Input

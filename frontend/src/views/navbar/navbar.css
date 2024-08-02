@@ -1,0 +1,30 @@
+.navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    display: flex;
+    justify-content: flex-start; /* Alinea al costado */
+    align-items: center;
+    z-index: 1000; /* Asegura que la navbar esté siempre en la parte superior */
+    padding: 0 200px; /* Ajusta el padding según sea necesario */
+    box-sizing: border-box; /* Incluye el padding dentro del ancho total */
+  }
+  
+  .MuiTabs-root {
+    flex-grow: 0;
+  }
+  
+  .MuiTabs-flexContainer {
+    justify-content: flex-start; /* Alinea al costado */
+  }
+  
+  @media (max-width: 600px) {
+    .navbar {
+      justify-content: center; /* Centra en pantallas pequeñas */
+      padding: 0 20px; /* Reduce el padding en pantallas pequeñas */
+    }
+  
+    .MuiTabs-flexContainer {
+      justify-content: center; /* Centra los tabs en pantallas pequeñas */
+    }
+  }

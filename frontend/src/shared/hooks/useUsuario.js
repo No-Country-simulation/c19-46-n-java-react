@@ -1,9 +1,14 @@
 import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { UsuarioContexto } from "../utils/UsuarioContext";
-import { fetchLogin, fetchRegistrarUsuario } from "../api/usuario_api";
+import { fetchLogin, fetchRegistrarUsuario, fetchEditarUsuario } from "../api/usuario_api";
 
-export const useUsuario = () => {
+export const useUsuario = (
+    onNext = null,
+    newEmail = "",
+    newPassword = "",
+    newPasswordConfirm = ""
+) => {
 
     // Estados del formulario
     const [error, setError] = useState("");
@@ -11,6 +16,7 @@ export const useUsuario = () => {
 
     // Estados del usuario
     const [username, setUsername] = useState("");
+    const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [confirmarPassword, setConfirmarPassword] = useState("");
     const [nombre, setNombre] = useState("");
@@ -21,6 +27,19 @@ export const useUsuario = () => {
     const { login } = useContext(UsuarioContexto);
 
     const navigate = useNavigate();
+
+    /**
+     * Función que resetea los estados de los usuarios, limpiando los campos de formulario.
+     * @returns {void} No devuelve nada.
+     */
+    const resetEstadosUsuario = () => {
+        setUsername("");
+        setPassword("");
+        setConfirmarPassword("");
+        setNombre("");
+        setTelefono("");
+        setCiudad(null);
+    }
 
     /**
      * Función asíncrona que maneja el inicio de sesión en el formulario de inicio de sesión.
@@ -42,13 +61,7 @@ export const useUsuario = () => {
                 username,
                 password);
             if (data) {
-                setUsername("");
-                setPassword("");
-                setConfirmarPassword("");
-                setNombre("");
-                setTelefono("");
-                setCiudad("");
-
+                resetEstadosUsuario();
                 // Si en la data tiene una ciudad significa que completo todo el formulario de registro
                 if (data.ciudad) {
                     // Setea el usuario en el contexto global
@@ -75,7 +88,50 @@ export const useUsuario = () => {
      * datos del usuario registrado si el registro es exitoso, o undefined si
      * falla.
      */
-    const handleRegister = async (e, onNext) => {
+    const handleRegister = async (e) => {
+        e.preventDefault();
+        if (isSubmitting) {
+            return;
+        }
+        if (!username || !email || !password || !confirmarPassword) {
+            setError("Información requerida incompleta.");
+            return;
+        }
+        if (password !== confirmarPassword) {
+            setError("Las contraseñas no coinciden");
+            return;
+        }
+        setIsSubmitting(true);
+        setError("");
+        try {
+            // const data = await fetchRegistrarUsuario(
+            //     setError,
+            //     username,
+            //     email,
+            //     password,
+            //     confirmarPassword
+            // );
+            // if (data) {
+            //      resetEstadosUsuario();
+            //      onNext();
+            // }
+            onNext()
+        } catch (error) {
+            console.error(error);
+        } finally {
+            setIsSubmitting(false);
+        }
+    };
+
+
+    /**
+     * Función asíncrona que maneja el registro de perfil en el formulario de perfil.
+     * @param {Event} e - Evento de envío del formulario.
+     * @returns {Promise<object|undefined>} - Promesa que se resuelve con los
+     * datos del usuario registrado si el registro es exitoso, o undefined si
+     * falla.
+     */
+    const handleProfileRegister = async (e) => {
         e.preventDefault();
         if (isSubmitting) {
             return;
@@ -87,25 +143,67 @@ export const useUsuario = () => {
         setIsSubmitting(true);
         setError("");
         try {
-            const data = await fetchRegistrarUsuario(
-                setError,
-                username,
-                password,
-                confirmarPassword,
-                nombre,
-                telefono,
-                ciudad
-            );
-            if (data) {
-                setUsername("");
-                setPassword("");
-                setConfirmarPassword("");
-                setNombre("");
-                setTelefono("");
-                setCiudad(null);
-                onNext();
-                return data;
-            }
+            // const data = await fetchRegistrarUsuario(
+            //     setError,
+            //     username,
+            //     password,
+            //     confirmarPassword,
+            //     nombre,
+            //     telefono,
+            //     ciudad
+            // );
+            // if (data) {
+            //     resetEstadosUsuario();
+            //     onNext();
+            // }
+            onNext()
+        } catch (error) {
+            console.error(error);
+        } finally {
+            setIsSubmitting(false);
+        }
+    };
+
+    const handleSubmitChangeEmail = (e) => {
+        e.preventDefault();
+        if (isSubmitting) {
+            return;
+        }
+        setIsSubmitting(true);
+        setError("");
+        try {
+            // const data = await fetchCambioEmail(
+            //     setError,
+            //     newEmail
+            // );
+            // if (data) {
+            //     onNext();
+            // }
+            console.log("EXITOO")
+        } catch (error) {
+            console.error(error);
+        } finally {
+            setIsSubmitting(false);
+        }
+    };
+
+    const handleSubmitChangePassword = (e) => {
+        e.preventDefault();
+        if (isSubmitting) {
+            return;
+        }
+        setIsSubmitting(true);
+        setError("");
+        try {
+            // const data = await fetchCambioPassword(
+            //     setError,
+            //     newPassword,
+            //     newPasswordConfirm
+            // );
+            // if (data) {
+            //     onNext();
+            // }
+            console.log("EXITOO")
         } catch (error) {
             console.error(error);
         } finally {
@@ -116,6 +214,9 @@ export const useUsuario = () => {
     return {
         handleLogin,
         handleRegister,
+        handleProfileRegister,
+        handleSubmitChangeEmail,
+        handleSubmitChangePassword,
         estadoForm: {
             error,
             setError,
@@ -124,6 +225,8 @@ export const useUsuario = () => {
         },
         estadoUsuario: {
             username,
+            email,
+            setEmail,
             setUsername,
             password,
             setPassword,
