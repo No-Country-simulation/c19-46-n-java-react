@@ -55,7 +55,7 @@ const PetInfoCard = ({ nombre, raza, sexo, photos, like, liked, flechaIzquierda,
   return (
     <div className="pet-info-card-container">
       {/* Foto adicional izquierda */}
-      <div className="pet-photo-container small" onClick={handleLeftArrowClick}>
+      <div className="pet-photo-container small" onClick={handlePhotoRightClick}>
         <img src={photos[(currentIndex - 1 + photos.length) % photos.length]} alt="Foto adicional izquierda" className="pet-photo" />
       </div>
       {/* Foto principal */}
@@ -95,7 +95,7 @@ const PetInfoCard = ({ nombre, raza, sexo, photos, like, liked, flechaIzquierda,
             src={flechaIzquierda} 
             alt="Flecha izquierda" 
             className="pet-flecha" 
-            onClick={handleLeftArrowClick}
+            onClick={handleRightArrowClick}
             whileTap={{ scale: 0.9 }}
             whileHover={{ scale: 1.1 }}
           />
@@ -103,14 +103,14 @@ const PetInfoCard = ({ nombre, raza, sexo, photos, like, liked, flechaIzquierda,
             src={flechaDerecha} 
             alt="Flecha derecha" 
             className="pet-flecha" 
-            onClick={handleRightArrowClick}
+            onClick={handleLeftArrowClick}
             whileTap={{ scale: 0.9 }}
             whileHover={{ scale: 1.1 }}
           />
         </div>
       </div>
       {/* Foto adicional derecha */}
-      <div className="pet-photo-container small" onClick={handlePhotoRightClick}>
+      <div className="pet-photo-container small" onClick={handlePhotoLeftClick}>
         <img src={photos[(currentIndex + 1) % photos.length]} alt="Foto adicional derecha" className="pet-photo" />
       </div>
     </div>
