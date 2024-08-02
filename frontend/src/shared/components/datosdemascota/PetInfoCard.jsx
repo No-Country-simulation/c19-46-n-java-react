@@ -103,19 +103,19 @@ const PetInfoCard = ({
         />
         {/* Flechas de navegación */}
         <div className="pet-flecha-container">
-          <motion.img 
-            src={flechaIzquierda} 
-            alt="Flecha izquierda" 
-            className="pet-flecha" 
-            onClick={handleLeftArrowClick}
+          <motion.img
+            src={flechaIzquierda}
+            alt="Flecha izquierda"
+            className="pet-flecha"
+            onClick={handleRightArrowClick}
             whileTap={{ scale: 0.9 }}
             whileHover={{ scale: 1.1 }}
           />
-          <motion.img 
-            src={flechaDerecha} 
-            alt="Flecha derecha" 
-            className="pet-flecha" 
-            onClick={handleRightArrowClick}
+          <motion.img
+            src={flechaDerecha}
+            alt="Flecha derecha"
+            className="pet-flecha"
+            onClick={handleLeftArrowClick}
             whileTap={{ scale: 0.9 }}
             whileHover={{ scale: 1.1 }}
           />
