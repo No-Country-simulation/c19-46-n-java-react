@@ -92,13 +92,13 @@ const PerfilIndex = () => {
         </Grid >
 
         {/* Footer - botones */}
-        <Grid container justifyContent="center" spacing={-50} >
+        {/* <Grid container justifyContent="center" spacing={-50} >
           <Grid item xs={12} lg={4} style={styleGridItem} />
           <Grid item xs={12} lg={4} style={styleGridItem} />
           <Grid item xs={12} lg={4} style={{ ...styleGridItem, justifyContent: "flex-end", marginTop: "20px" }}>
             <MiPerfilFooterIndex />
           </Grid>
-        </Grid>
+        </Grid> */}
       </div>
     </motion.div>
   </>;

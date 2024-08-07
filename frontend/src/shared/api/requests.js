@@ -1,5 +1,5 @@
 // La URL base de la API
-const API_BASE_URL = 'http://localhost:8080/api';
+const API_BASE_URL = 'http://localhost:8080';
 
 
 // Ejemplo de uso: hay que importar la constante y con el . acceder a la url completa
@@ -13,15 +13,15 @@ export const USUARIOS_ENDPOINT = {
     /**
      * Obtener el inicio de sesión de usuario.
      */
-    post_login_usuario: `${API_BASE_URL}/usuarios/login`,
+    post_login_usuario: `${API_BASE_URL}/auth/login`,
     /**
      * Registrar un nuevo usuario.
      */
-    post_registrar_usuario: `${API_BASE_URL}/usuarios/registro`,
+    post_registrar_usuario: `${API_BASE_URL}/auth/register`,
     /**
      * Editar un usuario.
      */
-    put_editar_usuario: `${API_BASE_URL}/usuarios/editar`,
+    post_completar_usuario: `${API_BASE_URL}/api/complet`,
 };
 
 /**
@@ -31,5 +31,5 @@ export const CIUDADES_ENDPOINT = {
     /**
      * Obtener la lista de ciudades.
      */
-    get_lista_ciudades: `${API_BASE_URL}/ciudades`,
+    get_lista_ciudades: `${API_BASE_URL}/api/cities`,
 };

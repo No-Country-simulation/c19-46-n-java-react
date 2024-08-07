@@ -1,7 +1,7 @@
 import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { UsuarioContexto } from "../utils/UsuarioContext";
-import { fetchLogin, fetchRegistrarUsuario, fetchEditarUsuario } from "../api/usuario_api";
+import { fetchLogin, fetchRegistrarUsuario, fetchCompletarUsuario } from "../api/usuario_api";
 
 export const useUsuario = (
     onNext = null,

@@ -38,6 +38,7 @@ public class SecuriryConfig {
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(http -> {
                     http.requestMatchers(HttpMethod.POST, "/auth/**").permitAll();
+                    http.requestMatchers(HttpMethod.GET, "/api/cities").permitAll();
                     http.anyRequest().authenticated();
                 })
                 .sessionManagement( sessionManager ->
@@ -54,7 +55,7 @@ public class SecuriryConfig {
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         CorsConfiguration config = new CorsConfiguration();
         config.setAllowCredentials(true);
-        config.addAllowedOrigin("http://127.0.0.1:5500"); // Cambia esto según sea necesario
+        config.addAllowedOrigin("http://localhost:5173"); // Cambia esto según sea necesario
         config.addAllowedHeader("*");
         config.addAllowedMethod("*");
         source.registerCorsConfiguration("/**", config);
@@ -65,7 +66,7 @@ public class SecuriryConfig {
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         CorsConfiguration config = new CorsConfiguration();
         config.setAllowCredentials(true);
-        config.addAllowedOrigin("http://127.0.0.1:5500"); // Cambia esto según sea necesario
+        config.addAllowedOrigin("http://localhost:5173"); // Cambia esto según sea necesario
         config.addAllowedHeader("*");
         config.addAllowedMethod("*");
         source.registerCorsConfiguration("/**", config);
