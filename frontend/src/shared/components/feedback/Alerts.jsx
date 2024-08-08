@@ -44,14 +44,14 @@ const Alerts = ({
   //   />
 
   const SlideTransition = (props) => {
-    return <Slide {...props} direction="down" />;
+    return <Slide {...props} direction="left" />;
   };
 
   return (
     <Snackbar
       open={open}
       onClose={() => setOpen(false)}
-      autoHideDuration={4000}
+      autoHideDuration={5000}
       TransitionComponent={SlideTransition}
       anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
       key={"bottom" + "right"}

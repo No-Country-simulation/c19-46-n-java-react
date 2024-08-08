@@ -4,7 +4,7 @@ import Input from "../../../shared/components/input/Input";
 import Primerinicio from "../../../shared/assets/primerInicio.png";
 import { useUsuario } from "../../../shared/hooks/useUsuario";
 
-const RegisterForm = ({ onPrevious, onNext }) => {
+const PerfilForm = ({ onPrevious, onNext }) => {
 
   const {
     estadoForm: {
@@ -17,10 +17,15 @@ const RegisterForm = ({ onPrevious, onNext }) => {
       ciudad,
       setNombre,
       setTelefono,
-      setCiudad
+      setCiudad,
     },
-    handleProfileRegister
-  } = useUsuario(onNext);
+    getCiudades,
+    handleProfileRegister,
+  } = useUsuario(
+    onNext = { onNext }
+  );
+
+  const ciudades = getCiudades();
 
   return (
     <div className="divisor">
@@ -46,10 +51,10 @@ const RegisterForm = ({ onPrevious, onNext }) => {
             />
             <Input
               id="city"
-              placeholder="ciudad"
+              type="select"
               value={ciudad}
+              options={ciudades}
               onChange={(e) => setCiudad(e.target.value)}
-              maxLength={50}
               required
             />
           </div>
@@ -81,4 +86,4 @@ const RegisterForm = ({ onPrevious, onNext }) => {
   );
 };
 
-export default RegisterForm;
+export default PerfilForm;

@@ -1,7 +1,12 @@
 import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { UsuarioContexto } from "../utils/UsuarioContext";
-import { fetchLogin, fetchRegistrarUsuario, fetchCompletarUsuario } from "../api/usuario_api";
+import { fetchListaCiudades } from "../api/ciudad_api";
+import {
+    fetchLogin,
+    fetchRegistrarUsuario,
+    fetchCompletarUsuario
+} from "../api/usuario_api";
 
 export const useUsuario = (
     onNext = null,
@@ -34,11 +39,28 @@ export const useUsuario = (
      */
     const resetEstadosUsuario = () => {
         setUsername("");
+        setEmail("");
         setPassword("");
         setConfirmarPassword("");
         setNombre("");
         setTelefono("");
         setCiudad(null);
+    }
+
+    /**
+     * Función asíncrona que obtiene la lista de ciudades disponibles.
+     * @returns {Promise<Array>} - Promesa que se resuelve con un array de objetos de ciudades.
+     * @throws {Error} - Si ocurre algún error durante la solicitud HTTP, se maneja y se muestra un mensaje de error.
+     */
+    const getCiudades = async () => {
+        try {
+            const data = await fetchListaCiudades(setError);
+            return data;
+        }
+        catch (err) {
+            setError("Error obteniendo las ciudades. Inténtalo de nuevo.");
+            setIsSubmitting(false);
+        }
     }
 
     /**
@@ -104,18 +126,18 @@ export const useUsuario = (
         setIsSubmitting(true);
         setError("");
         try {
-            // const data = await fetchRegistrarUsuario(
-            //     setError,
-            //     username,
-            //     email,
-            //     password,
-            //     confirmarPassword
-            // );
-            // if (data) {
-            //      resetEstadosUsuario();
-            //      onNext();
-            // }
-            onNext()
+            const data = await fetchRegistrarUsuario(
+                setError,
+                username,
+                email,
+                password,
+                confirmarPassword
+            );
+            if (data) {
+                login(data);
+                resetEstadosUsuario();
+                onNext();
+            }
         } catch (error) {
             console.error(error);
         } finally {
@@ -217,6 +239,7 @@ export const useUsuario = (
         handleProfileRegister,
         handleSubmitChangeEmail,
         handleSubmitChangePassword,
+        getCiudades,
         estadoForm: {
             error,
             setError,
@@ -225,9 +248,9 @@ export const useUsuario = (
         },
         estadoUsuario: {
             username,
+            setUsername,
             email,
             setEmail,
-            setUsername,
             password,
             setPassword,
             confirmarPassword,
@@ -237,7 +260,7 @@ export const useUsuario = (
             telefono,
             setTelefono,
             ciudad,
-            setCiudad
+            setCiudad,
         }
     };
 };

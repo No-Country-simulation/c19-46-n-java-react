@@ -5,23 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="83bd9cd8-d343-439b-8a36-595550e7af8f" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/pedtinder/backend/configuraciones/SecuriryConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pedtinder/backend/configuraciones/SecuriryConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/pedtinder/backend/entidades/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pedtinder/backend/entidades/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/backend-0.0.1-SNAPSHOT.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/backend-0.0.1-SNAPSHOT.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/backend-0.0.1-SNAPSHOT.jar.original" beforeDir="false" afterPath="$PROJECT_DIR$/target/backend-0.0.1-SNAPSHOT.jar.original" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/pedtinder/backend/configuraciones/SecuriryConfig$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/pedtinder/backend/configuraciones/SecuriryConfig$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/pedtinder/backend/configuraciones/SecuriryConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/pedtinder/backend/configuraciones/SecuriryConfig.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/App.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/App.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/shared/api/requests.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/shared/api/requests.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/shared/api/usuario_api.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/shared/api/usuario_api.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/views/forms/Formulario.css" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/views/forms/Formulario.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/views/navbar/Navbar.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/views/navbar/Navbar.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/views/wrap-content/perfil/PerfilIndex.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/views/wrap-content/perfil/PerfilIndex.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/pedtinder/backend/auth/AuthResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pedtinder/backend/auth/AuthResponse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/pedtinder/backend/auth/AuthService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pedtinder/backend/auth/AuthService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/pedtinder/backend/auth/AuthResponse$AuthResponseBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/pedtinder/backend/auth/AuthResponse$AuthResponseBuilder.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/pedtinder/backend/auth/AuthResponse.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/pedtinder/backend/auth/AuthResponse.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/pedtinder/backend/auth/AuthService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/pedtinder/backend/auth/AuthService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/shared/hooks/useUsuario.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/shared/hooks/useUsuario.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

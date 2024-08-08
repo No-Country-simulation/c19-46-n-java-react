@@ -1,5 +1,6 @@
 package com.pedtinder.backend.auth;
 
+import com.pedtinder.backend.entidades.User;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -11,6 +12,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class AuthResponse {
 
-    String token;
-
+    private String token;
+    private User user;
 }

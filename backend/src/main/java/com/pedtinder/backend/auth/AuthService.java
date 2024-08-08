@@ -22,43 +22,35 @@ public class AuthService {
 
     public AuthResponse login(LoginDTO request) {
         authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(request.getUsername(), request.getPassword()));
-        UserDetails user = userRepository.findByUsername(request.getUsername()).orElseThrow();
-        String token=jwtService.getToken(user);
+        User user = userRepository.findByUsername(request.getUsername()).orElseThrow();
+        String token = jwtService.getToken(user);
         return AuthResponse.builder()
                 .token(token)
+                .user(user)
                 .build();
-
     }
 
     public AuthResponse register(RegisterDTO request) {
 
-        if(request.getPassword().length() > 8) {
-
+        if (request.getPassword().length() > 8) {
             throw new IllegalArgumentException("La contraseña no debe superar los 8 caracteres");
-
         }
 
-        if(!request.getPassword().equals(request.getConfirmPassword())) {
-
+        if (!request.getPassword().equals(request.getConfirmPassword())) {
             throw new IllegalArgumentException("Las contraseñas no coinciden");
-
         }
 
         if (userRepository.existsByEmail(request.getEmail())) {
-
-            throw  new IllegalArgumentException("Ya existe un usuario con este email");
-
+            throw new IllegalArgumentException("Ya existe un usuario con este email");
         }
 
         if (userRepository.existsByUsername(request.getUsername())) {
-
-            throw  new IllegalArgumentException("Ya existe un usuario con este nickname");
-
+            throw new IllegalArgumentException("Ya existe un usuario con este nickname");
         }
 
         User user = User.builder()
                 .username(request.getUsername())
-                .password(passwordEncoder.encode( request.getPassword()))
+                .password(passwordEncoder.encode(request.getPassword()))
                 .email(request.getEmail())
                 .role(Role.USER)
                 .build();
@@ -67,8 +59,8 @@ public class AuthService {
 
         return AuthResponse.builder()
                 .token(jwtService.getToken(user))
+                .user(user)
                 .build();
-
     }
 
 }

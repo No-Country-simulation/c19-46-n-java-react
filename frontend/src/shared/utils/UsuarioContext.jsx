@@ -16,9 +16,9 @@ export const UserProvider = ({ children }) => {
      * @param {string} userData.token - Token de sesión.
      * @returns {void}
      */
-    const login = ({ userData }) => {
+    const login = (userData) => {
         localStorage.setItem('token', userData.token);
-        setUsuarioEnSesion(userData);
+        setUsuarioEnSesion(userData.user);
     };
 
     /**
