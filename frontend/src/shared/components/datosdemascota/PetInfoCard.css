@@ -14,13 +14,13 @@
 
 .pet-photo-container.main {
     width: 500px; /* Tamaño más grande para la foto principal */
-    height: 700px;
+    height: 800px;
     z-index: 1; /* Asegura que la foto principal esté por encima de las laterales */
 }
 
 .pet-photo-container.small {
-    width: 200px; /* Tamaño más pequeño para las fotos laterales */
-    height: 400px;
+    width: 300px; /* Tamaño más pequeño para las fotos laterales */
+    height: 600px;
     margin: 0 20px; /* Espacio adicional entre las fotos */
 }
 
@@ -100,6 +100,22 @@
 }
 
 /* Media queries para pantallas más pequeñas */
+@media (max-width: 1440px) {
+    .pet-photo-container.main {
+        width: 400px; /* Ajuste para pantallas más pequeñas */
+        height: 600px;
+    }
+
+    .pet-photo-container.small {
+        width: 250px;
+        height: 400px;
+    }
+
+    .pet-like-image {
+        width: 100px; /* Ajuste para pantallas más pequeñas */
+    }
+}
+
 @media (max-width: 1200px) {
     .pet-photo-container.main {
         width: 500px; /* Ajuste para pantallas más pequeñas */
@@ -120,10 +136,26 @@
     }
 }
 
+@media (max-width: 1024px) {
+    .pet-photo-container.main {
+        width: 300px; /* Ajuste para pantallas más pequeñas */
+        height: 500px;
+    }
+
+    .pet-photo-container.small {
+        width: 200px;
+        height: 300px;
+    }
+
+    .pet-like-image {
+        width: 100px; /* Ajuste para pantallas más pequeñas */
+    }
+}
+
 @media (max-width: 768px) {
     .pet-photo-container.main {
-        width: 400px; /* Ajuste para tablets */
-        height: 600px;
+        width: 300px; /* Ajuste para tablets */
+        height: 500px;
     }
 
     .pet-photo-container.small {
