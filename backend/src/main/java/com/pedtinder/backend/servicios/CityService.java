@@ -53,8 +53,8 @@ public class CityService {
                     new City("Guanare"),
                     new City("Trujillo"),
                     new City("La Guaira"),
-                    new City("San Felipe"),
-                    new City("Ciudad Ojeda")
+                    new City("San Felipe")
+
 
             );
             cityRepository.saveAll(ciudades);

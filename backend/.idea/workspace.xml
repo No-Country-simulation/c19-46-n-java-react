@@ -4,13 +4,103 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="83bd9cd8-d343-439b-8a36-595550e7af8f" name="Changes" comment="" />
+    <list default="true" id="83bd9cd8-d343-439b-8a36-595550e7af8f" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/pedtinder/backend/servicios/CityService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pedtinder/backend/servicios/CityService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/backend-0.0.1-SNAPSHOT.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/backend-0.0.1-SNAPSHOT.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/backend-0.0.1-SNAPSHOT.jar.original" beforeDir="false" afterPath="$PROJECT_DIR$/target/backend-0.0.1-SNAPSHOT.jar.original" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/pedtinder/backend/auth/AuthResponse$AuthResponseBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/pedtinder/backend/auth/AuthResponse$AuthResponseBuilder.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/pedtinder/backend/auth/AuthResponse.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/pedtinder/backend/auth/AuthResponse.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/pedtinder/backend/auth/LoginDTO$LoginDTOBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/pedtinder/backend/auth/LoginDTO$LoginDTOBuilder.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/pedtinder/backend/auth/LoginDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/pedtinder/backend/auth/LoginDTO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/pedtinder/backend/auth/RegisterDTO$RegisterDTOBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/pedtinder/backend/auth/RegisterDTO$RegisterDTOBuilder.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/pedtinder/backend/auth/RegisterDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/pedtinder/backend/auth/RegisterDTO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/pedtinder/backend/auth/jwt/JwtService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/pedtinder/backend/auth/jwt/JwtService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/pedtinder/backend/configuraciones/AplicacionConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/pedtinder/backend/configuraciones/AplicacionConfig.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/pedtinder/backend/configuraciones/SecuriryConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/pedtinder/backend/configuraciones/SecuriryConfig.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/pedtinder/backend/dtos/ChangeEmailRequest$ChangeEmailRequestBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/pedtinder/backend/dtos/ChangeEmailRequest$ChangeEmailRequestBuilder.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/pedtinder/backend/dtos/ChangeEmailRequest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/pedtinder/backend/dtos/ChangeEmailRequest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/pedtinder/backend/dtos/ChangePasswordRequest$ChangePasswordRequestBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/pedtinder/backend/dtos/ChangePasswordRequest$ChangePasswordRequestBuilder.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/pedtinder/backend/dtos/ChangePasswordRequest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/pedtinder/backend/dtos/ChangePasswordRequest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/pedtinder/backend/dtos/ChangePetDataDTO$ChangePetDataDTOBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/pedtinder/backend/dtos/ChangePetDataDTO$ChangePetDataDTOBuilder.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/pedtinder/backend/dtos/ChangePetDataDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/pedtinder/backend/dtos/ChangePetDataDTO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/pedtinder/backend/dtos/CompleteUserRegistrationDTO$CompleteUserRegistrationDTOBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/pedtinder/backend/dtos/CompleteUserRegistrationDTO$CompleteUserRegistrationDTOBuilder.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/pedtinder/backend/dtos/CompleteUserRegistrationDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/pedtinder/backend/dtos/CompleteUserRegistrationDTO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/pedtinder/backend/dtos/RegistrationPetDTO$RegistrationPetDTOBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/pedtinder/backend/dtos/RegistrationPetDTO$RegistrationPetDTOBuilder.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/pedtinder/backend/dtos/RegistrationPetDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/pedtinder/backend/dtos/RegistrationPetDTO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/pedtinder/backend/entidades/City.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/pedtinder/backend/entidades/City.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/pedtinder/backend/entidades/Pet$PetBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/pedtinder/backend/entidades/Pet$PetBuilder.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/pedtinder/backend/entidades/Pet.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/pedtinder/backend/entidades/Pet.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/pedtinder/backend/entidades/PetPhoto$PetPhotoBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/pedtinder/backend/entidades/PetPhoto$PetPhotoBuilder.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/pedtinder/backend/entidades/PetPhoto.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/pedtinder/backend/entidades/PetPhoto.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/pedtinder/backend/entidades/User$UserBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/pedtinder/backend/entidades/User$UserBuilder.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/pedtinder/backend/entidades/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/pedtinder/backend/entidades/User.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/pedtinder/backend/servicios/PetService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/pedtinder/backend/servicios/PetService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/pedtinder/backend/servicios/UserService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/pedtinder/backend/servicios/UserService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 4
+}]]></component>
+  <component name="ProjectId" id="2kaGGNhskQfwo4Iq2kIaL5F5f7r" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.BackendApplication.executor": "Run",
+    "Maven.backend [clean].executor": "Run",
+    "Maven.backend [install].executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "git-widget-placeholder": "main",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/HP 999/Desktop/c19-46-n-java-react/backend"
+  }
+}]]></component>
+  <component name="RunManager">
+    <configuration name="BackendApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.pedtinder.backend.BackendApplication" />
+      <module name="backend" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.pedtinder.backend.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.BackendApplication" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="83bd9cd8-d343-439b-8a36-595550e7af8f" name="Changes" comment="" />
+      <created>1723514177518</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1723514177518</updated>
+    </task>
     <servers />
   </component>
 </project>
