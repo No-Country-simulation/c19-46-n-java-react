@@ -9,9 +9,21 @@ const Input = ({
   maxLength,
   required = false,
   autoComplete = "",
-  options,
+  options = [],
   rows = 5,
 }) => {
+
+  const optionsTransform = () => {
+    if (options && options.length > 0) {
+      return options.map((option) => ({
+        value: option.id,
+        label: option.name,
+      }));
+    }
+  };
+
+  const newOptions = optionsTransform();
+
   return (
     <>
       {type === "select" ? (
@@ -23,12 +35,15 @@ const Input = ({
           className="input"
           required={required}
         >
-          {options &&
-            options.map((option, index) => (
-              <option key={index} value={option.value}>
-                {option.label}
-              </option>
-            ))}
+          {
+            newOptions && newOptions.length > 0 ? (
+              newOptions.map((option, index) => (
+                <option key={index} value={option.value}>
+                  {option.label}
+                </option>
+              ))
+            ) : null
+          }
         </select>
       ) : type === "textarea" ? (
         <textarea

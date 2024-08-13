@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import Button from "../../../shared/components/button/Button";
 import "../Formulario.css";
 import Input from "../../../shared/components/input/Input";
@@ -15,17 +16,20 @@ const PerfilForm = ({ onPrevious, onNext }) => {
       nombre,
       telefono,
       ciudad,
+      ciudades,
       setNombre,
       setTelefono,
       setCiudad,
     },
-    getCiudades,
     handleProfileRegister,
+    getCiudades
   } = useUsuario(
-    onNext = { onNext }
+    onNext
   );
 
-  const ciudades = getCiudades();
+  useEffect(() => {
+    getCiudades();
+  }, []);
 
   return (
     <div className="divisor">
@@ -52,7 +56,7 @@ const PerfilForm = ({ onPrevious, onNext }) => {
             <Input
               id="city"
               type="select"
-              value={ciudad}
+              value={ciudad || ""}
               options={ciudades}
               onChange={(e) => setCiudad(e.target.value)}
               required

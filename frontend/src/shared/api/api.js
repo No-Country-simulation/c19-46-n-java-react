@@ -29,23 +29,14 @@ export const fetchData = async (url, method = 'GET', data = null, token = null) 
     return response.data;
   } catch (error) {
     if (error.response) {
-      // Ocurrió un error en el servidor. Se muestra el mensaje de error y el código de estado.
-      console.error('Error al obtener datos:', error.response.data);
-      console.error('Código de estado:', error.response.status);
-      // La solicitud fue realizada y el servidor respondió con un código de estado
       // que está fuera del rango de 2xx
-      console.error('Error fetching data:', error.response.data);
-      console.error('Status code:', error.response.status);
+      console.error('Código de estado:', error.response.status);
     } else if (error.request) {
       // No se recibió respuesta del servidor.
       console.error('Error al obtener datos: No se recibió respuesta');
-      // La solicitud fue realizada pero no se recibió respuesta
-      console.error('Error fetching data: No response received');
     } else {
       // Ocurrió un error al configurar la solicitud.
       console.error('Error al obtener datos:', error.message);
-      // Algo pasó al configurar la solicitud
-      console.error('Error fetching data:', error.message);
     }
     throw error;
   }

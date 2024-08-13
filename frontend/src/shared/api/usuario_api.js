@@ -69,14 +69,14 @@ export const fetchRegistrarUsuario = async (setError, username, email, password,
 * @returns {Promise<object>} - Promesa que se resuelve con los datos del usuario editado.
 * @throws {Error} - Si ocurre algún error durante la solicitud HTTP.
 */
-export const fetchCompletarUsuario = async (setError, nombre, telefono, ciudad) => {
+export const fetchCompletarUsuario = async (setError, nombre, telefono, ciudad, token) => {
     const usuarioData = {
         firstname: nombre,
         phone: telefono,
-        cityId: ciudad.id
+        cityId: ciudad
     }
     try {
-        const data = await fetchData(USUARIOS_ENDPOINT.post_completar_usuario, 'POST', usuarioData);
+        const data = await fetchData(USUARIOS_ENDPOINT.post_completar_usuario, 'POST', usuarioData, token);
         return data;
     } catch (error) {
         if (error.response && error.response.status === 400) {

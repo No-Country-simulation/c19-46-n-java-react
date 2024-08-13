@@ -27,9 +27,10 @@ export const useUsuario = (
     const [nombre, setNombre] = useState("");
     const [telefono, setTelefono] = useState("");
     const [ciudad, setCiudad] = useState(null);
+    const [ciudades, setCiudades] = useState([]);
 
     // Estado global de usuario
-    const { login } = useContext(UsuarioContexto);
+    const { login, getToken } = useContext(UsuarioContexto);
 
     const navigate = useNavigate();
 
@@ -45,6 +46,7 @@ export const useUsuario = (
         setNombre("");
         setTelefono("");
         setCiudad(null);
+        setCiudades([]);
     }
 
     /**
@@ -55,7 +57,9 @@ export const useUsuario = (
     const getCiudades = async () => {
         try {
             const data = await fetchListaCiudades(setError);
-            return data;
+            if (data) {
+                setCiudades(data);
+            }
         }
         catch (err) {
             setError("Error obteniendo las ciudades. Inténtalo de nuevo.");
@@ -165,20 +169,17 @@ export const useUsuario = (
         setIsSubmitting(true);
         setError("");
         try {
-            // const data = await fetchRegistrarUsuario(
-            //     setError,
-            //     username,
-            //     password,
-            //     confirmarPassword,
-            //     nombre,
-            //     telefono,
-            //     ciudad
-            // );
-            // if (data) {
-            //     resetEstadosUsuario();
-            //     onNext();
-            // }
-            onNext()
+            const data = await fetchCompletarUsuario(
+                setError,
+                nombre,
+                telefono,
+                ciudad,
+                getToken()
+            );
+            if (data) {
+                resetEstadosUsuario();
+                onNext();
+            }
         } catch (error) {
             console.error(error);
         } finally {
@@ -261,6 +262,7 @@ export const useUsuario = (
             setTelefono,
             ciudad,
             setCiudad,
+            ciudades,
         }
     };
 };
