@@ -11,39 +11,33 @@ const Input = ({
   autoComplete = "",
   options = [],
   rows = 5,
+  labelKey = "name",
+  valueKey = "id",
 }) => {
 
-  const optionsTransform = () => {
-    if (options && options.length > 0) {
-      return options.map((option) => ({
-        value: option.id,
-        label: option.name,
-      }));
-    }
+  const handleSelectChange = (e) => {
+    const selectedValue = e.target.value;
+    const selectedOption = options.find(opt => opt[valueKey].toString() === selectedValue);
+    onChange(selectedOption || { [valueKey]: "", [labelKey]: "" });
   };
-
-  const newOptions = optionsTransform();
 
   return (
     <>
       {type === "select" ? (
         <select
           id={id}
-          value={value}
-          onChange={onChange}
+          value={value[valueKey] || ""}
+          onChange={handleSelectChange}
           maxLength={maxLength}
           className="input"
           required={required}
         >
-          {
-            newOptions && newOptions.length > 0 ? (
-              newOptions.map((option, index) => (
-                <option key={index} value={option.value}>
-                  {option.label}
-                </option>
-              ))
-            ) : null
-          }
+          <option value="">{placeholder ? placeholder : `selecciona una opción`}</option>
+          {options.map((option, index) => (
+            <option key={index} value={option[valueKey]}>
+              {option[labelKey]}
+            </option>
+          ))}
         </select>
       ) : type === "textarea" ? (
         <textarea

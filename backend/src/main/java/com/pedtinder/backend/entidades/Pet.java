@@ -3,7 +3,6 @@ package com.pedtinder.backend.entidades;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.pedtinder.backend.enums.PetSex;
-import com.pedtinder.backend.enums.PetSize;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -27,19 +26,25 @@ public class Pet {
     @Column(nullable = false)
     private String name;
     private String age;
-    private String race;
     private String description;
 
     @Enumerated(EnumType.STRING)
     PetSex petSex;
 
-    @Enumerated(EnumType.STRING)
-    PetSize petSize;
-
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_user")
     @JsonBackReference
     private User user;
+
+    @ManyToOne
+    @JoinColumn(name = "id_breed")
+    @JsonBackReference
+    private Breed breed;
+
+    @ManyToOne
+    @JoinColumn(name = "id_size")
+    @JsonBackReference
+    private Size size;
 
     @OneToOne(mappedBy = "pet")
     @JsonManagedReference

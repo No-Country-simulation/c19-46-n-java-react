@@ -40,10 +40,8 @@ public class PetService {
         Pet pet = Pet.builder()
                 .name(request.getName())
                 .age(request.getAge())
-                .race(request.getRace())
                 .description(request.getDescription())
                 .petSex(request.getPetSex())
-                .petSize(request.getPetSize())
                 .user(user)
                 .build();
 
@@ -81,10 +79,10 @@ public class PetService {
 
         Pet petdb = petRepository.findById(id).get();
 
-        if (Objects.nonNull(pet.getRace()) && !"".equalsIgnoreCase(pet.getRace())) {
-
-            petdb.setRace(pet.getRace());
-        }
+//        if (Objects.nonNull(pet.getRace()) && !"".equalsIgnoreCase(pet.getRace())) {
+//
+//            petdb.setRace(pet.getRace());
+//        }
         if (Objects.nonNull(pet.getAge()) && !"".equalsIgnoreCase(pet.getAge())) {
 
             petdb.setAge(pet.getAge());
@@ -99,10 +97,10 @@ public class PetService {
             petdb.setPetSex(pet.getPetSex());
         }
 
-        if (Objects.nonNull(pet.getPetSize())) {
-
-            petdb.setPetSize(pet.getPetSize());
-        }
+//        if (Objects.nonNull(pet.getPetSize())) {
+//
+//            petdb.setPetSize(pet.getPetSize());
+//        }
 
         petRepository.save(petdb);
     }

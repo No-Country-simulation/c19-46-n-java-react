@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { fetchListaRazas, fetchListaTamanios, fetchListaFotos } from "../api/mascota_api";
 
 export const useMascota = () => {
     // Estados del formulario
@@ -9,20 +10,27 @@ export const useMascota = () => {
     // Estados de la mascota
     const [nombre, setNombre] = useState("");
     const [edad, setEdad] = useState("");
-    const [sexo, setSexo] = useState("");
-    const [raza, setRaza] = useState("");
-    const [tamanio, setTamanio] = useState("");
+    const [sexo, setSexo] = useState(null);
+    const [raza, setRaza] = useState(null);
+    const [razas, setRazas] = useState([]);
+    const [tamanio, setTamanio] = useState(null);
+    const [tamanios, setTamanios] = useState([]);
     const [descripcion, setDescripcion] = useState("");
     const [fotos, setFotos] = useState([]);
 
     const navigate = useNavigate();
 
+    /**
+     * Reinicia todos los estados de la mascota a sus valores iniciales.
+     */
     const resetEstadosMascota = () => {
         setNombre("");
         setEdad("");
-        setSexo("");
-        setRaza("");
-        setTamanio("");
+        setSexo(null);
+        setRaza(null);
+        setRazas([]);
+        setTamanio(null);
+        setTamanios([]);
         setDescripcion("");
         setFotos([]);
     }
@@ -63,44 +71,64 @@ export const useMascota = () => {
         }
     };
 
-    const getRazas = () => {
+    /**
+     * Función asíncrona que obtiene la lista de razas disponibles.
+     * @returns {Promise<Array>} - Promesa que se resuelve con un array de objetos de razas.
+     * @throws {Error} - Si ocurre algún error durante la solicitud HTTP, se maneja y se muestra un mensaje de error.
+     */
+    const getRazas = async () => {
         try {
-            // const razas = await fetchRazas();
-            // return razas;
-            const razas = [
-                { value: "", label: "Selecciona una raza" },
-                { value: "Pitbull", label: "Pitbull" },
-                { value: "Caniche", label: "Caniche" },
-                { value: "Chihuahua", label: "Chihuahua" },
-                { value: "Chow-Chow", label: "Chow-Chow" },
-                { value: "Dogo", label: "Dogo" },
-                { value: "Golden Retriever", label: "Golden Retriever" },
-                { value: "Husky", label: "Husky" },
-                { value: "Labrador Retriever", label: "Labrador Retriever" },
-                { value: "Pastor Alemaño", label: "Pastor Alemaño" },
-                { value: "Poodle", label: "Poodle" },
-                { value: "Yorkshire Terrier", label: "Yorkshire Terrier" },
-            ];
-            return razas;
+            const data = await fetchListaRazas(setError);
+            if (data) {
+                setRazas(data);
+            }
         } catch (err) {
             setError("Error obteniendo las razas. Inténtalo de nuevo.");
             setIsSubmitting(false);
         }
     };
 
-    const getFotos = () => {
+    /**
+     * Función asíncrona que obtiene la lista de tamaños de mascotas disponibles.
+     * @returns {Promise<Array>} - Promesa que se resuelve con un array de objetos de tamaños de mascotas.
+     * @throws {Error} - Si ocurre algún error durante la solicitud HTTP, se maneja y se muestra un mensaje de error.
+     */
+    const getTamanios = async () => {
         try {
-            // const fotos = await fetchFotos();
-            // return fotos;
-            const fotos = []
-            return fotos;
+            const data = await fetchListaTamanios(setError);
+            if (data) {
+                setTamanios(data);
+            }
+        } catch (err) {
+            setError("Error obteniendo los tamaños. Inténtalo de nuevo.");
+            setIsSubmitting(false);
+        }
+    };
+
+    /**
+     * Función asíncrona que obtiene la lista de fotos de la mascota.
+     * @param {number} idMascota - El id de la mascota.
+     * @returns {Promise<Array>} - Promesa que se resuelve con un array de objetos de fotos.
+     * @throws {Error} - Si ocurre algún error durante la solicitud HTTP, se maneja y se muestra un mensaje de error.
+     */
+    const getFotos = async (idMascota) => {
+        try {
+            const data = await fetchListaFotos(setError, idMascota);
+            if (data) {
+                setFotos(data);
+            }
         } catch (err) {
             setError("Error obteniendo las fotos. Inténtalo de nuevo.");
             setIsSubmitting(false);
         }
     }
 
+
     return {
+        handleRegister,
+        getRazas,
+        getTamanios,
+        getFotos,
         estadoForm: {
             error,
             setError,
@@ -116,15 +144,16 @@ export const useMascota = () => {
             setSexo,
             raza,
             setRaza,
+            razas,
+            setRazas,
             tamanio,
             setTamanio,
+            tamanios,
+            setTamanios,
             descripcion,
             setDescripcion,
             fotos,
             setFotos
-        },
-        handleRegister,
-        getRazas,
-        getFotos
+        }
     }
 }

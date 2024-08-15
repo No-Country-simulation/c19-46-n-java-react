@@ -1,5 +1,6 @@
 package com.pedtinder.backend.entidades;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.pedtinder.backend.enums.Role;
 import jakarta.persistence.*;
@@ -37,6 +38,8 @@ public class User implements UserDetails {
     Role role;
 
     @ManyToOne
+    @JoinColumn(name = "id_city")
+    @JsonBackReference
     private City city;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)

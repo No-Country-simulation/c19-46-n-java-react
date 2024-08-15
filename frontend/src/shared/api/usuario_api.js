@@ -18,7 +18,7 @@ export const fetchLogin = async (setError, username, password) => {
         password: password
     };
     try {
-        const data = await fetchData(USUARIOS_ENDPOINT.post_login_usuario, 'POST', userData);
+        const data = await fetchData(USUARIOS_ENDPOINT.post_login_usuario(), 'POST', userData);
         return data;
     } catch (error) {
         if (error.response && error.response.status === 400) {
@@ -48,7 +48,7 @@ export const fetchRegistrarUsuario = async (setError, username, email, password,
         confirmPassword: confirmarPassword
     }
     try {
-        const data = await fetchData(USUARIOS_ENDPOINT.post_registrar_usuario, 'POST', usuarioData);
+        const data = await fetchData(USUARIOS_ENDPOINT.post_registrar_usuario(), 'POST', usuarioData);
         return data;
     } catch (error) {
         if (error.response && error.response.status === 400) {
@@ -73,10 +73,10 @@ export const fetchCompletarUsuario = async (setError, nombre, telefono, ciudad, 
     const usuarioData = {
         firstname: nombre,
         phone: telefono,
-        cityId: ciudad
+        cityId: ciudad.id
     }
     try {
-        const data = await fetchData(USUARIOS_ENDPOINT.post_completar_usuario, 'POST', usuarioData, token);
+        const data = await fetchData(USUARIOS_ENDPOINT.post_completar_usuario(), 'POST', usuarioData, token);
         return data;
     } catch (error) {
         if (error.response && error.response.status === 400) {

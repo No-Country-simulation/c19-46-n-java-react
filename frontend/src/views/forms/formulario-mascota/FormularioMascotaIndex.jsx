@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { Card, CardContent, Grid, Typography } from "@mui/material";
 import agregarMascota from "../../../shared/assets/agregarMascota.webp";
 import CargarFotosMascota from "./cargar-fotos/CargarFotosMascota";
@@ -25,16 +26,21 @@ const FormularioMascotaIndex = ({ onPrevious }) => {
       edad,
       sexo,
       raza,
+      razas,
       tamanio,
+      tamanios,
       descripcion,
       fotos
     },
     handleRegister,
-    getRazas
+    getRazas,
+    getTamanios,
   } = useMascota()
 
-  // Obtenemos las razas de una peticion
-  const razas = getRazas();
+  useEffect(() => {
+    getRazas()
+    getTamanios()
+  }, [])
 
   return (
     <>
@@ -78,7 +84,7 @@ const FormularioMascotaIndex = ({ onPrevious }) => {
                     <Grid item xs={12} md={4}>
                       <Input
                         id="formulario-mascota-nombre"
-                        placeholder={"Nombre"}
+                        placeholder="Nombre"
                         value={nombre}
                         onChange={(e) => setNombre(e.target.value)}
                         maxLength={50}
@@ -86,7 +92,7 @@ const FormularioMascotaIndex = ({ onPrevious }) => {
                       />
                       <Input
                         id="formulario-mascota-edad"
-                        placeholder={"Edad"}
+                        placeholder="Edad"
                         value={edad}
                         onChange={(e) => setEdad(e.target.value)}
                         maxLength={50}
@@ -95,21 +101,22 @@ const FormularioMascotaIndex = ({ onPrevious }) => {
                       <Input
                         id="formulario-mascota-sexo"
                         type="select"
+                        placeholder="Selecciona un sexo"
                         value={sexo}
                         options={[
-                          { value: "", label: "Selecciona un sexo" },
-                          { value: "Macho", label: "Macho" },
-                          { value: "Hembra", label: "Hembra" },
+                          { id: "1", name: "Macho" },
+                          { id: "2", name: "Hembra" },
                         ]}
-                        onChange={(e) => setSexo(e.target.value)}
+                        onChange={(selectedItem) => setSexo(selectedItem)}
                         required
                       />
                       <Input
                         id="formulario-mascota-raza"
                         type="select"
+                        placeholder="Selecciona una raza"
                         value={raza}
                         options={razas}
-                        onChange={(e) => setRaza(e.target.value)}
+                        onChange={(selectedItem) => setRaza(selectedItem)}
                         required
                       />
                     </Grid>
@@ -119,20 +126,16 @@ const FormularioMascotaIndex = ({ onPrevious }) => {
                       <Input
                         id="formulario-mascota-tamanio"
                         type="select"
+                        placeholder="Selecciona un tamaño"
                         value={tamanio}
-                        options={[
-                          { value: "", label: "Selecciona un tamaño", },
-                          { value: "Pequeño", label: "Pequeño", },
-                          { value: "Mediano", label: "Mediano", },
-                          { value: "Grande", label: "Grande", },
-                        ]}
-                        onChange={(e) => setTamanio(e.target.value)}
+                        options={tamanios}
+                        onChange={(selectedItem) => setTamanio(selectedItem)}
                         required
                       />
                       <Input
                         id="formulario-mascota-descripcion"
                         type="textarea"
-                        placeholder={"Cuenta lo que quieras de él/ella"}
+                        placeholder="Cuenta lo que quieras de él/ella"
                         value={descripcion}
                         onChange={(e) => setDescripcion(e.target.value)}
                         maxLength={150}

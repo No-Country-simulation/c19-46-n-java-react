@@ -6,12 +6,33 @@
   <component name="ChangeListManager">
     <list default="true" id="83bd9cd8-d343-439b-8a36-595550e7af8f" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/shared/api/api.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/shared/api/api.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/shared/api/usuario_api.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/shared/api/usuario_api.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/shared/components/input/Input.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/shared/components/input/Input.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/pedtinder/backend/dtos/ChangePetDataDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pedtinder/backend/dtos/ChangePetDataDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/pedtinder/backend/dtos/RegistrationPetDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pedtinder/backend/dtos/RegistrationPetDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/pedtinder/backend/entidades/Pet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pedtinder/backend/entidades/Pet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/pedtinder/backend/entidades/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pedtinder/backend/entidades/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/pedtinder/backend/enums/PetSex.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pedtinder/backend/enums/PetSex.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/pedtinder/backend/enums/PetSize.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/pedtinder/backend/servicios/PetService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pedtinder/backend/servicios/PetService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/backend-0.0.1-SNAPSHOT.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/backend-0.0.1-SNAPSHOT.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/backend-0.0.1-SNAPSHOT.jar.original" beforeDir="false" afterPath="$PROJECT_DIR$/target/backend-0.0.1-SNAPSHOT.jar.original" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/pedtinder/backend/dtos/ChangePetDataDTO$ChangePetDataDTOBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/pedtinder/backend/dtos/ChangePetDataDTO$ChangePetDataDTOBuilder.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/pedtinder/backend/dtos/ChangePetDataDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/pedtinder/backend/dtos/ChangePetDataDTO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/pedtinder/backend/dtos/RegistrationPetDTO$RegistrationPetDTOBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/pedtinder/backend/dtos/RegistrationPetDTO$RegistrationPetDTOBuilder.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/pedtinder/backend/dtos/RegistrationPetDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/pedtinder/backend/dtos/RegistrationPetDTO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/pedtinder/backend/entidades/Pet$PetBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/pedtinder/backend/entidades/Pet$PetBuilder.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/pedtinder/backend/entidades/Pet.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/pedtinder/backend/entidades/Pet.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/pedtinder/backend/entidades/User$UserBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/pedtinder/backend/entidades/User$UserBuilder.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/pedtinder/backend/entidades/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/pedtinder/backend/entidades/User.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/pedtinder/backend/enums/PetSex.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/pedtinder/backend/enums/PetSex.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/pedtinder/backend/enums/PetSize.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/pedtinder/backend/servicios/PetService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/pedtinder/backend/servicios/PetService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/shared/api/requests.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/shared/api/requests.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/shared/hooks/useMascota.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/shared/hooks/useMascota.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../frontend/src/shared/hooks/useUsuario.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/shared/hooks/useUsuario.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/views/forms/formulario-mascota/FormularioMascotaIndex.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/views/forms/formulario-mascota/FormularioMascotaIndex.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../frontend/src/views/forms/formulario-usuario/PerfilForm.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/views/forms/formulario-usuario/PerfilForm.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -35,12 +56,12 @@
     &quot;assignee&quot;: &quot;CristianCarballo&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings">{
-  &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/No-Country-simulation/c19-46-n-java-react.git&quot;,
-    &quot;accountId&quot;: &quot;1aae1449-fa2d-4097-83a3-6d8111f60ada&quot;
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/No-Country-simulation/c19-46-n-java-react.git",
+    "accountId": "cd908e13-731d-4a27-985a-586e71d6b450"
   }
-}</component>
+}]]></component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 2
 }</component>
@@ -49,22 +70,31 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;Application.BackendApplication.executor&quot;: &quot;Run&quot;,
-    &quot;Maven.backend [clean].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.backend [install].executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;52-front-login-y-registro-conectar-con-el-back&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "Application.BackendApplication.executor": "Run",
+    "Maven.backend [clean].executor": "Run",
+    "Maven.backend [install].executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "git-widget-placeholder": "52-front-login-y-registro-conectar-con-el-back",
+    "ignore.virus.scanning.warn.message": "true",
+    "kotlin-language-version-configured": "true",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.0",
+    "settings.editor.selected.configurable": "com.intellij.platform.ide.impl.presentationAssistant.PresentationAssistantConfigurable"
   }
-}</component>
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.pedtinder.backend.controladores" />
+      <recent name="com.pedtinder.backend.entidades" />
+      <recent name="com.pedtinder.backend.repositorios" />
+      <recent name="com.pedtinder.backend.servicios" />
+    </key>
+  </component>
   <component name="RunManager">
     <configuration name="BackendApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.pedtinder.backend.BackendApplication" />

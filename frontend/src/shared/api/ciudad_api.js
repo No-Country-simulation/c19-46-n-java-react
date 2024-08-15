@@ -9,7 +9,7 @@ import { CIUDADES_ENDPOINT } from "./requests";
  */
 export const fetchListaCiudades = async (setError) => {
     try {
-        const data = await fetchData(CIUDADES_ENDPOINT.get_lista_ciudades);
+        const data = await fetchData(CIUDADES_ENDPOINT.get_lista_ciudades());
         return data;
     } catch (error) {
         if (error.response && error.response.status === 400) {

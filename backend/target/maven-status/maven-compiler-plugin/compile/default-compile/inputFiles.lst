@@ -1,34 +1,39 @@
-C:\Users\Usuario\Desktop\c19-46-n-java-react\backend\src\main\java\com\pedtinder\backend\entidades\PetPhoto.java
-C:\Users\Usuario\Desktop\c19-46-n-java-react\backend\src\main\java\com\pedtinder\backend\repositorios\PetRepository.java
-C:\Users\Usuario\Desktop\c19-46-n-java-react\backend\src\main\java\com\pedtinder\backend\repositorios\UserRepository.java
-C:\Users\Usuario\Desktop\c19-46-n-java-react\backend\src\main\java\com\pedtinder\backend\auth\RegisterDTO.java
-C:\Users\Usuario\Desktop\c19-46-n-java-react\backend\src\main\java\com\pedtinder\backend\dtos\RegistrationPetDTO.java
-C:\Users\Usuario\Desktop\c19-46-n-java-react\backend\src\main\java\com\pedtinder\backend\dtos\CompleteUserRegistrationDTO.java
-C:\Users\Usuario\Desktop\c19-46-n-java-react\backend\src\main\java\com\pedtinder\backend\auth\jwt\JwtAuthenticationFilter.java
-C:\Users\Usuario\Desktop\c19-46-n-java-react\backend\src\main\java\com\pedtinder\backend\auth\AuthService.java
-C:\Users\Usuario\Desktop\c19-46-n-java-react\backend\src\main\java\com\pedtinder\backend\configuraciones\SecuriryConfig.java
-C:\Users\Usuario\Desktop\c19-46-n-java-react\backend\src\main\java\com\pedtinder\backend\auth\LoginDTO.java
-C:\Users\Usuario\Desktop\c19-46-n-java-react\backend\src\main\java\com\pedtinder\backend\servicios\CityService.java
-C:\Users\Usuario\Desktop\c19-46-n-java-react\backend\src\main\java\com\pedtinder\backend\auth\AuthController.java
-C:\Users\Usuario\Desktop\c19-46-n-java-react\backend\src\main\java\com\pedtinder\backend\controladores\UserController.java
-C:\Users\Usuario\Desktop\c19-46-n-java-react\backend\src\main\java\com\pedtinder\backend\enums\Role.java
-C:\Users\Usuario\Desktop\c19-46-n-java-react\backend\src\main\java\com\pedtinder\backend\dtos\ChangePasswordRequest.java
-C:\Users\Usuario\Desktop\c19-46-n-java-react\backend\src\main\java\com\pedtinder\backend\entidades\Pet.java
-C:\Users\Usuario\Desktop\c19-46-n-java-react\backend\src\main\java\com\pedtinder\backend\BackendApplication.java
-C:\Users\Usuario\Desktop\c19-46-n-java-react\backend\src\main\java\com\pedtinder\backend\configuraciones\AplicacionConfig.java
-C:\Users\Usuario\Desktop\c19-46-n-java-react\backend\src\main\java\com\pedtinder\backend\dtos\ChangePetDataDTO.java
-C:\Users\Usuario\Desktop\c19-46-n-java-react\backend\src\main\java\com\pedtinder\backend\servicios\PetPhotoService.java
-C:\Users\Usuario\Desktop\c19-46-n-java-react\backend\src\main\java\com\pedtinder\backend\repositorios\CityRepository.java
-C:\Users\Usuario\Desktop\c19-46-n-java-react\backend\src\main\java\com\pedtinder\backend\auth\AuthResponse.java
-C:\Users\Usuario\Desktop\c19-46-n-java-react\backend\src\main\java\com\pedtinder\backend\controladores\PetController.java
-C:\Users\Usuario\Desktop\c19-46-n-java-react\backend\src\main\java\com\pedtinder\backend\auth\jwt\JwtService.java
-C:\Users\Usuario\Desktop\c19-46-n-java-react\backend\src\main\java\com\pedtinder\backend\repositorios\PetPhotoRepository.java
-C:\Users\Usuario\Desktop\c19-46-n-java-react\backend\src\main\java\com\pedtinder\backend\entidades\City.java
-C:\Users\Usuario\Desktop\c19-46-n-java-react\backend\src\main\java\com\pedtinder\backend\servicios\PetService.java
-C:\Users\Usuario\Desktop\c19-46-n-java-react\backend\src\main\java\com\pedtinder\backend\controladores\PetPhotoController.java
-C:\Users\Usuario\Desktop\c19-46-n-java-react\backend\src\main\java\com\pedtinder\backend\servicios\UserService.java
-C:\Users\Usuario\Desktop\c19-46-n-java-react\backend\src\main\java\com\pedtinder\backend\entidades\User.java
-C:\Users\Usuario\Desktop\c19-46-n-java-react\backend\src\main\java\com\pedtinder\backend\enums\PetSex.java
-C:\Users\Usuario\Desktop\c19-46-n-java-react\backend\src\main\java\com\pedtinder\backend\enums\PetSize.java
-C:\Users\Usuario\Desktop\c19-46-n-java-react\backend\src\main\java\com\pedtinder\backend\controladores\CityController.java
-C:\Users\Usuario\Desktop\c19-46-n-java-react\backend\src\main\java\com\pedtinder\backend\dtos\ChangeEmailRequest.java
+D:\Almacenamiento\Cursos\No Country\c19-46-n-java-react\backend\src\main\java\com\pedtinder\backend\configuraciones\ApplicationConfig.java
+D:\Almacenamiento\Cursos\No Country\c19-46-n-java-react\backend\src\main\java\com\pedtinder\backend\auth\jwt\JwtService.java
+D:\Almacenamiento\Cursos\No Country\c19-46-n-java-react\backend\src\main\java\com\pedtinder\backend\controladores\CityController.java
+D:\Almacenamiento\Cursos\No Country\c19-46-n-java-react\backend\src\main\java\com\pedtinder\backend\dtos\RegistrationPetDTO.java
+D:\Almacenamiento\Cursos\No Country\c19-46-n-java-react\backend\src\main\java\com\pedtinder\backend\repositorios\UserRepository.java
+D:\Almacenamiento\Cursos\No Country\c19-46-n-java-react\backend\src\main\java\com\pedtinder\backend\servicios\CityService.java
+D:\Almacenamiento\Cursos\No Country\c19-46-n-java-react\backend\src\main\java\com\pedtinder\backend\entidades\User.java
+D:\Almacenamiento\Cursos\No Country\c19-46-n-java-react\backend\src\main\java\com\pedtinder\backend\servicios\PetService.java
+D:\Almacenamiento\Cursos\No Country\c19-46-n-java-react\backend\src\main\java\com\pedtinder\backend\repositorios\PetPhotoRepository.java
+D:\Almacenamiento\Cursos\No Country\c19-46-n-java-react\backend\src\main\java\com\pedtinder\backend\entidades\Breed.java
+D:\Almacenamiento\Cursos\No Country\c19-46-n-java-react\backend\src\main\java\com\pedtinder\backend\entidades\PetPhoto.java
+D:\Almacenamiento\Cursos\No Country\c19-46-n-java-react\backend\src\main\java\com\pedtinder\backend\dtos\ChangePasswordRequest.java
+D:\Almacenamiento\Cursos\No Country\c19-46-n-java-react\backend\src\main\java\com\pedtinder\backend\auth\AuthResponse.java
+D:\Almacenamiento\Cursos\No Country\c19-46-n-java-react\backend\src\main\java\com\pedtinder\backend\configuraciones\SecurityConfig.java
+D:\Almacenamiento\Cursos\No Country\c19-46-n-java-react\backend\src\main\java\com\pedtinder\backend\repositorios\SizeRepository.java
+D:\Almacenamiento\Cursos\No Country\c19-46-n-java-react\backend\src\main\java\com\pedtinder\backend\entidades\City.java
+D:\Almacenamiento\Cursos\No Country\c19-46-n-java-react\backend\src\main\java\com\pedtinder\backend\auth\LoginDTO.java
+D:\Almacenamiento\Cursos\No Country\c19-46-n-java-react\backend\src\main\java\com\pedtinder\backend\controladores\PetPhotoController.java
+D:\Almacenamiento\Cursos\No Country\c19-46-n-java-react\backend\src\main\java\com\pedtinder\backend\enums\Role.java
+D:\Almacenamiento\Cursos\No Country\c19-46-n-java-react\backend\src\main\java\com\pedtinder\backend\dtos\ChangeEmailRequest.java
+D:\Almacenamiento\Cursos\No Country\c19-46-n-java-react\backend\src\main\java\com\pedtinder\backend\entidades\Size.java
+D:\Almacenamiento\Cursos\No Country\c19-46-n-java-react\backend\src\main\java\com\pedtinder\backend\repositorios\PetRepository.java
+D:\Almacenamiento\Cursos\No Country\c19-46-n-java-react\backend\src\main\java\com\pedtinder\backend\auth\jwt\JwtAuthenticationFilter.java
+D:\Almacenamiento\Cursos\No Country\c19-46-n-java-react\backend\src\main\java\com\pedtinder\backend\repositorios\CityRepository.java
+D:\Almacenamiento\Cursos\No Country\c19-46-n-java-react\backend\src\main\java\com\pedtinder\backend\auth\RegisterDTO.java
+D:\Almacenamiento\Cursos\No Country\c19-46-n-java-react\backend\src\main\java\com\pedtinder\backend\controladores\UserController.java
+D:\Almacenamiento\Cursos\No Country\c19-46-n-java-react\backend\src\main\java\com\pedtinder\backend\dtos\ChangePetDataDTO.java
+D:\Almacenamiento\Cursos\No Country\c19-46-n-java-react\backend\src\main\java\com\pedtinder\backend\auth\AuthController.java
+D:\Almacenamiento\Cursos\No Country\c19-46-n-java-react\backend\src\main\java\com\pedtinder\backend\servicios\UserService.java
+D:\Almacenamiento\Cursos\No Country\c19-46-n-java-react\backend\src\main\java\com\pedtinder\backend\BackendApplication.java
+D:\Almacenamiento\Cursos\No Country\c19-46-n-java-react\backend\src\main\java\com\pedtinder\backend\repositorios\BreedRepository.java
+D:\Almacenamiento\Cursos\No Country\c19-46-n-java-react\backend\src\main\java\com\pedtinder\backend\servicios\PetPhotoService.java
+D:\Almacenamiento\Cursos\No Country\c19-46-n-java-react\backend\src\main\java\com\pedtinder\backend\auth\AuthService.java
+D:\Almacenamiento\Cursos\No Country\c19-46-n-java-react\backend\src\main\java\com\pedtinder\backend\servicios\SizeService.java
+D:\Almacenamiento\Cursos\No Country\c19-46-n-java-react\backend\src\main\java\com\pedtinder\backend\controladores\PetController.java
+D:\Almacenamiento\Cursos\No Country\c19-46-n-java-react\backend\src\main\java\com\pedtinder\backend\servicios\BreedService.java
+D:\Almacenamiento\Cursos\No Country\c19-46-n-java-react\backend\src\main\java\com\pedtinder\backend\dtos\CompleteUserRegistrationDTO.java
+D:\Almacenamiento\Cursos\No Country\c19-46-n-java-react\backend\src\main\java\com\pedtinder\backend\entidades\Pet.java
+D:\Almacenamiento\Cursos\No Country\c19-46-n-java-react\backend\src\main\java\com\pedtinder\backend\enums\PetSex.java
