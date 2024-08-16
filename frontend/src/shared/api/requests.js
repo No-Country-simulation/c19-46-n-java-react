@@ -53,4 +53,6 @@ export const MASCOTAS_ENDPOINT = {
      * Obtener la lista de fotos.
      */
     get_lista_fotos: (id) => `${API_BASE_URL}/api/photos/${id}`,
+
+    post_registro_mascota: () => `${API_BASE_URL}/pet/register`,
 }

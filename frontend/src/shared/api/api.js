@@ -6,13 +6,20 @@ import axios from 'axios';
  * @param {string} [method='GET'] - Método HTTP que se va a utilizar para la solicitud.
  * @param {object|null} [data=null] - Objeto que contiene los datos que se van a enviar en el cuerpo de la solicitud.
  * @param {string|null} [token=null] - Token de autenticación opcional para la solicitud.
+ * @param {boolean} [isMultipart=false] - Indica si la solicitud es multipart.
  * @returns {Promise<object>} - Promesa que se resuelve con los datos recibidos en la respuesta.
  * @throws {Error} - Lanza un error si la solicitud falla.
  */
-export const fetchData = async (url, method = 'GET', data = null, token = null) => {
+export const fetchData = async (
+  url,
+  method = 'GET',
+  data = null,
+  token = null,
+  isMultipart = false
+) => {
 
   const headers = {
-    'Content-Type': 'application/json',
+    'Content-Type': isMultipart ? 'multipart/form-data' : 'application/json',
   };
 
   if (token) {
@@ -41,5 +48,3 @@ export const fetchData = async (url, method = 'GET', data = null, token = null) 
     throw error;
   }
 };
-
-

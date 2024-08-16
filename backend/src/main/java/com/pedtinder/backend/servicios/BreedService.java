@@ -10,7 +10,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Set;
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -23,7 +23,7 @@ public class BreedService {
     public void init() {
         if(breedRepository.count() == 0) {
 
-            Set<Breed> razas = Set.of(
+            List<Breed> razas = List.of(
                     new Breed("Sin raza definida"),
                     new Breed("Labrador Retriever"),
                     new Breed("Pastor Alemán"),
@@ -87,7 +87,7 @@ public class BreedService {
         }
     }
 
-    public Set<Breed> getBreeds() {
+    public List<Breed> getBreeds() {
 
         return breedRepository.findAllByOrderById();
 

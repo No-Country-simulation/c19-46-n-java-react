@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.Set;
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/breeds")
@@ -17,7 +17,7 @@ public class BreedController {
     private BreedService breedService;
 
     @GetMapping
-    public Set<Breed> getBreeds() {
+    public List<Breed> getBreeds() {
         return breedService.getBreeds();
     }
 }

@@ -1,6 +1,12 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { fetchListaRazas, fetchListaTamanios, fetchListaFotos } from "../api/mascota_api";
+import { UsuarioContexto } from "../utils/UsuarioContext";
+import {
+    fetchListaRazas,
+    fetchListaTamanios,
+    fetchListaFotos,
+    fetchRegistrarMascota
+} from "../api/mascota_api";
 
 export const useMascota = () => {
     // Estados del formulario
@@ -17,6 +23,9 @@ export const useMascota = () => {
     const [tamanios, setTamanios] = useState([]);
     const [descripcion, setDescripcion] = useState("");
     const [fotos, setFotos] = useState([]);
+
+    // Estado global de usuario
+    const { usuarioEnSesion, getToken } = useContext(UsuarioContexto);
 
     const navigate = useNavigate();
 
@@ -47,21 +56,22 @@ export const useMascota = () => {
         setIsSubmitting(true);
         setError("");
         try {
-            // const data = await fetchRegistrarMascota(
-            //     setError,
-            //     nombre,
-            //     edad,
-            //     sexo,
-            //     raza,
-            //     tamanio,
-            //     descripcion,
-            //     fotos
-            // );
-            // if (data) {
-            //     resetEstadosMascota();
-            //     navigate("/main-menu");
-            // }
-            console.log("Registro exitoso");
+            const data = await fetchRegistrarMascota(
+                setError,
+                usuarioEnSesion,
+                nombre,
+                descripcion,
+                edad,
+                raza,
+                tamanio,
+                sexo,
+                fotos,
+                getToken()
+            );
+            if (data) {
+                resetEstadosMascota();
+                navigate("/main-menu");
+            }
             setIsSubmitting(false);
             navigate("/main-menu");
         } catch (error) {

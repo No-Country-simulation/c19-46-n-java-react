@@ -31,26 +31,21 @@ public class PetController {
     private final PetPhotoService petPhotoService;
 
     @PostMapping("/register")
-    public ResponseEntity<String> registerPet(@RequestParam("file") MultipartFile file, @ModelAttribute RegistrationPetDTO request) throws IOException {
-
+    public ResponseEntity<String> registerPet(
+            @RequestParam("files") List<MultipartFile> files,
+            @ModelAttribute RegistrationPetDTO request) throws IOException {
         try {
-
-            petService.petRegistration(file, request);
+            petService.petRegistration(files, request);
             return ResponseEntity.ok("Mascota registrada");
-
         } catch (IllegalArgumentException e) {
-
             return ResponseEntity.badRequest().body(e.getMessage());
-
-        }catch (Exception e) {
-
+        } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error interno del servidor");
-
         }
-
     }
 
-//    Muestra todos los pets
+
+    //    Muestra todos los pets
     @GetMapping("/all")
     public List<Pet> getAllPets() {
 

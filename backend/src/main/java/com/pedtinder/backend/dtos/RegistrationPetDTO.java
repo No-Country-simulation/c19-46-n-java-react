@@ -13,9 +13,11 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class RegistrationPetDTO {
 
+    private Long userId;
     private String name;
     private String age;
-    private String race;
     private String description;
-    PetSex petSex;
+    private Long breedId;
+    private Long sizeId;
+    private PetSex petSex;
 }

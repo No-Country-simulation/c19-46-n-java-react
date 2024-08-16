@@ -102,7 +102,7 @@ const FormularioMascotaIndex = ({ onPrevious }) => {
                         id="formulario-mascota-sexo"
                         type="select"
                         placeholder="Selecciona un sexo"
-                        value={sexo}
+                        value={sexo || ""}
                         options={[
                           { id: "1", name: "Macho" },
                           { id: "2", name: "Hembra" },
@@ -114,7 +114,7 @@ const FormularioMascotaIndex = ({ onPrevious }) => {
                         id="formulario-mascota-raza"
                         type="select"
                         placeholder="Selecciona una raza"
-                        value={raza}
+                        value={raza || ""}
                         options={razas}
                         onChange={(selectedItem) => setRaza(selectedItem)}
                         required
@@ -127,7 +127,7 @@ const FormularioMascotaIndex = ({ onPrevious }) => {
                         id="formulario-mascota-tamanio"
                         type="select"
                         placeholder="Selecciona un tamaño"
-                        value={tamanio}
+                        value={tamanio || ""}
                         options={tamanios}
                         onChange={(selectedItem) => setTamanio(selectedItem)}
                         required

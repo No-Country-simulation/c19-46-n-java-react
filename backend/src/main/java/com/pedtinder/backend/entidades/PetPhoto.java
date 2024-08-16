@@ -21,15 +21,12 @@ public class PetPhoto {
 
     @Column(columnDefinition = "LONGTEXT")
     private String content;
+
     private String name;
 
-    @OneToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_pet")
     @JsonBackReference
     private Pet pet;
-
-    /* @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "id_pet")
-    private Pet pet;*/
-
 }
+

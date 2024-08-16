@@ -57,7 +57,7 @@ const PerfilForm = ({ onPrevious, onNext }) => {
               id="city"
               type="select"
               placeholder="Selecciona una ciudad"
-              value={ciudad}
+              value={ciudad || ""}
               options={ciudades}
               onChange={(selectedItem) => setCiudad(selectedItem)}
               required

@@ -10,7 +10,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Set;
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -23,7 +23,7 @@ public class CityService {
     public void init() {
         if(cityRepository.count() == 0) {
 
-            Set<City> ciudades = Set.of(
+            List<City> ciudades = List.of(
                     new City("Caracas"),
                     new City("Maracaibo"),
                     new City("Barquisimeto"),
@@ -61,7 +61,7 @@ public class CityService {
         }
     }
 
-    public Set<City> getCities() {
+    public List<City> getCities() {
 
         return cityRepository.findAllByOrderById();
 

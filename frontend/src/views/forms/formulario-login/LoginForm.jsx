@@ -33,16 +33,16 @@ const LoginForm = ({ onNext }) => {
             <div className="campo">
               <Input
                 id="nicknameLogin"
-                placeholder={"nombre de usuario"}
+                placeholder="nombre de usuario"
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
                 maxLength={50}
                 required={true}
               />
               <Input
-                id={"password"}
-                type={"password"}
-                placeholder={"contraseña"}
+                id="password"
+                type="password"
+                placeholder="contraseña"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 maxLength={8}

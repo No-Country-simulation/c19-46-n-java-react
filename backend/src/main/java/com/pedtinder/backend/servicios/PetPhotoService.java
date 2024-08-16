@@ -8,7 +8,9 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.util.Base64;
+import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
@@ -16,51 +18,46 @@ public class PetPhotoService {
 
     private final PetPhotoRepository petPhotoRepository;
 
-//    Guarda imagen en bbdd
     public PetPhoto uploadPetPhoto(MultipartFile file) throws IOException {
-
-        if (file != null) {
-
-            String fileOriginalName = file.getOriginalFilename();
-
-            long fileSize = file.getSize();
-            long maxFileSize = 2 * 1024 * 1024;
-
-            if (fileSize > maxFileSize){
-
-                throw new RuntimeException("Archivo supera el tamaño limite");
-            }
-
-            if (!fileOriginalName.endsWith(".jpg") && !fileOriginalName.endsWith(".jpeg") && !fileOriginalName.endsWith(".png")){
-
-                throw new RuntimeException("Solo JPG, JPEG, PNG");
-
-            }
-
-            String contentString = Base64.getEncoder().encodeToString(file.getBytes());
-
-            PetPhoto petPhoto = PetPhoto.builder()
-                    .content(contentString)    // // Recupera el archivo para mostrar en pantalla
-                    .name(fileOriginalName)
-                    .build();
-
-            return petPhotoRepository.save(petPhoto);
-
+        if (file == null || file.isEmpty()) {
+            throw new RuntimeException("El archivo está vacío");
         }
 
-        return null;
+        String fileOriginalName = file.getOriginalFilename();
+        long fileSize = file.getSize();
+        long maxFileSize = 2 * 1024 * 1024;
+
+        if (fileSize > maxFileSize) {
+            throw new RuntimeException("El archivo supera el tamaño límite");
+        }
+
+        // Generar un nombre único para el archivo
+        String uniqueFileName = UUID.randomUUID().toString() + "_" + fileOriginalName;
+        String contentString = Base64.getEncoder().encodeToString(file.getBytes());
+
+        PetPhoto petPhoto = PetPhoto.builder()
+                .content(contentString)
+                .name(uniqueFileName)
+                .build();
+
+        return petPhotoRepository.save(petPhoto);
     }
 
-    public byte[] getPhotoByte(Long id){
+    public byte[] getPhotoByte(Long id) {
+        Optional<PetPhoto> petPhotoOpt = petPhotoRepository.findById(id);
+        if (petPhotoOpt.isEmpty()) {
+            throw new RuntimeException("Foto no encontrada");
+        }
 
-        Optional<PetPhoto> petphoto = petPhotoRepository.findById(id);
+        PetPhoto petPhoto = petPhotoOpt.get();
+        String contentPhoto = petPhoto.getContent();
 
-        String contentPhoto = petphoto.get().getContent();
-
-        byte[] photo = Base64.getDecoder().decode(contentPhoto.getBytes());
-
-        return photo;
-
+        return Base64.getDecoder().decode(contentPhoto.getBytes());
     }
 
+    public void saveAll(List<PetPhoto> photos) {
+        petPhotoRepository.saveAll(photos);
+    }
 }
+
+

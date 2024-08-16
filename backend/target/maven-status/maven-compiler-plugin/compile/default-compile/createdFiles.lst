@@ -7,6 +7,7 @@ com\pedtinder\backend\entidades\User.class
 com\pedtinder\backend\entidades\City.class
 com\pedtinder\backend\repositorios\CityRepository.class
 com\pedtinder\backend\repositorios\PetPhotoRepository.class
+com\pedtinder\backend\controladores\SizeController.class
 com\pedtinder\backend\entidades\PetPhoto.class
 com\pedtinder\backend\configuraciones\SecurityConfig$1.class
 com\pedtinder\backend\configuraciones\ApplicationConfig.class
@@ -36,6 +37,7 @@ com\pedtinder\backend\enums\PetSex.class
 com\pedtinder\backend\entidades\Breed.class
 com\pedtinder\backend\entidades\PetPhoto$PetPhotoBuilder.class
 com\pedtinder\backend\auth\AuthResponse$AuthResponseBuilder.class
+com\pedtinder\backend\controladores\BreedController.class
 com\pedtinder\backend\auth\LoginDTO.class
 com\pedtinder\backend\dtos\RegistrationPetDTO.class
 com\pedtinder\backend\auth\AuthResponse.class

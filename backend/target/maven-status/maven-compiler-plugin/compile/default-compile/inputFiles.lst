@@ -1,5 +1,6 @@
 D:\Almacenamiento\Cursos\No Country\c19-46-n-java-react\backend\src\main\java\com\pedtinder\backend\configuraciones\ApplicationConfig.java
 D:\Almacenamiento\Cursos\No Country\c19-46-n-java-react\backend\src\main\java\com\pedtinder\backend\auth\jwt\JwtService.java
+D:\Almacenamiento\Cursos\No Country\c19-46-n-java-react\backend\src\main\java\com\pedtinder\backend\controladores\SizeController.java
 D:\Almacenamiento\Cursos\No Country\c19-46-n-java-react\backend\src\main\java\com\pedtinder\backend\controladores\CityController.java
 D:\Almacenamiento\Cursos\No Country\c19-46-n-java-react\backend\src\main\java\com\pedtinder\backend\dtos\RegistrationPetDTO.java
 D:\Almacenamiento\Cursos\No Country\c19-46-n-java-react\backend\src\main\java\com\pedtinder\backend\repositorios\UserRepository.java
@@ -29,6 +30,7 @@ D:\Almacenamiento\Cursos\No Country\c19-46-n-java-react\backend\src\main\java\co
 D:\Almacenamiento\Cursos\No Country\c19-46-n-java-react\backend\src\main\java\com\pedtinder\backend\servicios\UserService.java
 D:\Almacenamiento\Cursos\No Country\c19-46-n-java-react\backend\src\main\java\com\pedtinder\backend\BackendApplication.java
 D:\Almacenamiento\Cursos\No Country\c19-46-n-java-react\backend\src\main\java\com\pedtinder\backend\repositorios\BreedRepository.java
+D:\Almacenamiento\Cursos\No Country\c19-46-n-java-react\backend\src\main\java\com\pedtinder\backend\controladores\BreedController.java
 D:\Almacenamiento\Cursos\No Country\c19-46-n-java-react\backend\src\main\java\com\pedtinder\backend\servicios\PetPhotoService.java
 D:\Almacenamiento\Cursos\No Country\c19-46-n-java-react\backend\src\main\java\com\pedtinder\backend\auth\AuthService.java
 D:\Almacenamiento\Cursos\No Country\c19-46-n-java-react\backend\src\main\java\com\pedtinder\backend\servicios\SizeService.java

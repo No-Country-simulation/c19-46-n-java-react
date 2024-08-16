@@ -7,7 +7,7 @@ import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.Set;
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -20,7 +20,7 @@ public class SizeService {
     public void init() {
         if(sizeRepository.count() == 0) {
 
-            Set<Size> tamanios = Set.of(
+            List<Size> tamanios = List.of(
                     new Size("Miniatura (hasta 5 kg.)"),
                     new Size("Pequeño (entre 5 y 10 kg.)"),
                     new Size("Pequeño-Mediano (entre 10 y 15 kg.)"),
@@ -37,7 +37,7 @@ public class SizeService {
         }
     }
 
-    public Set<Size> getSizes() {
+    public List<Size> getSizes() {
 
         return sizeRepository.findAllByOrderById();
 

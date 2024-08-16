@@ -2,12 +2,12 @@ package com.pedtinder.backend.servicios;
 
 import com.pedtinder.backend.dtos.ChangePetDataDTO;
 import com.pedtinder.backend.dtos.RegistrationPetDTO;
-import com.pedtinder.backend.entidades.Pet;
-import com.pedtinder.backend.entidades.PetPhoto;
+import com.pedtinder.backend.entidades.*;
 
-import com.pedtinder.backend.entidades.User;
-import com.pedtinder.backend.repositorios.PetPhotoRepository;
+import com.pedtinder.backend.enums.PetSex;
+import com.pedtinder.backend.repositorios.BreedRepository;
 import com.pedtinder.backend.repositorios.PetRepository;
+import com.pedtinder.backend.repositorios.SizeRepository;
 import com.pedtinder.backend.repositorios.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -28,33 +28,79 @@ public class PetService {
 
     private final PetRepository petRepository;
     private final UserRepository userRepository;
+    private final BreedRepository breedRepository;
+    private final SizeRepository sizeRepository;
     private final PetPhotoService petPhotoService;
 
     @Transactional
-    public void petRegistration(MultipartFile file, RegistrationPetDTO request) throws IOException {
+    public void petRegistration(List<MultipartFile> files, RegistrationPetDTO request) throws IOException {
+        try {
+            // Obtención del usuario autenticado
+            String username = SecurityContextHolder.getContext().getAuthentication().getName();
+            User user = userRepository.findByUsername(username)
+                    .orElseThrow(() -> new IllegalArgumentException("Usuario no encontrado: " + username));
 
-        String username = SecurityContextHolder.getContext().getAuthentication().getName();
-        User user = userRepository.findByUsername(username).orElseThrow(() -> new IllegalArgumentException("Usuario no encontrado"));
+            // Obtención de la raza
+            Breed breed = breedRepository.findById(request.getBreedId())
+                    .orElseThrow(() -> new IllegalArgumentException("Raza no encontrada para ID: " + request.getBreedId()));
 
+            // Obtención del tamaño
+            Size size = sizeRepository.findById(request.getSizeId())
+                    .orElseThrow(() -> new IllegalArgumentException("Tamaño no encontrado para ID: " + request.getSizeId()));
 
-        Pet pet = Pet.builder()
-                .name(request.getName())
-                .age(request.getAge())
-                .description(request.getDescription())
-                .petSex(request.getPetSex())
-                .user(user)
-                .build();
+            // Validación del sexo de la mascota
+            if (request.getPetSex() == null || (!request.getPetSex().equals(PetSex.Macho) && !request.getPetSex().equals(PetSex.Hembra))) {
+                throw new IllegalArgumentException("Sexo de la mascota inválido: " + request.getPetSex());
+            }
 
+            // Creación de la entidad Pet
+            Pet pet = Pet.builder()
+                    .name(request.getName())
+                    .age(request.getAge())
+                    .description(request.getDescription())
+                    .petSex(request.getPetSex())
+                    .user(user)
+                    .breed(breed)
+                    .size(size)
+                    .build();
 
-        if (!file.isEmpty()) {  // Se agrega una foto a la mascota
-            PetPhoto petPhoto = petPhotoService.uploadPetPhoto(file);
-            pet.setPhoto(petPhoto);
-            petPhoto.setPet(pet);
+            // Procesamiento y validación de archivos
+            List<PetPhoto> photos = new ArrayList<>();
+
+            for (MultipartFile file : files) {
+                if (file != null && !file.isEmpty()) {
+                    PetPhoto petPhoto = petPhotoService.uploadPetPhoto(file);
+                    petPhoto.setPet(pet);
+                    photos.add(petPhoto);
+                } else {
+                    throw new IllegalArgumentException("Archivo vacío encontrado en la solicitud");
+                }
+            }
+
+            System.out.println(pet);
+            System.out.println(photos);
+
+            // Guardado de la mascota y fotos asociadas
+            petRepository.save(pet);
+
+            System.out.println("guarda mascota");
+            petPhotoService.saveAll(photos);
+
+            System.out.println("guarda fotos");
+
+        } catch (IllegalArgumentException e) {
+            // Manejo de excepciones específicas de argumentos
+            throw e;
+        } catch (IOException e) {
+            // Manejo de excepciones relacionadas con la entrada/salida
+            throw e;
+        } catch (Exception e) {
+            // Manejo de otras excepciones generales
+            throw new RuntimeException("Error interno del servidor", e);
         }
-
-        petRepository.save(pet);
-
     }
+
+
 
     @Transactional
     public List<Pet> getAllPet() {

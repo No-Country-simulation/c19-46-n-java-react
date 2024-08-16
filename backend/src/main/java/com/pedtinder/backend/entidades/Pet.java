@@ -9,6 +9,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
 
 
 @Data
@@ -36,22 +37,18 @@ public class Pet {
     @JsonBackReference
     private User user;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_breed")
-    @JsonBackReference
+    @JsonManagedReference
     private Breed breed;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_size")
-    @JsonBackReference
+    @JsonManagedReference
     private Size size;
 
-    @OneToOne(mappedBy = "pet")
+    @OneToMany(mappedBy = "pet", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JsonManagedReference
-    private PetPhoto photo;
-
-
-    /*@OneToMany(mappedBy = "pet", cascade = CascadeType.ALL)
-    private List<PetPhoto> photos; */
-
+    private List<PetPhoto> photos;
 }
+

@@ -43,7 +43,7 @@ const RegisterForm = ({ onPrevious, onNext }) => {
             <Input
               id="email"
               placeholder="correo electronico"
-              type={"email"}
+              type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               maxLength={50}
@@ -52,7 +52,7 @@ const RegisterForm = ({ onPrevious, onNext }) => {
             <Input
               id="password"
               placeholder="contraseña"
-              type={"password"}
+              type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               maxLength={8}
@@ -61,7 +61,7 @@ const RegisterForm = ({ onPrevious, onNext }) => {
             <Input
               id="confirmar-password"
               placeholder="confirmar contraseña"
-              type={"password"}
+              type="password"
               value={confirmarPassword}
               onChange={(e) => setConfirmarPassword(e.target.value)}
               maxLength={8}
