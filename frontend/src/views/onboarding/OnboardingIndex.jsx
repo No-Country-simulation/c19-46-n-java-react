@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import LoginForm from "../forms/formulario-login/LoginForm";
 import RegisterForm from "../forms/formulario-registro/RegisterForm";
 import PerfilForm from "../forms/formulario-usuario/PerfilForm";
-import FormularioMascotaIndex from "../forms/formulario-mascota/FormularioMascotaIndex";
+import MascotaFormIndex from "../forms/formulario-mascota/MascotaFormIndex";
 
 
 /**
@@ -17,7 +17,7 @@ import FormularioMascotaIndex from "../forms/formulario-mascota/FormularioMascot
  * la página de formulario de mascota se renderiza cuando `step` es 2.
  *
  * Los botones de navegación entre las diferentes páginas se pasan como propiedades a los componentes de
- * `LoginForm`, `RegisterForm` y `FormularioMascotaIndex`.
+ * `LoginForm`, `RegisterForm` y `MascotaFormIndex`.
  *
  * El componente `OnboardingIndex` es exportado como el componente predeterminado para este archivo.
  */
@@ -46,7 +46,7 @@ const OnboardingIndex = () => {
   const Form4 = ({ onPrevious }) => (
     <>
       {/* FORMULARIO MASCOTA - PAGINA 3 */}
-      <FormularioMascotaIndex onPrevious={onPrevious} />
+      <MascotaFormIndex onPrevious={onPrevious} />
     </>
   );
   const [step, setStep] = useState(0);

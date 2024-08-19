@@ -74,7 +74,7 @@ export const useUsuario = (
      * datos del usuario si el inicio de sesión es exitoso, o undefined si
      * falla.
      */
-    const handleLogin = async (e) => {
+    const handleSubmitLoginForm = async (e) => {
         e.preventDefault();
         if (isSubmitting) {
             return;
@@ -114,7 +114,7 @@ export const useUsuario = (
      * datos del usuario registrado si el registro es exitoso, o undefined si
      * falla.
      */
-    const handleRegister = async (e) => {
+    const handleSubmitRegisterForm = async (e) => {
         e.preventDefault();
         if (isSubmitting) {
             return;
@@ -157,8 +157,7 @@ export const useUsuario = (
      * datos del usuario registrado si el registro es exitoso, o undefined si
      * falla.
      */
-    const handleProfileRegister = async (e) => {
-        e.preventDefault();
+    const handleSubmitPerfilForm = async (e) => {
         if (isSubmitting) {
             return;
         }
@@ -235,9 +234,9 @@ export const useUsuario = (
     };
 
     return {
-        handleLogin,
-        handleRegister,
-        handleProfileRegister,
+        handleSubmitLoginForm,
+        handleSubmitRegisterForm,
+        handleSubmitPerfilForm,
         handleSubmitChangeEmail,
         handleSubmitChangePassword,
         getCiudades,

@@ -32,15 +32,17 @@ const LoginForm = ({ onNext }) => {
             <p>Por favor, inicia sesión para continuar</p>
             <div className="campo">
               <Input
-                id="nicknameLogin"
+                id="formulario-login-username"
+                name="username"
                 placeholder="nombre de usuario"
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
-                maxLength={50}
+                maxLength={30}
                 required={true}
               />
               <Input
-                id="password"
+                id="formulario-login-password"
+                name="password"
                 type="password"
                 placeholder="contraseña"
                 value={password}

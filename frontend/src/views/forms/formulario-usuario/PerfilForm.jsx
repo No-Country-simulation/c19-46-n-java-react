@@ -4,9 +4,10 @@ import "../Formulario.css";
 import Input from "../../../shared/components/input/Input";
 import Primerinicio from "../../../shared/assets/primerInicio.png";
 import { useUsuario } from "../../../shared/hooks/useUsuario";
+import useValidacionInput from "../../../shared/hooks/useValidacionInput";
+import { validarPerfilForm } from "../../../shared/utils/validaciones";
 
 const PerfilForm = ({ onPrevious, onNext }) => {
-
   const {
     estadoForm: {
       error,
@@ -21,11 +22,24 @@ const PerfilForm = ({ onPrevious, onNext }) => {
       setTelefono,
       setCiudad,
     },
-    handleProfileRegister,
+    handleSubmitPerfilForm,
     getCiudades
-  } = useUsuario(
-    onNext
-  );
+  } = useUsuario(onNext);
+
+  const initialValues = {
+    nombre: nombre || "",
+    telefono: telefono || "",
+    ciudad: ciudad || ""
+  };
+
+  const {
+    values,
+    errors,
+    touched,
+    handleChange,
+    handleBlur,
+    handleValidatePerfilForm
+  } = useValidacionInput(initialValues, validarPerfilForm);
 
   useEffect(() => {
     getCiudades();
@@ -34,32 +48,55 @@ const PerfilForm = ({ onPrevious, onNext }) => {
   return (
     <div className="divisor">
       <div className="container">
-        <form className="form" onSubmit={handleProfileRegister}>
+        <form className="form" onSubmit={(e) => handleValidatePerfilForm(e, handleSubmitPerfilForm)}>
           <h1>Completa tu perfil para comenzar</h1>
           <div className="campo">
             <Input
-              id="name"
+              id="formulario-perfil-nombre"
+              name="nombre"
               placeholder="tu nombre"
-              value={nombre}
-              onChange={(e) => setNombre(e.target.value)}
+              value={values.nombre}
+              onChange={(e) => {
+                handleChange(e);
+                setNombre(e.target.value);
+              }}
+              onBlur={handleBlur}
+              minLength={3}
               maxLength={50}
+              isValid={!errors.nombre}
+              errorMessage={errors.nombre}
+              touched={touched.nombre}
               required
             />
             <Input
-              id="phone"
+              id="formulario-perfil-telefono"
+              name="telefono"
+              type="tel"
               placeholder="teléfono de contacto"
-              value={telefono}
-              onChange={(e) => setTelefono(e.target.value)}
+              value={values.telefono}
+              onChange={(e) => {
+                const numericValue = e.target.value.replace(/[^0-9]/g, ''); // Filtra todo excepto los números
+                e.target.value = numericValue;
+                handleChange(e);
+                setTelefono(e.target.value);
+              }}
+              onBlur={handleBlur}
+              minLength={10}
               maxLength={15}
+              isValid={!errors.telefono}
+              errorMessage={errors.telefono}
+              touched={touched.telefono}
               required
             />
             <Input
-              id="city"
+              id="formulario-perfil-ciudad"
+              name="ciudad"
               type="select"
               placeholder="Selecciona una ciudad"
               value={ciudad || ""}
               options={ciudades}
               onChange={(selectedItem) => setCiudad(selectedItem)}
+              touched={touched.ciudad}
               required
             />
           </div>

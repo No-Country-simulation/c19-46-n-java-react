@@ -44,7 +44,7 @@ export const useMascota = () => {
         setFotos([]);
     }
 
-    const handleRegister = async (e) => {
+    const handleSubtmitMascotaForm = async (e) => {
         e.preventDefault();
         if (isSubmitting) {
             return;
@@ -135,7 +135,7 @@ export const useMascota = () => {
 
 
     return {
-        handleRegister,
+        handleSubtmitMascotaForm,
         getRazas,
         getTamanios,
         getFotos,

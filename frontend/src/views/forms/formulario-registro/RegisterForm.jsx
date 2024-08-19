@@ -3,6 +3,8 @@ import "../Formulario.css";
 import Input from "../../../shared/components/input/Input";
 import formularioRegistro from "../../../shared/assets/formularioRegistro.png";
 import { useUsuario } from "../../../shared/hooks/useUsuario";
+import useValidacionInput from "../../../shared/hooks/useValidacionInput";
+import { validarRegisterForm } from "../../../shared/utils/validaciones";
 
 const RegisterForm = ({ onPrevious, onNext }) => {
 
@@ -21,50 +23,97 @@ const RegisterForm = ({ onPrevious, onNext }) => {
       password,
       confirmarPassword
     },
-    handleRegister
+    handleSubmitRegisterForm
   } = useUsuario(onNext);
 
+  const initialValues = {
+    username: username || "",
+    email: email || "",
+    password: password || "",
+    confirmarPassword: confirmarPassword || ""
+  };
+
+  const {
+    values,
+    errors,
+    touched,
+    handleChange,
+    handleBlur,
+    handleValidateRegisterForm
+  } = useValidacionInput(initialValues, validarRegisterForm);
 
   return (
     <div className="divisor image-below">
       <div className="container">
-        <form className="form" onSubmit={handleRegister}>
+        <form className="form" onSubmit={(e) => handleSubmitRegisterForm(e, handleValidateRegisterForm)}>
           <h3>¡Únete a nuestra comunidad hoy!</h3>
           <p>Regístrate para empezar.</p>
           <div className="campo">
             <Input
-              id="name"
+              id="formulario-registro-username"
+              name="username"
               placeholder="tu nombre de usuario"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
-              maxLength={50}
+              value={values.username}
+              onChange={(e) => {
+                handleChange(e);
+                setUsername(e.target.value);
+              }}
+              onBlur={handleBlur}
+              maxLength={30}
+              isValid={!errors.username}
+              errorMessage={errors.username}
+              touched={touched.username}
               required
             />
             <Input
-              id="email"
+              id="formulario-registro-email"
+              name="email"
               placeholder="correo electronico"
               type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              value={values.email}
+              onChange={(e) => {
+                handleChange(e);
+                setEmail(e.target.value);
+              }}
+              onBlur={handleBlur}
               maxLength={50}
+              isValid={!errors.email}
+              errorMessage={errors.email}
+              touched={touched.email}
               required
             />
             <Input
-              id="password"
+              id="formulario-registro-password"
+              name="password"
               placeholder="contraseña"
               type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              value={values.password}
+              onChange={(e) => {
+                handleChange(e);
+                setPassword(e.target.value);
+              }}
+              onBlur={handleBlur}
               maxLength={8}
+              isValid={!errors.password}
+              errorMessage={errors.password}
+              touched={touched.password}
               required
             />
             <Input
-              id="confirmar-password"
+              id="formulario-registro-confirmar-password"
+              name="confirmarPassword"
               placeholder="confirmar contraseña"
               type="password"
-              value={confirmarPassword}
-              onChange={(e) => setConfirmarPassword(e.target.value)}
+              value={values.confirmarPassword}
+              onChange={(e) => {
+                handleChange(e);
+                setConfirmarPassword(e.target.value);
+              }}
+              onBlur={handleBlur}
               maxLength={8}
+              isValid={!errors.confirmarPassword}
+              errorMessage={errors.confirmarPassword}
+              touched={touched.confirmarPassword}
               required
             />
           </div>
