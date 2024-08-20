@@ -43,6 +43,10 @@ const MascotaFormIndex = ({ onPrevious }) => {
     nombre: nombre || "",
     edad: edad || "",
     descripcion: descripcion || "",
+    sexo: sexo || "",
+    raza: raza || "",
+    tamanio: tamanio || "",
+    fotos: fotos || [],
   };
 
   const {
@@ -101,22 +105,41 @@ const MascotaFormIndex = ({ onPrevious }) => {
                     <Grid item xs={12} md={4}>
                       <Input
                         id="formulario-mascota-nombre"
+                        name="nombre"
                         placeholder="Nombre"
-                        value={nombre}
-                        onChange={(e) => setNombre(e.target.value)}
+                        value={values.nombre}
+                        onChange={(e) => {
+                          handleChange(e);
+                          setNombre(e.target.value);
+                        }}
                         maxLength={50}
+                        onBlur={handleBlur}
+                        isValid={!errors.nombre}
+                        errorMessage={errors.nombre}
+                        touched={touched.nombre}
                         required
                       />
                       <Input
                         id="formulario-mascota-edad"
+                        name="edad"
                         placeholder="Edad"
-                        value={edad}
-                        onChange={(e) => setEdad(e.target.value)}
-                        maxLength={50}
+                        value={values.edad}
+                        onChange={(e) => {
+                          const numericValue = e.target.value.replace(/[^0-9]/g, ''); // Filtra todo excepto los números
+                          e.target.value = numericValue;
+                          handleChange(e);
+                          setEdad(e.target.value);
+                        }}
+                        maxLength={2}
+                        onBlur={handleBlur}
+                        isValid={!errors.edad}
+                        errorMessage={errors.edad}
+                        touched={touched.edad}
                         required
                       />
                       <Input
                         id="formulario-mascota-sexo"
+                        name="sexo"
                         type="select"
                         placeholder="Selecciona un sexo"
                         value={sexo || ""}
@@ -125,15 +148,18 @@ const MascotaFormIndex = ({ onPrevious }) => {
                           { id: "2", name: "Hembra" },
                         ]}
                         onChange={(selectedItem) => setSexo(selectedItem)}
+                        touched={touched.sexo}
                         required
                       />
                       <Input
                         id="formulario-mascota-raza"
+                        name="raza"
                         type="select"
                         placeholder="Selecciona una raza"
                         value={raza || ""}
                         options={razas}
                         onChange={(selectedItem) => setRaza(selectedItem)}
+                        touched={touched.raza}
                         required
                       />
                     </Grid>
@@ -142,20 +168,28 @@ const MascotaFormIndex = ({ onPrevious }) => {
                     <Grid item xs={12} md={4}>
                       <Input
                         id="formulario-mascota-tamanio"
+                        name="tamanio"
                         type="select"
                         placeholder="Selecciona un tamaño"
                         value={tamanio || ""}
                         options={tamanios}
                         onChange={(selectedItem) => setTamanio(selectedItem)}
+                        touched={touched.tamanio}
                         required
                       />
                       <Input
                         id="formulario-mascota-descripcion"
+                        name="descripcion"
                         type="textarea"
                         placeholder="Cuenta lo que quieras de él/ella"
-                        value={descripcion}
-                        onChange={(e) => setDescripcion(e.target.value)}
+                        value={values.descripcion}
+                        onChange={(e) => {
+                          handleChange(e);
+                          setDescripcion(e.target.value);
+                        }}
                         maxLength={150}
+                        onBlur={handleBlur}
+                        touched={touched.descripcion}
                       />
                     </Grid>
 

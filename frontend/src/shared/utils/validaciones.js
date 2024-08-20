@@ -21,13 +21,15 @@ export const validarRegisterForm = (valores) => {
         errores.password = "La contraseña es requerida.";
     } else if (valores.password.length < 6) {
         errores.password = "La contraseña debe tener al menos 6 caracteres.";
+    } else if (valores.password.length > 8) {
+        errores.password = "La contraseña debe tener un maximo de 8 caracteres.";
     }
 
     // Valida la confirmación de la contraseña
     if (!valores.confirmarPassword) {
-        errores.confirmarPassword = "La confirmación de la contraseña es requerida.";
+        errores.confirmarPassword = "Confirme la contraseña.";
     } else if (valores.confirmarPassword !== valores.password) {
-        errores.confirmarPassword = "La confirmación de la contraseña no coincide con la contraseña.";
+        errores.confirmarPassword = "Las contraseñas no coinciden.";
     }
 
     return errores;
@@ -61,5 +63,19 @@ export const validarPerfilForm = (valores) => {
  */
 export const validarMascotaForm = (valores) => {
     let errores = {};
+
+    // Valida el nombre
+    if (!valores.nombre) {
+        errores.nombre = "El nombre es requerido.";
+    }
+
+    // Valida la edad
+    const regexEdad = /^[0-9\b]+$/;
+    if (!valores.edad) {
+        errores.edad = "La edad es requerida.";
+    } else if (!regexEdad.test(valores.edad)) {
+        errores.edad = "La edad solo debe contener números.";
+    }
+
     return errores;
 }

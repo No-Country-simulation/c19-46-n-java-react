@@ -6,15 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="83bd9cd8-d343-439b-8a36-595550e7af8f" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/backend-0.0.1-SNAPSHOT.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/backend-0.0.1-SNAPSHOT.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/backend-0.0.1-SNAPSHOT.jar.original" beforeDir="false" afterPath="$PROJECT_DIR$/target/backend-0.0.1-SNAPSHOT.jar.original" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/shared/components/input/Input.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/shared/components/input/Input.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/shared/hooks/useUsuario.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/shared/hooks/useUsuario.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/views/forms/formulario-login/LoginForm.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/views/forms/formulario-login/LoginForm.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/shared/hooks/useValidacionInput.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/shared/hooks/useValidacionInput.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/shared/utils/validaciones.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/shared/utils/validaciones.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/views/forms/formulario-mascota/MascotaFormIndex.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/views/forms/formulario-mascota/MascotaFormIndex.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../frontend/src/views/forms/formulario-registro/RegisterForm.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/views/forms/formulario-registro/RegisterForm.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/views/forms/formulario-usuario/PerfilForm.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/views/forms/formulario-usuario/PerfilForm.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,12 +32,12 @@
     &quot;assignee&quot;: &quot;CristianCarballo&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings">{
-  &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/No-Country-simulation/c19-46-n-java-react.git&quot;,
-    &quot;accountId&quot;: &quot;cd908e13-731d-4a27-985a-586e71d6b450&quot;
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/No-Country-simulation/c19-46-n-java-react.git",
+    "accountId": "1aae1449-fa2d-4097-83a3-6d8111f60ada"
   }
-}</component>
+}]]></component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 2
 }</component>

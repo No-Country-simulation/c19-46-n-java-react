@@ -22,6 +22,7 @@ const useValidacionInput = (initialValues, validarForm) => {
         nombre: true,
         edad: true,
         descripcion: true,
+        fotos: true,
     };
 
     const handleChange = (e) => {
