@@ -4,7 +4,7 @@ import LoginForm from "../forms/formulario-login/LoginForm";
 import RegisterForm from "../forms/formulario-registro/RegisterForm";
 import PerfilForm from "../forms/formulario-usuario/PerfilForm";
 import MascotaFormIndex from "../forms/formulario-mascota/MascotaFormIndex";
-
+import ProtectedRoute from "../../routes/ProtectedRoute";
 
 /**
  * El componente utiliza el hook `useState` para manejar el estado de la 'página' actual del flujo.
@@ -79,28 +79,32 @@ const OnboardingIndex = () => {
           </motion.div>
         )}
         {step === 2 && (
-          <motion.div
-            key="form3"
-            initial={{ opacity: 0, x: 100 }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: -100 }}
-            transition={{ duration: 0.5 }}
-          >
-            {/* FORMULARIO PERFIL - PAGINA 2 */}
-            <Form3 onPrevious={() => setStep(1)} onNext={() => setStep(3)} />
-          </motion.div>
+          <ProtectedRoute>
+            <motion.div
+              key="form3"
+              initial={{ opacity: 0, x: 100 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: -100 }}
+              transition={{ duration: 0.5 }}
+            >
+              {/* FORMULARIO PERFIL - PAGINA 2 */}
+              <Form3 onPrevious={() => setStep(1)} onNext={() => setStep(3)} />
+            </motion.div>
+          </ProtectedRoute>
         )}
         {step === 3 && (
-          <motion.div
-            key="form4"
-            initial={{ opacity: 0, x: 100 }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: -100 }}
-            transition={{ duration: 0.5 }}
-          >
-            {/* FORMULARIO MASCOTA - PAGINA 3 */}
-            <Form4 onPrevious={() => setStep(2)} />
-          </motion.div>
+          <ProtectedRoute>
+            <motion.div
+              key="form4"
+              initial={{ opacity: 0, x: 100 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: -100 }}
+              transition={{ duration: 0.5 }}
+            >
+              {/* FORMULARIO MASCOTA - PAGINA 3 */}
+              <Form4 onPrevious={() => setStep(2)} />
+            </motion.div>
+          </ProtectedRoute>
         )}
       </AnimatePresence>
     </>

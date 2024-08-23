@@ -1,6 +1,6 @@
-import { useContext, useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { UsuarioContexto } from "../utils/UsuarioContext";
+import { useAuth } from "./useAuth";
 import { fetchListaCiudades } from "../api/ciudad_api";
 import {
     fetchLogin,
@@ -30,7 +30,7 @@ export const useUsuario = (
     const [ciudades, setCiudades] = useState([]);
 
     // Estado global de usuario
-    const { login, getToken } = useContext(UsuarioContexto);
+    const { login, getToken } = useAuth();
 
     const navigate = useNavigate();
 
@@ -157,7 +157,7 @@ export const useUsuario = (
      * datos del usuario registrado si el registro es exitoso, o undefined si
      * falla.
      */
-    const handleSubmitPerfilForm = async (e) => {
+    const handleSubmitPerfilForm = async () => {
         if (isSubmitting) {
             return;
         }

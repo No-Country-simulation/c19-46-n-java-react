@@ -1,6 +1,6 @@
 import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { UsuarioContexto } from "../utils/UsuarioContext";
+import { useAuth } from "./useAuth";
 import {
     fetchListaRazas,
     fetchListaTamanios,
@@ -25,7 +25,7 @@ export const useMascota = () => {
     const [fotos, setFotos] = useState([]);
 
     // Estado global de usuario
-    const { usuarioEnSesion, getToken } = useContext(UsuarioContexto);
+    const { user, getToken } = useAuth();
 
     const navigate = useNavigate();
 
@@ -58,7 +58,7 @@ export const useMascota = () => {
         try {
             const data = await fetchRegistrarMascota(
                 setError,
-                usuarioEnSesion,
+                user,
                 nombre,
                 descripcion,
                 edad,

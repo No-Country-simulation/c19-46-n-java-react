@@ -5,6 +5,7 @@ import MensajeIndex from '../views/wrap-content/mensaje/MensajeIndex';
 import PerfilIndex from '../views/wrap-content/perfil/PerfilIndex';
 import ConfiguracionIndex from '../views/wrap-content/configuracion/ConfiguracionIndex';
 import { usePreviousLocation } from '../shared/hooks/usePreviousLocation';
+import ProtectedRoute from './ProtectedRoute';
 
 const NavBarRoutes = () => {
   const location = useLocation();
@@ -13,23 +14,23 @@ const NavBarRoutes = () => {
   const routes = [
     {
       path: "/",
-      element: <HomeIndex />,
+      element: <ProtectedRoute element={<HomeIndex />} />,
     },
     {
       path: "/home",
-      element: <HomeIndex />,
+      element: <ProtectedRoute element={<HomeIndex />} />,
     },
     {
       path: "/mensaje",
-      element: <MensajeIndex />,
+      element: <ProtectedRoute element={<MensajeIndex />} />,
     },
     {
       path: "/perfil",
-      element: <PerfilIndex />,
+      element: <ProtectedRoute element={<PerfilIndex />} />,
     },
     {
       path: "/configuracion",
-      element: <ConfiguracionIndex />,
+      element: <ProtectedRoute element={<ConfiguracionIndex />} />,
     },
   ];
 

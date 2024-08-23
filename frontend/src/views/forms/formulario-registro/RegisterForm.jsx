@@ -93,7 +93,6 @@ const RegisterForm = ({ onPrevious, onNext }) => {
                 setPassword(e.target.value);
               }}
               onBlur={handleBlur}
-              minLength={6}
               maxLength={8}
               isValid={!errors.password}
               errorMessage={errors.password}
@@ -111,7 +110,6 @@ const RegisterForm = ({ onPrevious, onNext }) => {
                 setConfirmarPassword(e.target.value);
               }}
               onBlur={handleBlur}
-              minLength={6}
               maxLength={8}
               isValid={!errors.confirmarPassword}
               errorMessage={errors.confirmarPassword}

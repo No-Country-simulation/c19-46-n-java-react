@@ -19,8 +19,6 @@ export const validarRegisterForm = (valores) => {
     // Valida la contraseña
     if (!valores.password) {
         errores.password = "La contraseña es requerida.";
-    } else if (valores.password.length < 6) {
-        errores.password = "La contraseña debe tener al menos 6 caracteres.";
     } else if (valores.password.length > 8) {
         errores.password = "La contraseña debe tener un maximo de 8 caracteres.";
     }
